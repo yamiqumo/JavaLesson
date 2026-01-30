@@ -1,0 +1,1087 @@
+<div style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; line-height: 1.6;">
+  <h1 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">Java研修 練習問題集</h1>
+
+  <h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（for文）</h2>
+
+  <div>
+    <strong>【問題1】</strong> 1から10までを順番に表示してください。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文を使って、変数iを1から10まで1ずつ増やしながら繰り返し処理を行います。各繰り返しでiの値を表示します。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までを順番に表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 10; i++) {
+        System.out.println(i);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> printNumbers() {
+    <span style="color: #666;">// 1から10までを順番に表示する</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 10; i++) {
+        System.out.println(i);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までを表示する処理を実行</span>
+    printNumbers();
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題2】</strong> 1からnまでの整数の合計を計算して表示してください（n=5とします）。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>合計を保持する変数を用意し、for文で1からnまで繰り返しながら、各数値を合計に加算していきます。最後に合計を表示します。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から5までの整数の合計を計算して表示（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 5;
+    <span style="color: #0033ff;">int</span> sum = 0;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        sum = sum + i;
+    }
+    System.out.println(<span style="color: #cc0000;">"合計: "</span> + sum);
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">int</span> calculateSum(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// 1からnまでの整数の合計を計算する</span>
+    <span style="color: #0033ff;">int</span> sum = 0;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        sum = sum + i;
+    }
+    <span style="color: #0033ff;">int</span> result = sum;
+    <span style="color: #0033ff;">return</span> result;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から5までの合計を計算して表示</span>
+    <span style="color: #0033ff;">int</span> total = calculateSum(5);
+    System.out.println(<span style="color: #cc0000;">"合計: "</span> + total);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題3】</strong> 1から20までの偶数を表示してください。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で2から始めて、2ずつ増やしながら20まで繰り返します。または、1から20まで繰り返し、if文で偶数の場合のみ表示する方法もあります。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から20までの偶数を表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 2; i &lt;= 20; i = i + 2) {
+        System.out.println(i);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> printEvenNumbers() {
+    <span style="color: #666;">// 1から20までの偶数を表示する</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 2; i &lt;= 20; i = i + 2) {
+        System.out.println(i);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から20までの偶数を表示する処理を実行</span>
+    printEvenNumbers();
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（while文）</h2>
+
+  <div>
+    <strong>【問題4】</strong> 1から10までを順番に表示してください（while文を使用）。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>カウンタ変数を1で初期化し、while文で10以下の間繰り返します。各繰り返しで値を表示し、カウンタを1増やします。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までを順番に表示する（while文を使用、メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> i = 1;
+    <span style="color: #0033ff;">while</span> (i &lt;= 10) {
+        System.out.println(i);
+        i++;
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> printNumbersWhile() {
+    <span style="color: #666;">// 1から10までを順番に表示する（while文を使用）</span>
+    <span style="color: #0033ff;">int</span> i = 1;
+    <span style="color: #0033ff;">while</span> (i &lt;= 10) {
+        System.out.println(i);
+        i++;
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までを表示する処理を実行</span>
+    printNumbersWhile();
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題5】</strong> 10から1までをカウントダウンして表示してください（while文を使用）。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>カウンタ変数を10で初期化し、while文で1以上の間繰り返します。各繰り返しで値を表示し、カウンタを1減らします（デクリメント）。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 10から1までをカウントダウンして表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> i = 10;
+    <span style="color: #0033ff;">while</span> (i &gt;= 1) {
+        System.out.println(i);
+        i--;
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> countDown() {
+    <span style="color: #666;">// 10から1までをカウントダウンして表示する</span>
+    <span style="color: #0033ff;">int</span> i = 10;
+    <span style="color: #0033ff;">while</span> (i &gt;= 1) {
+        System.out.println(i);
+        i--;
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 10から1までをカウントダウンする処理を実行</span>
+    countDown();
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題6】</strong> 1からnまでの整数の合計を計算して表示してください（n=7とします。while文を使用）。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>合計を保持する変数とカウンタ変数を用意します。while文でカウンタがn以下の間繰り返し、各数値を合計に加算し、カウンタを増やします。最後に合計を表示します。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から7までの整数の合計を計算して表示（while文を使用、メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 7;
+    <span style="color: #0033ff;">int</span> sum = 0;
+    <span style="color: #0033ff;">int</span> i = 1;
+    <span style="color: #0033ff;">while</span> (i &lt;= n) {
+        sum = sum + i;
+        i++;
+    }
+    System.out.println(<span style="color: #cc0000;">"合計: "</span> + sum);
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">int</span> calculateSumWhile(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// 1からnまでの整数の合計を計算する（while文を使用）</span>
+    <span style="color: #0033ff;">int</span> sum = 0;
+    <span style="color: #0033ff;">int</span> i = 1;
+    <span style="color: #0033ff;">while</span> (i &lt;= n) {
+        sum = sum + i;
+        i++;
+    }
+    <span style="color: #0033ff;">int</span> result = sum;
+    <span style="color: #0033ff;">return</span> result;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から7までの合計を計算して表示</span>
+    <span style="color: #0033ff;">int</span> total = calculateSumWhile(7);
+    System.out.println(<span style="color: #cc0000;">"合計: "</span> + total);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（if文）</h2>
+
+  <div>
+    <strong>【問題7】</strong> 文字列を引数として受け取り、「こんにちは」の場合は「Hello」と表示し、それ以外の場合は「Goodbye」と表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：greet<br>
+    <strong>引数</strong>：String message<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>if文で文字列の比較を行います。文字列の比較には必ず.equals()メソッドを使用します。message.equals("こんにちは")で判定し、条件に応じて表示を分岐します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 文字列に応じて挨拶を表示する（メインメソッドのみ）</span>
+    String message = <span style="color: #cc0000;">"こんにちは"</span>;
+    <span style="color: #0033ff;">if</span> (message.equals(<span style="color: #cc0000;">"こんにちは"</span>)) {
+        System.out.println(<span style="color: #cc0000;">"Hello"</span>);
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"Goodbye"</span>);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> greet(String message) {
+    <span style="color: #666;">// 文字列に応じて挨拶を表示する</span>
+    <span style="color: #0033ff;">if</span> (message.equals(<span style="color: #cc0000;">"こんにちは"</span>)) {
+        System.out.println(<span style="color: #cc0000;">"Hello"</span>);
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"Goodbye"</span>);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 挨拶メッセージを表示する処理を実行</span>
+    greet(<span style="color: #cc0000;">"こんにちは"</span>);
+    greet(<span style="color: #cc0000;">"さようなら"</span>);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題8】</strong> 整数を引数として受け取り、正の数の場合は「正の数」、負の数の場合は「負の数」、0の場合は「ゼロ」と表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：checkNumber<br>
+    <strong>引数</strong>：int num<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>if-else if-else文を使って、num > 0、num < 0、それ以外（num == 0）の3つの条件で分岐します。数値の比較には > や < を使用します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値の正負を判定して表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> num = 5;
+    <span style="color: #0033ff;">if</span> (num &gt; 0) {
+        System.out.println(<span style="color: #cc0000;">"正の数"</span>);
+    } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (num &lt; 0) {
+        System.out.println(<span style="color: #cc0000;">"負の数"</span>);
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"ゼロ"</span>);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> checkNumber(<span style="color: #0033ff;">int</span> num) {
+    <span style="color: #666;">// 数値の正負を判定して表示する</span>
+    <span style="color: #0033ff;">if</span> (num &gt; 0) {
+        System.out.println(<span style="color: #cc0000;">"正の数"</span>);
+    } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (num &lt; 0) {
+        System.out.println(<span style="color: #cc0000;">"負の数"</span>);
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"ゼロ"</span>);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値の判定処理を実行</span>
+    checkNumber(5);
+    checkNumber(-3);
+    checkNumber(0);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（switch文）</h2>
+
+  <div>
+    <strong>【問題9】</strong> 文字列を引数として受け取り、「月」「火」「水」「木」「金」の場合は「平日」、「土」「日」の場合は「休日」、それ以外の場合は「不明」と表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：checkDayType<br>
+    <strong>引数</strong>：String day<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>switch文で文字列を判定します。複数のcaseを連続して書くことで、同じ処理を実行できます（フォールスルー）。break文で処理を終了させ、defaultでそれ以外のケースを処理します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 曜日に応じて平日・休日を判定する（メインメソッドのみ）</span>
+    String day = <span style="color: #cc0000;">"月"</span>;
+    <span style="color: #0033ff;">switch</span> (day) {
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"月"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"火"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"水"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"木"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"金"</span>:
+            System.out.println(<span style="color: #cc0000;">"平日"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"土"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"日"</span>:
+            System.out.println(<span style="color: #cc0000;">"休日"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">default</span>:
+            System.out.println(<span style="color: #cc0000;">"不明"</span>);
+            <span style="color: #0033ff;">break</span>;
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> checkDayType(String day) {
+    <span style="color: #666;">// 曜日に応じて平日・休日を判定する</span>
+    <span style="color: #0033ff;">switch</span> (day) {
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"月"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"火"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"水"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"木"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"金"</span>:
+            System.out.println(<span style="color: #cc0000;">"平日"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"土"</span>:
+        <span style="color: #0033ff;">case</span> <span style="color: #cc0000;">"日"</span>:
+            System.out.println(<span style="color: #cc0000;">"休日"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">default</span>:
+            System.out.println(<span style="color: #cc0000;">"不明"</span>);
+            <span style="color: #0033ff;">break</span>;
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 曜日の判定処理を実行</span>
+    checkDayType(<span style="color: #cc0000;">"月"</span>);
+    checkDayType(<span style="color: #cc0000;">"土"</span>);
+    checkDayType(<span style="color: #cc0000;">"不明な文字"</span>);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題10】</strong> 整数を引数として受け取り、1の場合は「一」、2の場合は「二」、3の場合は「三」、それ以外の場合は「その他」と表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：convertNumber<br>
+    <strong>引数</strong>：int num<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>switch文で整数を判定します。各caseで対応する漢字を表示し、break文で処理を終了させます。defaultでそれ以外のケースを処理します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値を漢字に変換して表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> num = 1;
+    <span style="color: #0033ff;">switch</span> (num) {
+        <span style="color: #0033ff;">case</span> 1:
+            System.out.println(<span style="color: #cc0000;">"一"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 2:
+            System.out.println(<span style="color: #cc0000;">"二"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 3:
+            System.out.println(<span style="color: #cc0000;">"三"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">default</span>:
+            System.out.println(<span style="color: #cc0000;">"その他"</span>);
+            <span style="color: #0033ff;">break</span>;
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> convertNumber(<span style="color: #0033ff;">int</span> num) {
+    <span style="color: #666;">// 数値を漢字に変換して表示する</span>
+    <span style="color: #0033ff;">switch</span> (num) {
+        <span style="color: #0033ff;">case</span> 1:
+            System.out.println(<span style="color: #cc0000;">"一"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 2:
+            System.out.println(<span style="color: #cc0000;">"二"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 3:
+            System.out.println(<span style="color: #cc0000;">"三"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">default</span>:
+            System.out.println(<span style="color: #cc0000;">"その他"</span>);
+            <span style="color: #0033ff;">break</span>;
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値の変換処理を実行</span>
+    convertNumber(1);
+    convertNumber(2);
+    convertNumber(3);
+    convertNumber(5);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（break文）</h2>
+
+  <div>
+    <strong>【問題19】</strong> 1から20までの整数を順番に表示してください。ただし、10に達したらループを終了してください（break文を使用）。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で1から20まで繰り返します。ループ内でif文を使って、変数iが10になったらbreak文でループを終了させます。break文はループを途中で終了させるために使用します。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から20までを順番に表示するが、10に達したら終了（break文を使用、メインメソッドのみ）</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 20; i++) {
+        <span style="color: #0033ff;">if</span> (i == 10) {
+            <span style="color: #0033ff;">break</span>;
+        }
+        System.out.println(i);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> printNumbersUntilTen() {
+    <span style="color: #666;">// 1から20までを順番に表示するが、10に達したら終了（break文を使用）</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 20; i++) {
+        <span style="color: #0033ff;">if</span> (i == 10) {
+            <span style="color: #0033ff;">break</span>;
+        }
+        System.out.println(i);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までを表示する処理を実行</span>
+    printNumbersUntilTen();
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（continue文）</h2>
+
+  <div>
+    <strong>【問題20】</strong> 1から20までの整数を順番に表示してください。ただし、5の倍数の場合は表示をスキップしてください（continue文を使用）。<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で1から20まで繰り返します。ループ内でif文を使って、変数iが5の倍数（i % 5 == 0）の場合にcontinue文で現在の繰り返しをスキップして次に進みます。continue文はループの現在の繰り返しを終了して、次の繰り返しに進むために使用します。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から20までを順番に表示するが、5の倍数はスキップ（continue文を使用、メインメソッドのみ）</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 20; i++) {
+        <span style="color: #0033ff;">if</span> (i % 5 == 0) {
+            <span style="color: #0033ff;">continue</span>;
+        }
+        System.out.println(i);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> printNumbersSkipMultiples() {
+    <span style="color: #666;">// 1から20までを順番に表示するが、5の倍数はスキップ（continue文を使用）</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 20; i++) {
+        <span style="color: #0033ff;">if</span> (i % 5 == 0) {
+            <span style="color: #0033ff;">continue</span>;
+        }
+        System.out.println(i);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 5の倍数をスキップして表示する処理を実行</span>
+    printNumbersSkipMultiples();
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #cc0000; border-left: 10px solid #cc0000; padding-left: 10px;">発展問題（for文）</h2>
+
+  <div>
+    <strong>【問題21】</strong> 1からnまでの整数のうち、3の倍数または5の倍数である数の合計を計算するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：calculateMultiplesSum<br>
+    <strong>引数</strong>：int n<br>
+    <strong>戻り値</strong>：int<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で1からnまで繰り返し、各数値が3の倍数（i % 3 == 0）または5の倍数（i % 5 == 0）かをif文で判定します。条件を満たす場合のみ合計に加算します。最後に合計を変数に代入してからreturnします。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までの3の倍数または5の倍数の合計を計算して表示（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 10;
+    <span style="color: #0033ff;">int</span> sum = 0;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i % 3 == 0 || i % 5 == 0) {
+            sum = sum + i;
+        }
+    }
+    System.out.println(<span style="color: #cc0000;">"合計: "</span> + sum);
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">int</span> calculateMultiplesSum(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// 1からnまでの3の倍数または5の倍数の合計を計算する</span>
+    <span style="color: #0033ff;">int</span> sum = 0;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i % 3 == 0 || i % 5 == 0) {
+            sum = sum + i;
+        }
+    }
+    <span style="color: #0033ff;">int</span> result = sum;
+    <span style="color: #0033ff;">return</span> result;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までの3の倍数または5の倍数の合計を計算して表示</span>
+    <span style="color: #0033ff;">int</span> total = calculateMultiplesSum(10);
+    System.out.println(<span style="color: #cc0000;">"合計: "</span> + total);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #cc0000; border-left: 10px solid #cc0000; padding-left: 10px;">発展問題（while文）</h2>
+
+  <div>
+    <strong>【問題22】</strong> 整数nを引数として受け取り、nが0になるまで2で割り続け、割った回数を返すメソッドをwhile文で作成してください。<br>
+    <strong>メソッド名</strong>：countDivisions<br>
+    <strong>引数</strong>：int n<br>
+    <strong>戻り値</strong>：int<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>カウンタ変数と一時変数を用意します。while文で一時変数が0より大きい間繰り返し、2で割り、カウンタを増やします。最後にカウンタを変数に代入してからreturnします。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 16が0になるまで2で割り続けた回数を計算して表示（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 16;
+    <span style="color: #0033ff;">int</span> count = 0;
+    <span style="color: #0033ff;">int</span> temp = n;
+    <span style="color: #0033ff;">while</span> (temp &gt; 0) {
+        temp = temp / 2;
+        count++;
+    }
+    System.out.println(<span style="color: #cc0000;">"割った回数: "</span> + count);
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">int</span> countDivisions(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// nが0になるまで2で割り続けた回数を計算する</span>
+    <span style="color: #0033ff;">int</span> count = 0;
+    <span style="color: #0033ff;">int</span> temp = n;
+    <span style="color: #0033ff;">while</span> (temp &gt; 0) {
+        temp = temp / 2;
+        count++;
+    }
+    <span style="color: #0033ff;">int</span> result = count;
+    <span style="color: #0033ff;">return</span> result;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 16を2で割り続けた回数を計算して表示</span>
+    <span style="color: #0033ff;">int</span> divisions = countDivisions(16);
+    System.out.println(<span style="color: #cc0000;">"割った回数: "</span> + divisions);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #cc0000; border-left: 10px solid #cc0000; padding-left: 10px;">発展問題（if文）</h2>
+
+  <div>
+    <strong>【問題23】</strong> 2つの文字列を引数として受け取り、両方が「OK」の場合は「両方OK」、片方だけが「OK」の場合は「片方OK」、どちらも「OK」でない場合は「両方NG」と表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：checkBothStrings<br>
+    <strong>引数</strong>：String str1, String str2<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>まず、各文字列が「OK」かどうかをboolean変数に保存します。その後、if-else if-else文で、両方がOK（&&）、片方がOK（||）、それ以外の3つの条件で分岐します。文字列の比較には必ず.equals()を使用します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 2つの文字列の状態を判定して表示する（メインメソッドのみ）</span>
+    String str1 = <span style="color: #cc0000;">"OK"</span>;
+    String str2 = <span style="color: #cc0000;">"OK"</span>;
+    <span style="color: #0033ff;">boolean</span> isStr1Ok = str1.equals(<span style="color: #cc0000;">"OK"</span>);
+    <span style="color: #0033ff;">boolean</span> isStr2Ok = str2.equals(<span style="color: #cc0000;">"OK"</span>);
+    <span style="color: #0033ff;">if</span> (isStr1Ok && isStr2Ok) {
+        System.out.println(<span style="color: #cc0000;">"両方OK"</span>);
+    } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (isStr1Ok || isStr2Ok) {
+        System.out.println(<span style="color: #cc0000;">"片方OK"</span>);
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"両方NG"</span>);
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> checkBothStrings(String str1, String str2) {
+    <span style="color: #666;">// 2つの文字列の状態を判定して表示する</span>
+    <span style="color: #0033ff;">boolean</span> isStr1Ok = str1.equals(<span style="color: #cc0000;">"OK"</span>);
+    <span style="color: #0033ff;">boolean</span> isStr2Ok = str2.equals(<span style="color: #cc0000;">"OK"</span>);
+    <span style="color: #0033ff;">if</span> (isStr1Ok && isStr2Ok) {
+        System.out.println(<span style="color: #cc0000;">"両方OK"</span>);
+    } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (isStr1Ok || isStr2Ok) {
+        System.out.println(<span style="color: #cc0000;">"片方OK"</span>);
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"両方NG"</span>);
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 2つの文字列の判定処理を実行</span>
+    checkBothStrings(<span style="color: #cc0000;">"OK"</span>, <span style="color: #cc0000;">"OK"</span>);
+    checkBothStrings(<span style="color: #cc0000;">"OK"</span>, <span style="color: #cc0000;">"NG"</span>);
+    checkBothStrings(<span style="color: #cc0000;">"NG"</span>, <span style="color: #cc0000;">"NG"</span>);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #cc0000; border-left: 10px solid #cc0000; padding-left: 10px;">発展問題（switch文）</h2>
+
+  <div>
+    <strong>【問題24】</strong> 整数を引数として受け取り、1から3の場合は「小」、4から6の場合は「中」、7から9の場合は「大」、それ以外の場合は「範囲外」と表示するメソッドをswitch文で作成してください。<br>
+    <strong>メソッド名</strong>：classifyNumber<br>
+    <strong>引数</strong>：int num<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>switch文で整数を判定します。複数のcaseを連続して書くことで、同じ範囲の数値を同じ処理で処理できます。1,2,3で「小」、4,5,6で「中」、7,8,9で「大」を表示し、defaultで「範囲外」を表示します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値を範囲に応じて分類して表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> num = 2;
+    <span style="color: #0033ff;">switch</span> (num) {
+        <span style="color: #0033ff;">case</span> 1:
+        <span style="color: #0033ff;">case</span> 2:
+        <span style="color: #0033ff;">case</span> 3:
+            System.out.println(<span style="color: #cc0000;">"小"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 4:
+        <span style="color: #0033ff;">case</span> 5:
+        <span style="color: #0033ff;">case</span> 6:
+            System.out.println(<span style="color: #cc0000;">"中"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 7:
+        <span style="color: #0033ff;">case</span> 8:
+        <span style="color: #0033ff;">case</span> 9:
+            System.out.println(<span style="color: #cc0000;">"大"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">default</span>:
+            System.out.println(<span style="color: #cc0000;">"範囲外"</span>);
+            <span style="color: #0033ff;">break</span>;
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> classifyNumber(<span style="color: #0033ff;">int</span> num) {
+    <span style="color: #666;">// 数値を範囲に応じて分類して表示する</span>
+    <span style="color: #0033ff;">switch</span> (num) {
+        <span style="color: #0033ff;">case</span> 1:
+        <span style="color: #0033ff;">case</span> 2:
+        <span style="color: #0033ff;">case</span> 3:
+            System.out.println(<span style="color: #cc0000;">"小"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 4:
+        <span style="color: #0033ff;">case</span> 5:
+        <span style="color: #0033ff;">case</span> 6:
+            System.out.println(<span style="color: #cc0000;">"中"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">case</span> 7:
+        <span style="color: #0033ff;">case</span> 8:
+        <span style="color: #0033ff;">case</span> 9:
+            System.out.println(<span style="color: #cc0000;">"大"</span>);
+            <span style="color: #0033ff;">break</span>;
+        <span style="color: #0033ff;">default</span>:
+            System.out.println(<span style="color: #cc0000;">"範囲外"</span>);
+            <span style="color: #0033ff;">break</span>;
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値の分類処理を実行</span>
+    classifyNumber(2);
+    classifyNumber(5);
+    classifyNumber(8);
+    classifyNumber(10);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <h2 style="color: #cc0000; border-left: 10px solid #cc0000; padding-left: 10px;">複合・総合問題</h2>
+
+  <div>
+    <strong>【問題25】</strong> 1からnまでの整数のうち、偶数の合計と奇数の合計をそれぞれ計算し、大きい方の値を返すメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：getLargerSum<br>
+    <strong>引数</strong>：int n<br>
+    <strong>戻り値</strong>：int<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で1からnまで繰り返し、if文で偶数（i % 2 == 0）と奇数に分けてそれぞれ合計を計算します。その後、if文で大きい方の値を判定し、変数に代入してからreturnします。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までの偶数の合計と奇数の合計の大きい方を計算して表示（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 10;
+    <span style="color: #0033ff;">int</span> evenSum = 0;
+    <span style="color: #0033ff;">int</span> oddSum = 0;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i % 2 == 0) {
+            evenSum = evenSum + i;
+        } <span style="color: #0033ff;">else</span> {
+            oddSum = oddSum + i;
+        }
+    }
+    <span style="color: #0033ff;">int</span> largerSum;
+    <span style="color: #0033ff;">if</span> (evenSum &gt; oddSum) {
+        largerSum = evenSum;
+    } <span style="color: #0033ff;">else</span> {
+        largerSum = oddSum;
+    }
+    System.out.println(<span style="color: #cc0000;">"大きい方の合計: "</span> + largerSum);
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">int</span> getLargerSum(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// 1からnまでの偶数の合計と奇数の合計の大きい方を返す</span>
+    <span style="color: #0033ff;">int</span> evenSum = 0;
+    <span style="color: #0033ff;">int</span> oddSum = 0;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i % 2 == 0) {
+            evenSum = evenSum + i;
+        } <span style="color: #0033ff;">else</span> {
+            oddSum = oddSum + i;
+        }
+    }
+    <span style="color: #0033ff;">int</span> largerSum;
+    <span style="color: #0033ff;">if</span> (evenSum &gt; oddSum) {
+        largerSum = evenSum;
+    } <span style="color: #0033ff;">else</span> {
+        largerSum = oddSum;
+    }
+    <span style="color: #0033ff;">int</span> result = largerSum;
+    <span style="color: #0033ff;">return</span> result;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 偶数の合計と奇数の合計の大きい方を計算して表示</span>
+    <span style="color: #0033ff;">int</span> larger = getLargerSum(10);
+    System.out.println(<span style="color: #cc0000;">"大きい方の合計: "</span> + larger);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題26】</strong> 整数nを引数として受け取り、1からnまでの整数を順番に表示するが、3の倍数の場合は「Fizz」、5の倍数の場合は「Buzz」、3と5の両方の倍数の場合は「FizzBuzz」と表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：fizzBuzz<br>
+    <strong>引数</strong>：int n<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で1からnまで繰り返し、if-else if-else文で条件を判定します。3と5の両方の倍数（i % 3 == 0 && i % 5 == 0）を最初に判定し、次に3の倍数、5の倍数、それ以外の順で判定します。条件の順序が重要です。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から15までの数値をFizzBuzzルールで表示する（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 15;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i % 3 == 0 && i % 5 == 0) {
+            System.out.println(<span style="color: #cc0000;">"FizzBuzz"</span>);
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (i % 3 == 0) {
+            System.out.println(<span style="color: #cc0000;">"Fizz"</span>);
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (i % 5 == 0) {
+            System.out.println(<span style="color: #cc0000;">"Buzz"</span>);
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(i);
+        }
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> fizzBuzz(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// 1からnまでの数値をFizzBuzzルールで表示する</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i % 3 == 0 && i % 5 == 0) {
+            System.out.println(<span style="color: #cc0000;">"FizzBuzz"</span>);
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (i % 3 == 0) {
+            System.out.println(<span style="color: #cc0000;">"Fizz"</span>);
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (i % 5 == 0) {
+            System.out.println(<span style="color: #cc0000;">"Buzz"</span>);
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(i);
+        }
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// FizzBuzz処理を実行</span>
+    fizzBuzz(15);
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題27】</strong> 文字列を引数として受け取り、その文字列が「開始」の場合は「処理開始」と表示してtrueを返し、「終了」の場合は「処理終了」と表示してfalseを返し、それ以外の場合は「無効」と表示してfalseを返すメソッドを作成してください。また、mainメソッドでwhile文を使って、「開始」が返されるまで繰り返し処理を実行してください。<br>
+    <strong>メソッド名</strong>：processCommand<br>
+    <strong>引数</strong>：String command<br>
+    <strong>戻り値</strong>：boolean<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>if-else if-else文で文字列を判定し、戻り値をboolean変数に代入してからreturnします。mainメソッドでは、boolean変数を用意し、while文で「開始」が返されるまで（!isStarted）繰り返します。文字列の比較には必ず.equals()を使用します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// コマンド処理を繰り返し実行（開始が返されるまで、メインメソッドのみ）</span>
+    <span style="color: #0033ff;">boolean</span> isStarted = <span style="color: #0033ff;">false</span>;
+    <span style="color: #0033ff;">int</span> count = 0;
+    <span style="color: #0033ff;">while</span> (!isStarted) {
+        String command;
+        <span style="color: #0033ff;">if</span> (count == 0) {
+            command = <span style="color: #cc0000;">"待機"</span>;
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (count == 1) {
+            command = <span style="color: #cc0000;">"準備"</span>;
+        } <span style="color: #0033ff;">else</span> {
+            command = <span style="color: #cc0000;">"開始"</span>;
+        }
+        <span style="color: #0033ff;">boolean</span> shouldContinue;
+        <span style="color: #0033ff;">if</span> (command.equals(<span style="color: #cc0000;">"開始"</span>)) {
+            System.out.println(<span style="color: #cc0000;">"処理開始"</span>);
+            shouldContinue = <span style="color: #0033ff;">true</span>;
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (command.equals(<span style="color: #cc0000;">"終了"</span>)) {
+            System.out.println(<span style="color: #cc0000;">"処理終了"</span>);
+            shouldContinue = <span style="color: #0033ff;">false</span>;
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"無効"</span>);
+            shouldContinue = <span style="color: #0033ff;">false</span>;
+        }
+        <span style="color: #0033ff;">boolean</span> result = shouldContinue;
+        isStarted = result;
+        count++;
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">boolean</span> processCommand(String command) {
+    <span style="color: #666;">// コマンドに応じて処理を実行し、結果を返す</span>
+    <span style="color: #0033ff;">boolean</span> shouldContinue;
+    <span style="color: #0033ff;">if</span> (command.equals(<span style="color: #cc0000;">"開始"</span>)) {
+        System.out.println(<span style="color: #cc0000;">"処理開始"</span>);
+        shouldContinue = <span style="color: #0033ff;">true</span>;
+    } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (command.equals(<span style="color: #cc0000;">"終了"</span>)) {
+        System.out.println(<span style="color: #cc0000;">"処理終了"</span>);
+        shouldContinue = <span style="color: #0033ff;">false</span>;
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"無効"</span>);
+        shouldContinue = <span style="color: #0033ff;">false</span>;
+    }
+    <span style="color: #0033ff;">boolean</span> result = shouldContinue;
+    <span style="color: #0033ff;">return</span> result;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// コマンド処理を繰り返し実行（開始が返されるまで）</span>
+    <span style="color: #0033ff;">boolean</span> isStarted = <span style="color: #0033ff;">false</span>;
+    <span style="color: #0033ff;">int</span> count = 0;
+    <span style="color: #0033ff;">while</span> (!isStarted) {
+        <span style="color: #0033ff;">if</span> (count == 0) {
+            isStarted = processCommand(<span style="color: #cc0000;">"待機"</span>);
+        } <span style="color: #0033ff;">else</span> <span style="color: #0033ff;">if</span> (count == 1) {
+            isStarted = processCommand(<span style="color: #cc0000;">"準備"</span>);
+        } <span style="color: #0033ff;">else</span> {
+            isStarted = processCommand(<span style="color: #cc0000;">"開始"</span>);
+        }
+        count++;
+    }
+}</pre>
+    </details>
+  </div>
+
+  <br><br><br><br>
+
+  <div>
+    <strong>【問題28】</strong> 整数nを引数として受け取り、1からnまでの整数を順番に表示するが、素数（1とその数自身以外で割り切れない数）の場合は「[素数]」という文字列を付けて表示するメソッドを作成してください。<br>
+    <strong>メソッド名</strong>：printNumbersWithPrimes<br>
+    <strong>引数</strong>：int n<br>
+    <strong>戻り値</strong>：void<br>
+    <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+    <details>
+      <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+      <p>for文で1からnまで繰り返します。1の場合はそのまま表示し、2以上の場合は、2からi-1までで割り切れるかどうかを内側のfor文で判定します。割り切れる数があれば素数ではないので、boolean変数で管理します。素数判定の結果に応じて表示を分岐します。mainメソッドで作成してもいいですよ。</p>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答１</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 1から10までの数値を表示し、素数の場合は[素数]を付ける（メインメソッドのみ）</span>
+    <span style="color: #0033ff;">int</span> n = 10;
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i == 1) {
+            System.out.println(i);
+        } <span style="color: #0033ff;">else</span> {
+            <span style="color: #0033ff;">boolean</span> isPrime = <span style="color: #0033ff;">true</span>;
+            <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> j = 2; j &lt; i; j++) {
+                <span style="color: #0033ff;">if</span> (i % j == 0) {
+                    isPrime = <span style="color: #0033ff;">false</span>;
+                    <span style="color: #0033ff;">break</span>;
+                }
+            }
+            <span style="color: #0033ff;">if</span> (isPrime) {
+                System.out.println(i + <span style="color: #cc0000;">" [素数]"</span>);
+            } <span style="color: #0033ff;">else</span> {
+                System.out.println(i);
+            }
+        }
+    }
+}</pre>
+    </details>
+    <details style="margin-top: 10px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答２</summary>
+      <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> printNumbersWithPrimes(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #666;">// 1からnまでの数値を表示し、素数の場合は[素数]を付ける</span>
+    <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= n; i++) {
+        <span style="color: #0033ff;">if</span> (i == 1) {
+            System.out.println(i);
+        } <span style="color: #0033ff;">else</span> {
+            <span style="color: #0033ff;">boolean</span> isPrime = <span style="color: #0033ff;">true</span>;
+            <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> j = 2; j &lt; i; j++) {
+                <span style="color: #0033ff;">if</span> (i % j == 0) {
+                    isPrime = <span style="color: #0033ff;">false</span>;
+                    <span style="color: #0033ff;">break</span>;
+                }
+            }
+            <span style="color: #0033ff;">if</span> (isPrime) {
+                System.out.println(i + <span style="color: #cc0000;">" [素数]"</span>);
+            } <span style="color: #0033ff;">else</span> {
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    <span style="color: #666;">// 数値と素数の表示処理を実行</span>
+    printNumbersWithPrimes(10);
+}</pre>
+    </details>
+  </div>
+
+</div>

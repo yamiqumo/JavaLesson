@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オブジェクト指向って何？ ユニット①（約2時間）</title>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif; color: #333; line-height: 1.7; max-width: 900px; margin: 0 auto; padding: 20px; }
+    h1 { color: #0033ff; border-left: 10px solid #0033ff; padding-left: 12px; }
+    h2 { color: #0033ff; border-left: 8px solid #0033ff; padding-left: 10px; margin-top: 2em; }
+    h3 { color: #0055aa; margin-top: 1.5em; }
+    .review-box { background: #f0f8ff; border: 1px solid #b8d4e8; border-radius: 6px; padding: 1em 1.2em; margin: 1em 0; }
+    .dialogue { background: #fafafa; border-left: 4px solid #0033ff; padding: 0.8em 1em; margin: 0.8em 0; }
+    .dialogue strong { display: inline-block; margin-right: 0.5em; }
+    pre { background: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; }
+    code { background: #f5f5f5; padding: 1px 4px; border-radius: 3px; }
+    .kw { color: #0033ff; }
+    .cm { color: #666; }
+    .str { color: #c00; }
+    hr { border: none; border-top: 1px solid #ccc; margin: 1.5em 0; }
+    details { margin: 0.5em 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    summary.hint { color: #555; }
+    summary.answer { color: #0033ff; }
+    ul.goal { list-style: none; padding-left: 0; }
+    ul.goal li { margin: 0.4em 0; padding-left: 1.2em; position: relative; }
+    ul.goal li::before { content: '・'; position: absolute; left: 0; }
+    .note { font-size: 0.95em; color: #555; margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+
+<h1>オブジェクト指向学習カリキュラム</h1>
+<p><strong>ユニット①：オブジェクト指向って何？</strong>（約2時間）</p>
+
+<!-- ========== オブジェクト指向の復習（簡易） ========== -->
+<h2>このユニットの前に：オブジェクト指向の復習</h2>
+<p>これから自販機で「クラスとインスタンス」を学びます。ここでは、これまでに習ったオブジェクト指向の用語を、短くおさらいします。</p>
+
+<div class="review-box">
+  <ul>
+    <li><strong>クラスとインスタンス</strong> — クラスは「設計図」、インスタンスは設計図から作った「実物」です。<code>new クラス名()</code> でインスタンスを作ります。</li>
+    <li><strong>フィールドとメソッド</strong> — フィールドは「データ（状態）」、メソッドは「動き（処理）」です。メソッドの中でフィールドを使います。</li>
+    <li><strong>コンストラクタ</strong> — インスタンスが作られるときに一度だけ実行される特別なメソッドです。初期値をセットするのに使います。</li>
+    <li><strong>カプセル化</strong> — フィールドを <code>private</code> にして外から直接触れないようにし、<code>public</code> なメソッド（getter・setter など）だけから操作する考え方です。</li>
+    <li><strong>継承（extends）</strong> — 既存のクラスを土台に、新しいクラスで「追加・上書き」することです。土台がスーパークラス、新しく作る方がサブクラスです。</li>
+    <li><strong>オーバーライド</strong> — サブクラスで、スーパークラスと同じ名前のメソッドを書き直すことです。</li>
+    <li><strong>抽象クラス・インタフェース</strong> — 「こういうメソッドを持ちなさい」というルールを決める仕組みです。インタフェースは <code>implements</code> で実装します。</li>
+    <li><strong>多態性（ポリモーフィズム）</strong> — 同じ型（スーパークラスやインタフェース）の変数で、実際に入っているインスタンスに応じて、呼ばれるメソッドが変わることです。</li>
+  </ul>
+</div>
+
+<p>このユニットでは、とくに「クラスとインスタンス」「フィールドとメソッド」「定義する側と呼び出す側」「カプセル化のイメージ」を使います。</p>
+
+<hr>
+
+<!-- ========== 【1】具体的な学習目標 ========== -->
+<h2>【1】具体的な学習目標</h2>
+<p>このユニットを終えたとき、以下のことができればゴールです。</p>
+
+<p><strong>【必須】</strong></p>
+<ul class="goal">
+  <li>クラスとインスタンスの違いを説明できる。</li>
+  <li>フィールドとメソッドの役割を説明できる。</li>
+  <li>定義する側（クラス）と呼び出す側（メイン）の違いを説明できる。</li>
+</ul>
+
+<p><strong>【オプション】</strong></p>
+<ul class="goal">
+  <li>カプセル化のイメージを説明できる。</li>
+</ul>
+
+<hr>
+
+<!-- ========== 【2】導入：カバ先生の授業開始！ ========== -->
+<h2>【2】導入：カバ先生の授業開始！</h2>
+
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「さあ、今日から『オブジェクト指向』を勉強するよ。まずは一番基本となる『レシピ（設計図）』と『料理（実体）』の違いからイメージしてみよう。」</p>
+</div>
+<div class="dialogue">
+  <p><strong>ユウタ：</strong>「レシピは『作り方が書いてある紙』で、料理は『実際に食べられるもの』ですよね。」</p>
+</div>
+<div class="dialogue">
+  <p><strong>ナナコ：</strong>「プログラミングでいうと、レシピがクラスで、実際に作った料理がインスタンスってことかしら？」</p>
+</div>
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「その通り！レシピ（クラス）をいくら眺めてもお腹は膨れないけれど、それをもとに料理（インスタンス）を作れば、実際に食べることができる。この『型』と『実体』を分けて考えるのがオブジェクト指向なんだ。今日はこれを自動販売機に当てはめて考えてみよう。」</p>
+</div>
+
+<hr>
+
+<!-- ========== 【3】自販機のサンプルプログラム ========== -->
+<h2>【3】自販機のサンプルプログラム</h2>
+
+<p class="note"><strong>注意：</strong>話をシンプルにするため、飲み物は一旦「水」だけ、処理も「メッセージを出すだけ」にします。</p>
+
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「役割をはっきりさせるために、『自販機を作る側のファイル（定義）』と『自販機を置いて動かす側のファイル（実行）』の2つに分けてプログラムを書くよ。」</p>
+</div>
+
+<h3>ファイル1：【定義する側】VendingMachine.java（自販機の設計図）</h3>
+<pre>// 自販機のルールを決める「メーカー」の視点
+public class VendingMachine {
+
+    // フィールド（自販機が持っているデータ）
+    String drinkName = "水";
+
+    // メソッド（自販機ができる動き）
+    public void buy() {
+        // 動作をシンプルに
+        System.out.println("水を購入しました");
+    }
+}</pre>
+
+<h3>ファイル2：【呼び出す側】Main.java（自販機を使うオーナーの視点）</h3>
+<pre>// 自販機を設置して動かす「オーナー」の視点
+public class Main {
+
+    public static void main(String[] args) {
+        // 設計図（クラス）から本物の自販機を作る（インスタンス化）
+        VendingMachine myMachine = new VendingMachine();
+        // 作った自販機のボタンを押してみる（呼び出し）
+        myMachine.buy();
+    }
+}</pre>
+
+<hr>
+
+<!-- ========== 【4】カプセル化 ========== -->
+<h2>【4】カプセル化：自販機のカバーの役割</h2>
+
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「ここで一つオプションのお話。自販機には頑丈な鉄板のカバーがあるよね。これが『カプセル化』のイメージだよ。」</p>
+</div>
+<div class="dialogue">
+  <p><strong>ナナコ：</strong>「もしカバーがなくて中身がむき出しだったら、呼び出す側の人が勝手に中身をいじって、商品名を『ドロ水』に書き換えちゃうかもしれないものね。」</p>
+</div>
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「そう。『メーカー（定義側）が中身を隠して、利用者（呼び出す側）にはボタンからしか触らせないようにすること』。これがプログラムを安全に保つための大事な考え方なんだ。」</p>
+</div>
+
+<hr>
+
+<!-- ========== 【5】練習問題（2問）EXERCISE形式 ========== -->
+<h2>【5】練習問題（2問）</h2>
+
+<div>
+  <strong>【問題1】クラスとインスタンスの判別</strong><br>
+  次のペアについて、どちらがクラスで、どちらがインスタンスでしょうか？<br>
+  ・「車の設計図」と「今、駐車場に止まっている車」
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details>
+  <summary class="hint">ヒント</summary>
+  <p>「設計図」はそれだけでは動かない・使えないものです。「今、駐車場に止まっている車」は実際に存在する1台の車です。</p>
+</details>
+<details>
+  <summary class="answer">解答</summary>
+  <p><strong>クラス：</strong>車の設計図 … 型・ルールを決めたもの。<br>
+  <strong>インスタンス：</strong>今、駐車場に止まっている車 … 設計図から作られた実体（1台の車）。</p>
+</details>
+
+<br><br>
+
+<div>
+  <strong>【問題2】視点を変えて考えてみよう！</strong><br>
+  あるモノをクラス（型）またはインスタンス（実体）と見なしたとき、それと対になる例を考えてみましょう。<br>
+  1. 「お弁当」をインスタンス（実体）としたとき、そのクラス（型）にあたるものは何でしょうか？<br>
+  2. 「大理石のハンコ」をクラス（型）としたとき、そのインスタンス（実体）にあたるものは何でしょうか？
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details>
+  <summary class="hint">ヒント</summary>
+  <p>1. お弁当は「誰かが作った1個の実物」です。その「作り方・種類を決めているもの」が型です。<br>
+  2. ハンコそのものは「同じ形で何度も押せる型」です。その型を使って紙に押した「結果」が実体です。</p>
+</details>
+<details>
+  <summary class="answer">解答</summary>
+  <p>1. <strong>クラス（型）：</strong>「お弁当のレシピ」「〇〇弁当のメニュー」など、お弁当の種類・作り方を決めているもの。<br>
+  2. <strong>インスタンス（実体）：</strong>「ハンコで押した印鑑」「紙に付いたハンコの跡」など、ハンコを使ってできた1つ分の結果。</p>
+</details>
+
+<hr>
+
+<!-- ========== 【6】ハンズオン ========== -->
+<h2>【6】ハンズオン：自販機をパワーアップさせよう！</h2>
+
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「今はボタンを押すと決まった文字が出るだけだけど、次はフィールド（データ）をメソッド（動き）の中で活用する練習をしてみよう。本来、フィールドはメソッドで利用するための情報を入れておく場所なんだよ。」</p>
+</div>
+
+<h3>① フィールドを使って名前を表示しよう</h3>
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「まずは、フィールドの <code>drinkName</code> を使って購入した商品を表示させてごらん。」</p>
+</div>
+
+<div>
+  <strong>【問題3】</strong> <code>VendingMachine.java</code> の <code>buy()</code> メソッドを修正し、<code>drinkName</code> の値を使って「〇〇を購入しました」と表示するようにしてください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details>
+  <summary class="hint">ヒント</summary>
+  <p><code>System.out.println</code> の中で、文字列 <code>"を購入しました"</code> の前に <code>drinkName</code> を <code>+</code> でつなぎます。例：<code>変数 + "文字列"</code>。</p>
+</details>
+<details>
+  <summary class="answer">解答例</summary>
+  <pre>// VendingMachine.java の buy() の中身を修正
+public void buy() {
+    // フィールドの変数を使って表示する
+    System.out.println(drinkName + "を購入しました");
+}</pre>
+</details>
+
+<div class="dialogue">
+  <p><strong>ユウタ：</strong>「あ！これなら将来 <code>drinkName</code> を『お茶』に書き換えたとき、メソッドの中身をいじらなくても表示が勝手に変わるんだね。便利！」</p>
+</div>
+
+<h3>② 在庫数を管理しよう</h3>
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「次は、自販機に在庫数（<code>stock</code>）を持たせてみよう。初期値を10とし、購入するたびに1減らすプログラムを追加するんだ。」</p>
+</div>
+
+<div>
+  <strong>【問題4】</strong> <code>VendingMachine</code> クラスに在庫用のフィールド <code>stock</code>（int）を追加し、初期値を10にしてください。また、<code>buy()</code> の中で在庫を1減らし、残り在庫を表示するようにしてください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details>
+  <summary class="hint">ヒント</summary>
+  <p>フィールドに <code>int stock = 10;</code> を追加します。<code>buy()</code> 内で <code>stock--;</code> で1減らし、<code>System.out.println("残りの在庫は" + stock + "個です");</code> で表示します。</p>
+</details>
+<details>
+  <summary class="answer">解答例</summary>
+  <pre>public class VendingMachine {
+
+    String drinkName = "水";
+    int stock = 10;  // 追加：在庫の初期値は10
+
+    public void buy() {
+        System.out.println(drinkName + "を購入しました");
+        stock--;  // 追加：在庫を1減らす
+        System.out.println("残りの在庫は" + stock + "個です");
+    }
+}</pre>
+</details>
+
+<div class="dialogue">
+  <p><strong>ナナコ：</strong>「メソッドを実行するたびにフィールドの <code>stock</code> が減っていくのね。自販機が自分の状態を『覚えている』感じがするわ。」</p>
+</div>
+
+<h3>【発展】③ 在庫ゼロの時は「売り切れ」にしよう</h3>
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「今のままだと、在庫が0になってもマイナスになって売り続けちゃうよね。在庫が0の時は販売できないようにしてみよう。」</p>
+</div>
+
+<div>
+  <strong>【問題5】</strong> <code>buy()</code> メソッドを修正し、在庫が0より大きいときだけ「購入しました」と在庫を減らし、0以下のときは「売り切れです」と表示するようにしてください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details>
+  <summary class="hint">ヒント</summary>
+  <p><code>if (stock > 0) { ... } else { ... }</code> で分岐します。<code>stock > 0</code> のときだけ購入処理（表示・<code>stock--</code>）を実行し、そうでなければ「売り切れです」を表示します。</p>
+</details>
+<details>
+  <summary class="answer">解答例</summary>
+  <pre>public void buy() {
+    if (stock > 0) {
+        System.out.println(drinkName + "を購入しました");
+        stock--;
+        System.out.println("残りの在庫は" + stock + "個です");
+    } else {
+        // 在庫が0以下の時
+        System.out.println("売り切れです");
+    }
+}</pre>
+</details>
+
+<div class="dialogue">
+  <p><strong>ユウタ：</strong>「これで本物の自販機っぽくなった！『在庫というデータ』を見て、『売るか売らないかという動き』を変えているんだね。」</p>
+</div>
+
+<hr>
+
+<!-- ========== 【7】最初のテーマの再確認 ========== -->
+<h2>【7】最初のテーマの再確認</h2>
+
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「さあ、目標が達成できたか確認するよ！」</p>
+</div>
+<ol>
+  <li>クラスとインスタンスの違いを説明できるかな？</li>
+  <li>フィールドとメソッドの役割を説明できるかな？</li>
+  <li>定義する側と呼び出す側の違いを説明できるかな？</li>
+  <li>（オプション）カプセル化のイメージを説明できるかな？</li>
+</ol>
+
+<hr>
+
+<!-- ========== 【8】まとめのおさらい ========== -->
+<h2>【8】まとめのおさらい</h2>
+
+<ul>
+  <li>クラスは設計図（レシピ）、インスタンスは実体（料理）。</li>
+  <li>フィールドは「モノの状態」を保存し、メソッドはその「状態」を利用して動く。</li>
+  <li>プログラムは「ルールを決める側（定義側）」と「それを使う側（呼び出す側）」で分担する。</li>
+</ul>
+
+<div class="dialogue">
+  <p><strong>ユウタ：</strong>「フィールドとメソッドが組み合わさって、初めて意味のある『モノ』になるんだね。面白い！」</p>
+</div>
+<div class="dialogue">
+  <p><strong>ナナコ：</strong>「定義側のファイルを一度作っておけば、呼び出す側の Main.java では <code>buy()</code> を呼ぶだけで複雑な在庫チェックまでやってくれる。これがオブジェクト指向の魅力なのね。」</p>
+</div>
+<div class="dialogue">
+  <p><strong>カバ先生：</strong>「二人とも素晴らしい！次は、自販機を設置する瞬間に『これはコーラ専用機！』と初期設定を決める仕組み、『コンストラクタ』について学ぼう！」</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+<br><br><br><br>
+<h1 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">Java研修 練習問題集</h1>
+<h2 style="color: #0033ff; border-left: 10px solid #0033ff; padding-left: 10px;">基本問題（クラスとオブジェクト）</h2>
+
+<div>
+  <strong>【問題1】動物クラスを3段階で拡張していく</strong><br>
+  動物を表す <code>Animal</code> クラスを、次の3段階で少しずつ拡張してください。<br><br>
+
+  <strong>フィールド／メソッド一覧（Animal）</strong><br>
+  <table border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse; margin-top: 5px; margin-bottom: 10px;">
+    <tr style="background-color: #f0f8ff;">
+      <th>区分</th>
+      <th>名前</th>
+      <th>型</th>
+      <th>説明</th>
+      <th>登場する段階</th>
+    </tr>
+    <tr>
+      <td>フィールド</td>
+      <td><code>leg</code></td>
+      <td><code>int</code></td>
+      <td>足の数</td>
+      <td>ステップ1〜3</td>
+    </tr>
+    <tr>
+      <td>フィールド</td>
+      <td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>動物の名前</td>
+      <td>ステップ1〜3</td>
+    </tr>
+    <tr>
+      <td>メソッド</td>
+      <td><code>callLegs()</code></td>
+      <td><code>void</code></td>
+      <td>足の本数を表示する</td>
+      <td>ステップ1〜3</td>
+    </tr>
+    <tr>
+      <td>メソッド</td>
+      <td><code>showInfo()</code></td>
+      <td><code>void</code></td>
+      <td>動物の情報をまとめて表示する</td>
+      <td>ステップ3</td>
+    </tr>
+  </table>
+
+  <strong>ステップ1：</strong> クラスの骨組みを作成する<br>
+  ・<code>Animal</code> クラスを作成し、次のフィールドとメソッドの「宣言」だけを書く。<br>
+  　- フィールド：<code>int leg</code>（足の数）、<code>String name</code>（名前）<br>
+  　- メソッド：<code>void callLegs()</code>（処理はまだ空でよい）<br>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ステップ1 ヒント</summary>
+    <p>
+      ・まずは「クラスの中身（処理）」は考えず、<strong>どんな情報（フィールド）</strong>と<strong>どんな操作（メソッド）</strong>を持つかだけ決めます。<br>
+      ・メソッドは <code>戻り値の型 メソッド名()</code> の形で宣言します。<br>
+      ・この段階では <code>main</code> メソッドはまだ作らなくて構いません。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">ステップ1 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Animal {
+
+  <span style="color: #666;">// 足の数</span>
+  <span style="color: #0033ff;">int</span> leg;
+
+  <span style="color: #666;">// 名前</span>
+  String name;
+
+  <span style="color: #666;">// 足の本数を表示するメソッド（中身はまだ空でOK）</span>
+  <span style="color: #0033ff;">void</span> callLegs() {
+      <span style="color: #666;">// ここに処理を書いていく（ステップ2で実装）</span>
+  }
+}</pre>
+  </details>
+
+  <br>
+
+  <strong>ステップ2：</strong> メソッドの中身を追加する<br>
+  ・<code>callLegs()</code> の中で「〇〇の足は△本です。」と表示する。<br>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ステップ2 ヒント</summary>
+    <p>
+      ・<code>callLegs()</code> の中では、<code>name</code> と <code>leg</code> を使って文字列を作り、<code>System.out.println</code> で表示します。<br>
+      ・まずは決め打ちの値（例：<code>name = "ポチ"</code> など）で試してみてから、後で自由に変えられるようにしても構いません。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">ステップ2 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Animal {
+
+  <span style="color: #0033ff;">int</span> leg;
+  String name;
+
+  <span style="color: #666;">// 足の本数を表示するメソッド</span>
+  <span style="color: #0033ff;">void</span> callLegs() {
+      System.out.println(name + <span style="color: #cc0000;">"の足は"</span> + leg + <span style="color: #cc0000;">"本です。"</span>);
+  }
+}</pre>
+  </details>
+
+  <br>
+
+  <strong>ステップ3：</strong> 情報表示メソッドと main メソッドからの利用（コンストラクタは使わず、フィールドに直接代入する）<br>
+  ・<code>showInfo()</code> メソッドを追加し、名前と足の数をまとめて表示する。<br>
+  ・別クラス <code>AnimalMain</code> を作成し、その中の <code>main</code> メソッドで複数の <code>Animal</code> を生成し、フィールドに直接値を代入してから <code>callLegs()</code> と <code>showInfo()</code> を呼び出して確認する。<br>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ステップ3 ヒント</summary>
+    <p>
+      ・<code>showInfo()</code> では、<code>System.out.println</code> を複数行書いて、見やすい形で情報を表示します。<br>
+      ・<code>main</code> メソッドは <code>public static void main(String[] args)</code> という形で書きます。<br>
+      ・<code>Animal</code> と <code>AnimalMain</code> は別のファイルに分けても、同じファイルに2クラス書いても構いません（学習用）。<br>
+      ・将来的には、<code>Animal</code> を親クラスにしてサブクラスを作る練習につなげられます。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">ステップ3 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #666;">// ---------- 「Animal.class」</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Animal {
+
+  <span style="color: #0033ff;">int</span> leg;
+  String name;
+
+  <span style="color: #0033ff;">void</span> callLegs() {
+      System.out.println(name + <span style="color: #cc0000;">"の足は"</span> + leg + <span style="color: #cc0000;">"本です。"</span>);
+  }
+
+  <span style="color: #666;">// 情報表示用メソッド</span>
+  <span style="color: #0033ff;">void</span> showInfo() {
+      System.out.println(<span style="color: #cc0000;">"名前: "</span> + name);
+      System.out.println(<span style="color: #cc0000;">"足の数: "</span> + leg + <span style="color: #cc0000;">"本"</span>);
+  }
+}
+
+<span style="color: #666;">// ---------- 「AnimalMain.class」</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> AnimalMain {
+
+  <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+      Animal dog = <span style="color: #0033ff;">new</span> Animal();
+      dog.leg = 4;
+      dog.name = <span style="color: #cc0000;">"ポチ"</span>;
+
+      Animal cat = <span style="color: #0033ff;">new</span> Animal();
+      cat.leg = 2;
+      cat.name = <span style="color: #cc0000;">"タマ"</span>;
+
+      dog.callLegs();
+      cat.callLegs();
+
+      dog.showInfo();
+      cat.showInfo();
+
+      Animal unknown = <span style="color: #0033ff;">new</span> Animal();
+      unknown.leg = 0;
+      unknown.name = <span style="color: #cc0000;">"名前なし"</span>;
+      unknown.callLegs();
+      unknown.showInfo();
+  }
+}</pre>
+  </details>
+</div>
+
+<br><br><br><br>
+
+<div>
+  <strong>【問題2】社員クラスを3段階で拡張していく</strong><br>
+  社員を表す <code>Employee</code> クラスを、次の3段階で少しずつ拡張してください。<br><br>
+
+  <strong>フィールド／メソッド一覧（Employee）</strong><br>
+  <table border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse; margin-top: 5px; margin-bottom: 10px;">
+    <tr style="background-color: #f0f8ff;">
+      <th>区分</th>
+      <th>名前</th>
+      <th>型</th>
+      <th>説明</th>
+      <th>登場する段階</th>
+    </tr>
+    <tr>
+      <td>フィールド</td>
+      <td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>社員の氏名</td>
+      <td>ステップ1〜3</td>
+    </tr>
+    <tr>
+      <td>フィールド</td>
+      <td><code>id</code></td>
+      <td><code>int</code></td>
+      <td>社員番号</td>
+      <td>ステップ1〜3</td>
+    </tr>
+    <tr>
+      <td>フィールド</td>
+      <td><code>baseSalary</code></td>
+      <td><code>int</code></td>
+      <td>基本給（月額・円）</td>
+      <td>ステップ2〜3</td>
+    </tr>
+    <tr>
+      <td>フィールド</td>
+      <td><code>overtimeHours</code></td>
+      <td><code>int</code></td>
+      <td>残業時間（月・時間）</td>
+      <td>ステップ2〜3</td>
+    </tr>
+    <tr>
+      <td>メソッド</td>
+      <td><code>showInfo()</code></td>
+      <td><code>void</code></td>
+      <td>社員情報を表示する</td>
+      <td>ステップ1〜3（内容を拡張）</td>
+    </tr>
+    <tr>
+      <td>メソッド</td>
+      <td><code>calcTotalSalary()</code></td>
+      <td><code>int</code></td>
+      <td>支給額（基本給＋残業代）を計算して返す</td>
+      <td>ステップ2〜3</td>
+    </tr>
+  </table>
+
+  <strong>ステップ1：</strong> 氏名と社員番号だけを扱うクラス<br>
+  ・<code>Employee</code> クラスを作成し、次のフィールドとメソッドを宣言・実装する。<br>
+  　- フィールド：<code>String name</code>（氏名）、<code>int id</code>（社員番号）<br>
+  　- メソッド：<code>void showInfo()</code>（名前と社員番号だけを表示）<br>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ステップ1 ヒント</summary>
+    <p>
+      ・まずは「社員とは何か？」を、名前と番号だけで表すシンプルなクラスとして考えます。<br>
+      ・<code>showInfo()</code> では、<code>System.out.println</code> を2行書いて、<code>name</code> と <code>id</code> を表示します。<br>
+      ・この段階では給料に関するフィールドはまだ登場させません。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">ステップ1 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Employee {
+
+  String name;
+  <span style="color: #0033ff;">int</span> id;
+
+  <span style="color: #666;">// 社員情報を表示するメソッド</span>
+  <span style="color: #0033ff;">void</span> showInfo() {
+      System.out.println(<span style="color: #cc0000;">"名前: "</span> + name);
+      System.out.println(<span style="color: #cc0000;">"社員番号: "</span> + id);
+  }
+}</pre>
+  </details>
+
+  <br>
+
+  <strong>ステップ2：</strong> 給料に関するフィールドと計算メソッドの追加<br>
+  ・フィールドを追加する。<br>
+  　- <code>int baseSalary</code>（基本給）<br>
+  　- <code>int overtimeHours</code>（残業時間）<br>
+  ・<code>int calcTotalSalary()</code> メソッドを追加し、<br>
+  　- 残業代 ＝ <code>overtimeHours * 1000</code> 円<br>
+  　- 支給額 ＝ <code>baseSalary + 残業代</code><br>
+  　として計算し、その結果を返す。<br>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ステップ2 ヒント</summary>
+    <p>
+      ・計算用メソッド <code>calcTotalSalary()</code> は、「計算だけして結果を返す」役割にすると、後で拡張しやすくなります。<br>
+      ・計算に使う数値（残業時間・時給）は、すべて <code>int</code> で扱って構いません。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">ステップ2 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Employee {
+
+  String name;
+  <span style="color: #0033ff;">int</span> id;
+  <span style="color: #0033ff;">int</span> baseSalary;
+  <span style="color: #0033ff;">int</span> overtimeHours;
+
+  <span style="color: #666;">// 支給額を計算して返すメソッド</span>
+  <span style="color: #0033ff;">int</span> calcTotalSalary() {
+      <span style="color: #0033ff;">int</span> overtimePay = overtimeHours * 1000;
+      <span style="color: #0033ff;">int</span> total = baseSalary + overtimePay;
+      <span style="color: #0033ff;">return</span> total;
+  }
+
+  <span style="color: #0033ff;">void</span> showInfo() {
+      System.out.println(<span style="color: #cc0000;">"名前: "</span> + name);
+      System.out.println(<span style="color: #cc0000;">"社員番号: "</span> + id);
+  }
+}</pre>
+  </details>
+
+  <br>
+
+  <strong>ステップ3：</strong> 情報表示の拡張と main メソッドからの利用（コンストラクタは使わず、フィールドに直接代入する）<br>
+  ・<code>showInfo()</code> を拡張し、基本給・残業時間・支給額も表示するようにする。<br>
+  ・別クラス <code>EmployeeMain</code> を作成し、その中の <code>main</code> メソッドで社員を生成し、<code>showInfo()</code> を呼び出す。<br>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ステップ3 ヒント</summary>
+    <p>
+      ・<code>showInfo()</code> の中から <code>calcTotalSalary()</code> を呼び出して、支給額を取得します。<br>
+      ・<code>main</code> メソッドでは、<code>Employee emp1 = new Employee();</code> のようにインスタンスを生成し、<code>name</code> や <code>id</code> などのフィールドに直接値を代入します。<br>
+      ・ここまでできると、将来的に <code>Employee</code> を抽象クラスにし、<code>RegularEmployee</code> や <code>Manager</code> クラスに継承させる練習がしやすくなります。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">ステップ3 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #666;">// ---------- 「Employee.class」</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Employee {
+
+  String name;
+  <span style="color: #0033ff;">int</span> id;
+  <span style="color: #0033ff;">int</span> baseSalary;
+  <span style="color: #0033ff;">int</span> overtimeHours;
+
+  <span style="color: #0033ff;">int</span> calcTotalSalary() {
+      <span style="color: #0033ff;">int</span> overtimePay = overtimeHours * 1000;
+      <span style="color: #0033ff;">int</span> total = baseSalary + overtimePay;
+      <span style="color: #0033ff;">return</span> total;
+  }
+
+  <span style="color: #0033ff;">void</span> showInfo() {
+      System.out.println(<span style="color: #cc0000;">"名前: "</span> + name);
+      System.out.println(<span style="color: #cc0000;">"社員番号: "</span> + id);
+      System.out.println(<span style="color: #cc0000;">"基本給: "</span> + baseSalary + <span style="color: #cc0000;">"円"</span>);
+      System.out.println(<span style="color: #cc0000;">"残業時間: "</span> + overtimeHours + <span style="color: #cc0000;">"時間"</span>);
+
+      <span style="color: #0033ff;">int</span> total = calcTotalSalary();
+      System.out.println(<span style="color: #cc0000;">"支給額: "</span> + total + <span style="color: #cc0000;">"円"</span>);
+  }
+}
+
+<span style="color: #666;">// ---------- 「EmployeeMain.class」</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> EmployeeMain {
+
+  <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+      Employee emp1 = <span style="color: #0033ff;">new</span> Employee();
+      emp1.name = <span style="color: #cc0000;">"山田太郎"</span>;
+      emp1.id = 1001;
+      emp1.baseSalary = 200000;
+      emp1.overtimeHours = 10;
+      emp1.showInfo();
+  }
+}</pre>
+  </details>
+</div>
+
+<br><br><br><br>
+
+<h2 style="color: #cc0000; border-left: 10px solid #cc0000; padding-left: 10px;">発展問題（社員クラスのロジック）</h2>
+
+<div>
+  <strong>【問題3】社員クラスの給料ロジックを発展させる</strong><br>
+  【問題2】で作成した <code>Employee</code> クラスをもとに、繰り返し（for文）と条件分岐（if文）を使ったロジックを追加してください。<br><br>
+
+  <strong>仕様（発展）</strong><br>
+  1. <code>Employee</code> クラスに、次のメソッドを追加します。<br>
+  　・<code>int calcOvertimePayDetail()</code><br>
+  　　- 残業時間を1時間ずつカウントしながら、for文で残業代を計算する。<br>
+  　　- 1〜20時間目までは 1時間あたり1000円。<br>
+  　　- 21時間目以降は 1時間あたり1500円（割増）。<br>
+  　　- if文を使って、「20時間以内かどうか」で金額を切り替える。<br>
+  　・<code>int calcTotalSalaryDetail()</code><br>
+  　　- 上記の <code>calcOvertimePayDetail()</code> を使って、<br>
+  　　　<code>基本給 + 詳細な残業代</code> を計算して返す。<br>
+  2. 別クラス <code>EmployeeAdvancedMain</code> を作成し、<br>
+  　・配列 <code>Employee[] employees</code> に3人分の社員を用意する。<br>
+  　・for文で配列をまわし、各社員の情報と詳細な支給額を表示する。<br>
+  　・同じループの中で最大支給額の社員を調べ、最後に「最も支給額が高い社員」を表示する（if文で比較）。<br>
+
+  <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; margin-top: 5px;"></div>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">発展問題 ヒント</summary>
+    <p>
+      ・残業代の計算では、<code>for (int i = 1; i &lt;= overtimeHours; i++)</code> のように1時間ずつカウントしていきます。<br>
+      　その中で、<code>if (i &lt;= 20)</code> なら1000円、それ以外は1500円を加算します。<br>
+      ・最大支給額の社員を探すときは、<br>
+      　「今までの最大値」と「今回の社員の支給額」を if文で比較して、大きい方を保存していきます。<br>
+      ・この発展問題は、<code>Employee</code> クラスを基底クラスとして、<br>
+      　「ロジックだけを少しずつ複雑にしていく」練習としても使えます。
+    </p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">発展問題 解答例</summary>
+    <pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">
+<span style="color: #666;">// ---------- 「Employee.class（発展）」</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Employee {
+
+  String name;
+  <span style="color: #0033ff;">int</span> id;
+  <span style="color: #0033ff;">int</span> baseSalary;
+  <span style="color: #0033ff;">int</span> overtimeHours;
+
+  <span style="color: #666;">// 発展版：1時間ずつfor文で残業代を計算する</span>
+  <span style="color: #0033ff;">int</span> calcOvertimePayDetail() {
+      <span style="color: #0033ff;">int</span> overtimePay = 0;
+
+      <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= overtimeHours; i++) {
+          <span style="color: #0033ff;">if</span> (i &lt;= 20) {
+              overtimePay = overtimePay + 1000;
+          } <span style="color: #0033ff;">else</span> {
+              overtimePay = overtimePay + 1500;
+          }
+      }
+
+      <span style="color: #0033ff;">return</span> overtimePay;
+  }
+
+  <span style="color: #666;">// 発展版：詳細な残業代を使って支給額を計算</span>
+  <span style="color: #0033ff;">int</span> calcTotalSalaryDetail() {
+      <span style="color: #0033ff;">int</span> overtimePay = calcOvertimePayDetail();
+      <span style="color: #0033ff;">int</span> total = baseSalary + overtimePay;
+      <span style="color: #0033ff;">return</span> total;
+  }
+
+  <span style="color: #0033ff;">void</span> showInfo() {
+      System.out.println(<span style="color: #cc0000;">"名前: "</span> + name);
+      System.out.println(<span style="color: #cc0000;">"社員番号: "</span> + id);
+      System.out.println(<span style="color: #cc0000;">"基本給: "</span> + baseSalary + <span style="color: #cc0000;">"円"</span>);
+      System.out.println(<span style="color: #cc0000;">"残業時間: "</span> + overtimeHours + <span style="color: #cc0000;">"時間"</span>);
+
+      <span style="color: #0033ff;">int</span> overtimePay = calcOvertimePayDetail();
+      <span style="color: #0033ff;">int</span> total = calcTotalSalaryDetail();
+
+      System.out.println(<span style="color: #cc0000;">"詳細な残業代: "</span> + overtimePay + <span style="color: #cc0000;">"円"</span>);
+      System.out.println(<span style="color: #cc0000;">"支給額(発展版): "</span> + total + <span style="color: #cc0000;">"円"</span>);
+      System.out.println();
+  }
+}
+
+<span style="color: #666;">// ---------- 「EmployeeAdvancedMain.class」</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> EmployeeAdvancedMain {
+
+  <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+      Employee[] employees = <span style="color: #0033ff;">new</span> Employee[3];
+
+      employees[0] = <span style="color: #0033ff;">new</span> Employee();
+      employees[0].name = <span style="color: #cc0000;">"山田太郎"</span>;
+      employees[0].id = 1001;
+      employees[0].baseSalary = 200000;
+      employees[0].overtimeHours = 10;
+
+      employees[1] = <span style="color: #0033ff;">new</span> Employee();
+      employees[1].name = <span style="color: #cc0000;">"佐藤花子"</span>;
+      employees[1].id = 1002;
+      employees[1].baseSalary = 220000;
+      employees[1].overtimeHours = 25;
+
+      employees[2] = <span style="color: #0033ff;">new</span> Employee();
+      employees[2].name = <span style="color: #cc0000;">"鈴木一郎"</span>;
+      employees[2].id = 1003;
+      employees[2].baseSalary = 180000;
+      employees[2].overtimeHours = 5;
+
+      <span style="color: #0033ff;">int</span> maxTotal = 0;
+      Employee maxEmployee = <span style="color: #0033ff;">null</span>;
+
+      <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 0; i &lt; employees.length; i++) {
+          Employee emp = employees[i];
+
+          emp.showInfo();
+
+          <span style="color: #0033ff;">int</span> total = emp.calcTotalSalaryDetail();
+
+          <span style="color: #0033ff;">if</span> (total &gt; maxTotal) {
+              maxTotal = total;
+              maxEmployee = emp;
+          }
+      }
+
+      System.out.println(<span style="color: #cc0000;">"最も支給額が高い社員: "</span> + maxEmployee.name);
+      System.out.println(<span style="color: #cc0000;">"支給額(発展版): "</span> + maxTotal + <span style="color: #cc0000;">"円"</span>);
+  }
+}</pre>
+  </details>
+</div>

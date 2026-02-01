@@ -1,0 +1,21 @@
+# push 完了後に Pushover で通知する
+name: Notify on Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Pushover notification
+        uses: umahmood/pushover-actions@main
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+        with:
+          status: success
+          title: "JavaLesson - Push 完了"
+          message: "リポジトリへの push が完了しました。 (${{ github.repository }})"

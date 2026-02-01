@@ -1,0 +1,375 @@
+【テキスト】 オブジェクト指向② ～コンストラクタとカプセル化～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">コンストラクタとカプセル化（この単元）— Lesson 9・約2時間</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">この単元の前に：オブジェクト指向の復習</h2>
+<p>前回は「クラスとインスタンス」「フィールドとメソッド」を自販機で学びました。まず、その部分を短くおさらいします。</p>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">復習：前回までに学んだこと</h3>
+<div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff;">
+<div style="margin: 15px 0; background-color: #fff; padding: 15px; border-radius: 10px; border: 1px solid #e1dbbd;">
+<ul style="padding-left: 20px; margin-bottom: 0;">
+<li style="margin-bottom: 10px;"><strong>クラスとインスタンス</strong> — クラスは設計図、インスタンスは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new クラス名()</code> で作った実物です。</li>
+<li style="margin-bottom: 10px;"><strong>フィールドとメソッド</strong> — フィールドは「状態（データ）」、メソッドは「動き（処理）」です。メソッドの中でフィールドを使います。</li>
+<li><strong>定義する側と呼び出す側</strong> — クラスを書くファイル（定義側）と、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> してメソッドを呼ぶファイル（呼び出し側）で役割を分けます。</li>
+</ul>
+</div>
+</div>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">この単元で学ぶことのイメージ</h3>
+<p style="margin-bottom: 10px;">この単元では「コンストラクタ」「カプセル化」「this」を詳しく学びます。ここでは、最初にイメージだけ伝えておきます。</p>
+<div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff;">
+<div style="margin: 15px 0; background-color: #fff; padding: 15px; border-radius: 10px; border: 1px solid #e1dbbd;">
+<ul style="padding-left: 20px; margin-bottom: 0;">
+<li style="margin-bottom: 10px;"><strong>コンストラクタ</strong> — インスタンスが作られるときに一度だけ実行される特別なメソッドです。クラス名と同じ名前で、戻り値の型を書きません。初期値をセットするのに使います。</li>
+<li style="margin-bottom: 10px;"><strong>カプセル化</strong> — フィールドを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にして外から直接触れないようにし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> なメソッド（getter・setter）だけから操作する考え方です。</li>
+<li><strong>this</strong> — メソッドやコンストラクタの中で「このインスタンス自身」を指すキーワードです。フィールド名と引数名が同じときに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.フィールド名</code> で区別します。</li>
+</ul>
+</div>
+<p style="margin-bottom: 0; font-size: 14px;">この単元では、自販機に「コンストラクタ」と「カプセル化」を追加して、より安全で分かりやすいプログラムにしていきます。</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【1】具体的な学習目標</h2>
+<p>この単元を終えたとき、以下のことができればゴールです。</p>
+<p><strong>【必須】</strong></p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;">コンストラクタの役割を説明できる。</li>
+<li style="margin-bottom: 10px;">コンストラクタでインスタンスの初期値（商品名・在庫など）をセットできる。</li>
+<li style="margin-bottom: 10px;">コンストラクタのオーバーロード（引数の違う複数のコンストラクタ）を書ける。</li>
+<li style="margin-bottom: 10px;">カプセル化の目的（中身を隠して安全にすること）を説明できる。</li>
+<li style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> フィールドと getter・setter の役割を説明できる。</li>
+</ul>
+<p><strong>【オプション】</strong></p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this</code> を使ってフィールドと引数を区別できる。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【2】導入：自販機を「設置する瞬間」に決める</h2>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「前回は、自販機を作ったあとで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name = "水"</code> のようにフィールドに直接代入していたね。でも本当の自販機は、設置する瞬間に『これはコーラ専用機だよ』『在庫は10本から』と決まっていることが多い。その『設置する瞬間に実行される処理』がコンストラクタなんだ。」</p>
+</div>
+<div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>ナナコ：</strong>「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendMachine()</code> で作るときに、いっぺんに名前や在庫を渡せるようにする、ってことですね。」</p>
+</div>
+<div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>ユウタ：</strong>「それなら、呼び出す側で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> を書き忘れたり、変な値を入れちゃう心配が減りそう！」</p>
+</div>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「その通り。あとで『中身をむき出しにしない』カプセル化もやって、さらに安全にしていこう。」</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】コンストラクタで自販機を初期設定する</h2>
+<h3 style="border-left: 8px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 16px; margin-bottom: 10px;">コンストラクタとは</h3>
+<p>コンストラクタは、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new クラス名()</code> でインスタンスが作られるときに<strong>一度だけ</strong>自動で実行される特別なメソッドです。</p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;">名前は<strong>クラス名と完全に同じ</strong>にします。</li>
+<li style="margin-bottom: 10px;">戻り値の型は書きません（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void</code> も不要）。</li>
+<li style="margin-bottom: 10px;">引数を受け取れるので、「コーラ専用機」「在庫10」のように初期値を渡せます。</li>
+</ul>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendMachine にコンストラクタを追加</h3>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendMachine {
+
+    String name;  <span style="color: #666;">// あとでコンストラクタでセットする</span>
+    <span style="color: #0033ff;">int</span> stock;
+
+    <span style="color: #666;">// コンストラクタ：インスタンスが作られるときに1回だけ実行される</span>
+    <span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> num) {
+        <span style="color: #0033ff;">this</span>.name = name;
+        stock = num;
+    }
+
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (stock > 0) {
+            System.out.println(name + <span style="color: #cc0000;">"を購入しました"</span>);
+            stock--;
+            System.out.println(<span style="color: #cc0000;">"残りの在庫は"</span> + stock + <span style="color: #cc0000;">"個です"</span>);
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
+        }
+    }
+}</pre>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">呼び出す側（Main）</h3>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Main {
+
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+        <span style="color: #666;">// 設置する瞬間に「コーラ」「在庫10」を渡す</span>
+        VendMachine vm = <span style="color: #0033ff;">new</span> VendMachine(<span style="color: #cc0000;">"コーラ"</span>, 10);
+        vm.buy();
+        vm.buy();
+
+        <span style="color: #666;">// 別の自販機は「お茶」「在庫5」</span>
+        VendMachine vm2 = <span style="color: #0033ff;">new</span> VendMachine(<span style="color: #cc0000;">"お茶"</span>, 5);
+        vm2.buy();
+    }
+}</pre>
+<div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0; margin-top: 15px;">
+<p style="margin: 0;"><strong>ナナコ：</strong>「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendMachine("コーラ", 10)</code> で、作った瞬間に名前と在庫が決まるのね。見やすい！」</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】コンストラクタのオーバーロード</h2>
+<p>同じクラスに、<strong>引数の種類や個数が違う</strong>コンストラクタを複数用意することができます。これをコンストラクタのオーバーロードといいます。</p>
+<p>例：引数なしのときは「水」「在庫10」にする。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> VendMachine() {
+    name = <span style="color: #cc0000;">"水"</span>;
+    stock = 10;
+}
+
+<span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> num) {
+    <span style="color: #0033ff;">this</span>.name = name;
+    stock = num;
+}</pre>
+<p>呼び出し例：</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">VendMachine vm = <span style="color: #0033ff;">new</span> VendMachine();           <span style="color: #666;">// 水, 10</span>
+VendMachine vm2 = <span style="color: #0033ff;">new</span> VendMachine(<span style="color: #cc0000;">"コーラ"</span>, 10); <span style="color: #666;">// コーラ, 10</span></pre>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】練習問題（コンストラクタ）</h2>
+<div>
+<strong>【問題1】コンストラクタで初期化する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> クラスに、飲み物の名前（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code>）と初期在庫数（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code>）を受け取るコンストラクタを1つ追加してください。フィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> に、受け取った値を代入するようにしてください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>コンストラクタの名前はクラス名 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> と完全に同じにします。引数は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">(String name, int num)</code> のように2つ受け取り、中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock = num;</code> のように代入します。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> num) {
+    <span style="color: #0033ff;">this</span>.name = name;
+    stock = num;
+}</pre>
+</details>
+<br><br>
+<div>
+<strong>【問題2】コンストラクタのオーバーロード</strong><br>
+引数を受け取らないコンストラクタを1つ追加してください。そのとき <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> を「水」、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> を 10 に初期化するようにしてください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>引数なしのコンストラクタは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public VendMachine() { ... }</code> と書きます。中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name = "水";</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock = 10;</code> を代入します。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> VendMachine() {
+    name = <span style="color: #cc0000;">"水"</span>;
+    stock = 10;
+}</pre>
+</details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【6】カプセル化：自販機のカバーをかける</h2>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 15px;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「今は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm.name = "ドロ水"</code> のように、外から好き勝手にフィールドを書き換えられてしまう。自販機でいうと、中の商品を誰かが勝手にいじるようなものだね。そこで、フィールドを『中だけの秘密』にして、外にはボタン（メソッド）からしか触らせないようにする。これがカプセル化だよ。」</p>
+</div>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-bottom: 10px;">private と getter・setter</h3>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> — そのフィールドは<strong>クラスの内側からだけ</strong>アクセスできます。外からは見えません。</li>
+<li style="margin-bottom: 10px;"><strong>getter</strong> — フィールドの値を<strong>読む</strong>ための <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> メソッド（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>）。</li>
+<li style="margin-bottom: 10px;"><strong>setter</strong> — フィールドの値を<strong>書き換える</strong>ための <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> メソッド（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setStock(int n)</code>）。必要に応じて「0未満はセットしない」などのルールを入れられます。</li>
+</ul>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：フィールドを private にして getter を用意</h3>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendMachine {
+
+    <span style="color: #0033ff;">private</span> String name;  <span style="color: #666;">// 外から直接触れない</span>
+    <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
+
+    <span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> num) {
+        <span style="color: #0033ff;">this</span>.name = name;
+        stock = num;
+    }
+
+    <span style="color: #666;">// getter：飲み物の名前を返す</span>
+    <span style="color: #0033ff;">public</span> String getName() {
+        <span style="color: #0033ff;">return</span> name;
+    }
+
+    <span style="color: #666;">// getter：在庫数を返す</span>
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getStock() {
+        <span style="color: #0033ff;">return</span> stock;
+    }
+
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (stock > 0) {
+            System.out.println(name + <span style="color: #cc0000;">"を購入しました"</span>);
+            stock--;
+            System.out.println(<span style="color: #cc0000;">"残りの在庫は"</span> + stock + <span style="color: #cc0000;">"個です"</span>);
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
+        }
+    }
+}</pre>
+<p>呼び出す側では、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm.name</code> は使えません。代わりに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm.getName()</code> で値を取得します。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【7】this で「このインスタンス」を指す</h2>
+<p>コンストラクタの引数名をフィールドと同じにすると、どちらがフィールドか分かりにくくなります。そんなとき <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.フィールド名</code> で「このインスタンスのフィールド」をはっきり指せます。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+    <span style="color: #0033ff;">this</span>.name = name;  <span style="color: #666;">// 左：このインスタンスのフィールド、右：引数</span>
+    <span style="color: #0033ff;">this</span>.stock = stock;
+}</pre>
+<div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-top: 15px;">
+<p style="margin: 0;"><strong>ユウタ：</strong>「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this</code> をつけると、フィールドだと分かるんだね。」</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【8】練習問題（カプセル化）</h2>
+<div>
+<strong>【問題3】private と getter を追加する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> のフィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> に変更し、それぞれの値を返す getter メソッド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>（戻り値 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code>）と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getStock()</code>（戻り値 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code>）を追加してください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>フィールドの宣言の前に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> を付けます。getter は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">return フィールド名;</code> で値を返します。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">private</span> String name;
+<span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
+
+<span style="color: #0033ff;">public</span> String getName() {
+    <span style="color: #0033ff;">return</span> name;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getStock() {
+    <span style="color: #0033ff;">return</span> stock;
+}</pre>
+</details>
+<br><br>
+<div>
+<strong>【問題4】setter で在庫を安全に更新する</strong><br>
+在庫数を設定する setter <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setStock(int n)</code> を追加してください。ただし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">n</code> が 0 未満のときは在庫を変更しないようにしてください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public void setStock(int n) { ... }</code> とし、中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">if (n >= 0) { stock = n; }</code> のようにします。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> setStock(<span style="color: #0033ff;">int</span> n) {
+    <span style="color: #0033ff;">if</span> (n >= 0) {
+        stock = n;
+    }
+}</pre>
+</details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【9】練習問題（自販機の拡張）</h2>
+<p>ここでは、自販機クラスにフィールドを追加する形で、コンストラクタとカプセル化の考え方をくり返し練習します。題材は自販機のまま統一します。</p>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">価格フィールドの追加</h3>
+<div>
+<strong>【問題5】VendMachine に「1本の価格」を追加する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> クラスに、次のように「1本あたりの価格」を追加してください。
+<ul style="padding-left: 20px; margin: 8px 0;">
+<li style="margin-bottom: 6px;">フィールド：価格（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int price</code>）。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にする。</li>
+<li style="margin-bottom: 6px;">コンストラクタのオーバーロード：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine(String name, int stock, int price)</code> を1つ追加し、受け取った値を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">price</code> に代入する。</li>
+<li style="margin-bottom: 6px;">getter：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getPrice()</code>（戻り値 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code>）を追加する。</li>
+</ul>
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>コンストラクタでは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock = num;</code>（または <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.stock = stock;</code>）、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.price = price;</code> のように代入します。getter は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">return price;</code> で値を返します。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> price;
+
+<span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock, <span style="color: #0033ff;">int</span> price) {
+    <span style="color: #0033ff;">this</span>.name = name;
+    <span style="color: #0033ff;">this</span>.stock = stock;
+    <span style="color: #0033ff;">this</span>.price = price;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getPrice() {
+    <span style="color: #0033ff;">return</span> price;
+}</pre>
+</details>
+<br><br>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">機械番号フィールドの追加</h3>
+<div>
+<strong>【問題6】VendMachine に「機械番号」を追加する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> クラスに、次のように「機械番号」を追加してください。
+<ul style="padding-left: 20px; margin: 8px 0;">
+<li style="margin-bottom: 6px;">フィールド：機械番号（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int machineId</code>）。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にする。</li>
+<li style="margin-bottom: 6px;">コンストラクタのオーバーロード：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine(String name, int stock, int machineId)</code> を1つ追加し、受け取った値を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">machineId</code> に代入する。</li>
+<li style="margin-bottom: 6px;">getter：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getMachineId()</code>（戻り値 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code>）を追加する。</li>
+</ul>
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>コンストラクタでは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.stock = stock;</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.machineId = machineId;</code> のように代入します。getter は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">return machineId;</code> で値を返します。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> machineId;
+
+<span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock, <span style="color: #0033ff;">int</span> machineId) {
+    <span style="color: #0033ff;">this</span>.name = name;
+    <span style="color: #0033ff;">this</span>.stock = stock;
+    <span style="color: #0033ff;">this</span>.machineId = machineId;
+}
+
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getMachineId() {
+    <span style="color: #0033ff;">return</span> machineId;
+}</pre>
+</details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【10】まとめのおさらい</h2>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;">コンストラクタは、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> でインスタンスが作られるときに1回だけ実行される。クラス名と同じ名前で、戻り値の型を書かない。</li>
+<li style="margin-bottom: 10px;">コンストラクタに引数を渡すと、設置する瞬間に「商品名」「在庫」などを初期値としてセットできる。</li>
+<li style="margin-bottom: 10px;">コンストラクタのオーバーロードで、引数なし・引数ありなど、複数の初期化パターンを用意できる。</li>
+<li style="margin-bottom: 10px;">カプセル化：フィールドを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にして中身を隠し、getter・setter でだけ操作する。安全で分かりやすいプログラムになる。</li>
+<li style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this</code> は「このインスタンス自身」を指し、フィールドと引数を区別するときに使う。</li>
+</ul>
+<div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>ナナコ：</strong>「コンストラクタで初期設定、カプセル化で安全に。自販機のイメージで覚えられそう。」</p>
+</div>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「次は、自販機の『型』を広げる話、継承とオーバーライドに進んでいこう！」</p>
+</div>
+</section>
+</div>

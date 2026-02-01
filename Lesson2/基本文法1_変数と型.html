@@ -1,0 +1,99 @@
+【テキスト】 第2回 ～基本文法(1) 変数・型・リテラル～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第2回：基本文法(1) ～変数・型・リテラル～</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. この回の目標</h2>
+<p style="margin: 0 0 10px 0;">この回を終えたとき、次のことができるようになりましょう。ロジックに慣れていなくても、順を追って進めれば大丈夫です。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;">ソースコードの基本構造（クラス・メソッド）とコメントの書き方を理解している。</li>
+<li style="margin-bottom: 8px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.print</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> の違いを説明できる。</li>
+<li style="margin-bottom: 8px;">整数・小数・文字列のリテラルを書いて表示できる。</li>
+<li style="margin-bottom: 8px;">型（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">double</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code>）を指定して変数を宣言し、値を代入・表示できる。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. ソースコードの構造とコメント</h2>
+<p style="margin: 0 0 10px 0;">Java のプログラムは<strong>クラス</strong>の中に<strong>メソッド</strong>を書きます。実行の入口は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドです。字下げ（インデント）や改行で構造を整えると読みやすくなります。</p>
+<p style="margin: 10px 0 0 0;"><strong>コメント</strong>は実行されません。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">//</code> から行末までが1行コメント、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">/* ... */</code> で囲んだ部分が複数行コメントです。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 15px;"><span style="color: #666;">// サンプル用クラス。実行の入口は main メソッド</span>
+<span style="color: #0033ff;">public class</span> Sample {
+    <span style="color: #0033ff;">public static void</span> main(String[] args) {
+        <span style="color: #666;">/* 複数行のコメントも書ける */</span>
+        System.out.println(<span style="color: #cc0000;">"Hello"</span>);  <span style="color: #666;">// コンソールに表示</span>
+    }
+}</pre>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-top: 20px;">
+<p style="margin: 0 0 6px 0;"><strong>コラム：コメントは適度に入れよう</strong></p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6;">実際の Java 開発では、何十人といったチームで開発することがあります。そのため、<strong>ほかの人が見てもわかりやすいソースコード</strong>を書く必要があります。コメントは「ここで何をしているか」が伝わる程度に、適度に入れましょう。入れすぎるとかえって読みづらくなることもあります。</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. print と println</h2>
+<p style="margin: 0 0 10px 0;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.print(〇〇)</code> は「〇〇を表示し、改行しない」、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println(〇〇)</code> は「〇〇を表示し、そのあと改行する」です。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 10px;"><span style="color: #666;">// print は改行しない。println は表示後に改行する</span>
+System.out.print(<span style="color: #cc0000;">"A"</span>);
+System.out.print(<span style="color: #cc0000;">"B"</span>);
+System.out.println(<span style="color: #cc0000;">"C"</span>);   <span style="color: #666;">// ここで改行。コンソールには "ABC" と1行で出る</span></pre>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. リテラル</h2>
+<p style="margin: 0 0 10px 0;">リテラルは、プログラムに直接書く値です。主な種類は次のとおりです。</p>
+<table style="border-collapse: collapse; margin-top: 10px; margin-bottom: 0;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>種類</th>
+<th>型の例</th>
+<th>リテラルの例</th>
+</tr>
+<tr><td>整数</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code></td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">0</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">100</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">-5</code></td></tr>
+<tr><td>小数</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">double</code></td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">3.14</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">-0.5</code></td></tr>
+<tr><td>文字列</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">"Hello"</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">"こんにちは"</code>（ダブルクォートで囲む）</td></tr>
+</tbody>
+</table>
+<p style="margin: 15px 0 0 0;">これらを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> に渡すと、そのままコンソールに表示されます。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. 変数と型</h2>
+<p style="margin: 0 0 10px 0;">変数は「データを入れる箱」です。Java では<strong>型</strong>を指定して宣言し、その型に合った値だけを代入します。</p>
+<p style="margin: 10px 0 0 0;"><strong>宣言の形</strong>： <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">型 変数名;</code> または <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">型 変数名 = 初期値;</code></p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 15px;"><span style="color: #666;">// 変数の宣言と代入（型 変数名 = 値;）</span>
+<span style="color: #0033ff;">int</span> age = 20;
+<span style="color: #0033ff;">double</span> height = 1.65;
+String name = <span style="color: #cc0000;">"太郎"</span>;
+<span style="color: #666;">// 変数の値をコンソールに表示</span>
+System.out.println(name);
+System.out.println(age);
+System.out.println(height);</pre>
+<div style="background-color: #f0f8ff; padding: 15px; border-radius: 5px; border-left: 5px solid #0033ff; margin-top: 15px;">
+<p style="margin: 0;"><strong>💡 ポイント</strong></p>
+<p style="margin: 8px 0 0 0;">変数名は識別子のルールに従います（英数字・アンダースコアなど。数字で始めない）。型と代入する値の種類が一致している必要があります。</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">6. まとめ</h2>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;"><strong>構造</strong>： クラス → メソッド。実行は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> から。コメントは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">//</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">/* */</code>。</li>
+<li style="margin-bottom: 8px;"><strong>print / println</strong>： <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> は表示後に改行。</li>
+<li style="margin-bottom: 8px;"><strong>リテラル</strong>： 整数・小数・文字列（ダブルクォート）をそのまま書ける。</li>
+<li style="margin-bottom: 8px;"><strong>変数と型</strong>： <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">型 変数名 = 値;</code> で宣言と代入。型に合った値だけ代入する。</li>
+</ul>
+</section>
+
+</div>

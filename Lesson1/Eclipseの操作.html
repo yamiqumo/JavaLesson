@@ -1,0 +1,94 @@
+【テキスト】 第1回 ～Eclipseの操作～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第1回：Eclipseの操作 ～環境に慣れる～</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. この回の目標</h2>
+<p style="margin: 0 0 10px 0;">この回を終えたとき、次のことができるようになりましょう。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;">Eclipse を起動し、ワークスペースを選べる。</li>
+<li style="margin-bottom: 8px;">新しい Java プロジェクトを作成できる。</li>
+<li style="margin-bottom: 8px;">クラスを作成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドを含むプログラムを実行できる。</li>
+<li style="margin-bottom: 8px;">保存と自動コンパイルの関係を理解している。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. Eclipse とは</h2>
+<p style="margin: 0 0 10px 0;"><strong>Eclipse</strong> は、Java のプログラムを書いたり実行したりするための<strong>統合開発環境（IDE）</strong>です。エディタ・コンパイル・実行・エラー表示がひとつの画面でまとまっているため、効率よく開発できます。</p>
+<p style="margin: 10px 0 0 0;">Eclipse を使う前に、<strong>JDK（Java Development Kit）</strong> をインストールしておく必要があります。動画の「概要＋JDK」「Eclipse」の回で手順を確認してください。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. ワークスペース</h2>
+<p style="margin: 0 0 10px 0;">Eclipse を起動すると、最初に<strong>ワークスペース</strong>を選ぶ画面が出ます。ワークスペースは「この Eclipse で使う作業用フォルダ」です。プロジェクトや設定はここに保存されます。</p>
+<div style="background-color: #f0f8ff; padding: 15px; border-radius: 5px; border-left: 5px solid #0033ff; margin-top: 15px;">
+<p style="margin: 0;"><strong>💡 ポイント</strong></p>
+<p style="margin: 8px 0 0 0;">同じワークスペースを指定すれば、前回作成したプロジェクトがそのまま表示されます。別のフォルダを選ぶと、別のワークスペースとして扱われます。</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. プロジェクトの作成</h2>
+<p style="margin: 0 0 10px 0;">Java のプログラムは<strong>プロジェクト</strong>単位で管理します。手順の目安は次のとおりです。</p>
+<ol style="padding-left: 24px; margin: 10px 0 0 0;">
+<li style="margin-bottom: 8px;">メニューから <strong>ファイル → 新規 → Java プロジェクト</strong>（または「新規」→「Java プロジェクト」）を選ぶ。</li>
+<li style="margin-bottom: 8px;">プロジェクト名を入力（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">MyFirstProject</code>）し、<strong>完了</strong>をクリック。</li>
+</ol>
+<p style="margin: 15px 0 0 0;">プロジェクトがパッケージ・エクスプローラーに表示されれば成功です。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. クラスの作成と実行</h2>
+<p style="margin: 0 0 10px 0;">プログラムを書くには、プロジェクトの中に<strong>クラス</strong>を作ります。実行するには、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドが必要です。</p>
+
+<h3 style="color: #0033ff; font-size: 16px; margin: 20px 0 10px 0;">手順の目安</h3>
+<ol style="padding-left: 24px; margin: 0;">
+<li style="margin-bottom: 8px;">プロジェクトを右クリック → <strong>新規 → クラス</strong>。</li>
+<li style="margin-bottom: 8px;">クラス名を入力（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Hello</code>）。</li>
+<li style="margin-bottom: 8px;">「<strong>public static void main(String[] args)</strong> にチェックを入れる」にチェックを入れて<strong>完了</strong>。</li>
+<li style="margin-bottom: 8px;">エディタに表示された <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> の中に、例えば <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println("Hello");</code> と書く。</li>
+<li style="margin-bottom: 8px;">メニュー <strong>実行 → 実行</strong>、またはツールバーの<strong>緑の三角ボタン</strong>（実行）をクリック。</li>
+</ol>
+<p style="margin: 15px 0 0 0;">コンソールに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Hello</code> と表示されれば成功です。</p>
+
+<div style="margin-top: 20px;">
+<p style="margin: 0 0 8px 0; font-weight: bold;">最小限の実行可能なコード例</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin: 0;"><span style="color: #0033ff;">public class</span> Hello {
+    <span style="color: #0033ff;">public static void</span> main(String[] args) {
+        System.out.println(<span style="color: #cc0000;">"Hello"</span>);
+    }
+}</pre>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">6. 自動コンパイルと保存</h2>
+<p style="margin: 0 0 10px 0;">Eclipse では、ファイルを<strong>保存</strong>すると自動的にコンパイル（ビルド）が行われます。そのため、実行する前に必ず<strong>保存（Ctrl+S / Mac は Command+S）</strong>しておきましょう。</p>
+<p style="margin: 10px 0 0 0;">文法エラーがあると、エディタの左側や「問題」ビューに赤いマークで表示されます。エラーを直してから再度保存・実行してください。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">7. まとめ</h2>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;"><strong>ワークスペース</strong>： Eclipse の作業用フォルダ。同じフォルダを選べば前回の続きから。</li>
+<li style="margin-bottom: 8px;"><strong>プロジェクト</strong>： Java のプログラムをまとめる単位。まず「新規 Java プロジェクト」で作成。</li>
+<li style="margin-bottom: 8px;"><strong>クラスと main</strong>： プログラムはクラスに書く。実行するには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドが必要。</li>
+<li style="margin-bottom: 8px;"><strong>保存 → 自動コンパイル → 実行</strong>： 保存すると自動でビルドされる。緑の三角で実行。</li>
+</ul>
+</section>
+
+</div>

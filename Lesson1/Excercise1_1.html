@@ -1,0 +1,95 @@
+【練習問題】 第1回 ～Eclipseの操作～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第1回 練習問題：Eclipseの操作</h1>
+
+<p style="margin-bottom: 15px;">Eclipse でプロジェクトとクラスを作成し、プログラムを実行する手順を確認する問題です。次の3ステップで進めてください。</p>
+
+<p style="margin-bottom: 5px;"><strong>ステップ一覧</strong></p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 20px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>ステップ</th>
+<th>内容</th>
+<th>確認</th>
+</tr>
+<tr>
+<td>1</td>
+<td>新しい Java プロジェクトを作成する</td>
+<td>パッケージ・エクスプローラーにプロジェクトが表示される</td>
+</tr>
+<tr>
+<td>2</td>
+<td>main メソッドを持つクラスを作成し、「Hello」と表示して実行する</td>
+<td>コンソールに「Hello」と表示される</td>
+</tr>
+<tr>
+<td>3</td>
+<td>表示する文字列を変えたり、複数行の println を試す</td>
+<td>保存すると自動コンパイルされ、実行で結果が変わることを確認する</td>
+</tr>
+</tbody>
+</table>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【ステップ1】プロジェクトの作成</h2>
+<p style="margin: 0 0 10px 0;">Eclipse で新しい Java プロジェクトを作成してください。プロジェクト名は自由（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Lesson1Practice</code>）で構いません。</p>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>メニュー <strong>ファイル → 新規 → Java プロジェクト</strong> を選び、プロジェクト名を入力して「完了」をクリックします。左側のパッケージ・エクスプローラーにプロジェクトが表示されれば成功です。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">手順の目安</summary>
+<ol style="padding-left: 20px; margin: 8px 0 0 0;">
+<li>ファイル → 新規 → Java プロジェクト</li>
+<li>プロジェクト名を入力（例：Lesson1Practice）</li>
+<li>「完了」をクリック</li>
+<li>パッケージ・エクスプローラーにプロジェクトが表示されていることを確認</li>
+</ol>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【ステップ2】クラスの作成と実行</h2>
+<p style="margin: 0 0 10px 0;">作成したプロジェクトの中に、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドを持つクラスを作成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println("Hello");</code> で「Hello」と表示して実行してください。</p>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>プロジェクトを右クリック → <strong>新規 → クラス</strong>。クラス名を入力し、「public static void main(String[] args) にチェックを入れる」にチェックを入れて「完了」。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> の中に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println("Hello");</code> を書き、保存してから緑の三角（実行）をクリックします。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例（コード）</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin: 0;"><span style="color: #0033ff;">public class</span> Hello {
+    <span style="color: #0033ff;">public static void</span> main(String[] args) {
+        System.out.println(<span style="color: #cc0000;">"Hello"</span>);
+    }
+}</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【ステップ3】表示内容を変えて試す</h2>
+<p style="margin: 0 0 10px 0;">次のいずれか（または両方）を試してください。</p>
+<ul style="padding-left: 20px; margin: 0 0 10px 0;">
+<li style="margin-bottom: 6px;">表示する文字列を「Hello」から別の文字（例：「こんにちは」）に変えて保存し、再実行する。</li>
+<li style="margin-bottom: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> を2行以上書き、複数行がコンソールに表示されることを確認する。</li>
+</ul>
+<p style="margin: 0;">保存すると自動でコンパイルされ、実行ボタンで新しい結果が表示されることを確認しましょう。</p>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>コードを変更したら必ず<strong>保存（Ctrl+S / Command+S）</strong>してから実行します。複数行表示する例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println("1行目");</code> の下に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println("2行目");</code> を追加する。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例（複数行表示）</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin: 0;"><span style="color: #0033ff;">public class</span> Hello {
+    <span style="color: #0033ff;">public static void</span> main(String[] args) {
+        System.out.println(<span style="color: #cc0000;">"1行目"</span>);
+        System.out.println(<span style="color: #cc0000;">"2行目"</span>);
+    }
+}</pre>
+</details>
+</section>
+
+</div>

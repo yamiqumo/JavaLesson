@@ -1,40 +1,74 @@
 package src_10.txt_before;
 
 /**
- * Lesson9 最終プログラム（修正前）
- * 自販機クラス：コンストラクタ・カプセル化・getter/setter・buy()
+ * 自販機の共通基底クラス。
+ * - buy() の流れは固定
+ * - 事前チェック / お湯提供 / 最終出力をフックで差し替える
  */
-public class VendMachine {
+public abstract class VendMachine {
 
-    private String name;
-    private int stock;
+    private int select = 1; // デフォルト商品は1番
+
+    protected String name; // 単一商品の名称（カップ麺などで利用）
+    protected int stock;    // 単一商品の在庫（カップ麺などで利用）
+
+    public VendMachine() {
+    }
 
     public VendMachine(String name, int stock) {
         this.name = name;
         this.stock = stock;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int n) {
-        if (n >= 0) {
-            this.stock = n;
-        }
-    }
-
-    public void buy() {
-        if (stock > 0) {
-            System.out.println(getName() + "を購入しました");
-            stock--;
-            System.out.println("残りの在庫は" + getStock() + "個です");
+    public void setSelect(int n) {
+        if (n == 2) {
+            select = 2;
         } else {
-            System.out.println("売り切れです");
+            select = 1;
         }
+    }
+
+    public void changeItem() {
+        if (select == 1) {
+            select = 2;
+        } else {
+            select = 1;
+        }
+    }
+
+    public int getSelect() {
+        return select;
+    }
+
+    /**
+     * 購入の共通フロー
+     */
+    public void buy() {
+        if (beforeBuy() == true) {
+            System.out.println("1分ほどお待ちください");
+            hotWaterServe();
+            dispense();
+        }
+    }
+
+    /**
+     * 事前チェック（在庫・水量など）。true なら続行。
+     */
+    protected boolean beforeBuy() {
+        return true;
+    }
+
+    /**
+     * お湯提供などの前処理。不要なら何もしない。
+     */
+    protected void hotWaterServe() {
+        // 何もしない（必要なクラスで上書き）
+    }
+
+    /**
+     * 実際の提供処理。サブクラスで上書きする。
+     */
+    protected void dispense() {
+        // 何もしない（必要なクラスで上書き）
     }
 }

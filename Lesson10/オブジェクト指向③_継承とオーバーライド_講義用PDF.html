@@ -109,8 +109,8 @@
 <li style="margin-bottom: 10px;">サブクラスはスーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> なメソッド・フィールドを引き継ぐ。サブクラスだけで追加のフィールドやメソッドも持てる。</li>
 </ul>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendMachine を継承した ColdVendMachine（冷飲料専用機）</h3>
-<p>スーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を持っているとします。</p>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendMachine を継承した VendingHotNoodle（カップ麺用自販機）</h3>
+<p>スーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> は、「水」などの飲み物を売る自販機だと思ってください。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を持っているとします。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// スーパークラス</span>
 <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendMachine {
     <span style="color: #0033ff;">private</span> String name;
@@ -134,10 +134,10 @@
     }
 }
 
-<span style="color: #666;">// サブクラス：VendMachine を継承</span>
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> ColdVendMachine <span style="color: #0033ff;">extends</span> VendMachine {
+<span style="color: #666;">// サブクラス：VendMachine を継承（カップ麺用）</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendingHotNoodle <span style="color: #0033ff;">extends</span> VendMachine {
 
-    <span style="color: #0033ff;">public</span> ColdVendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+    <span style="color: #0033ff;">public</span> VendingHotNoodle(String name, <span style="color: #0033ff;">int</span> stock) {
         <span style="color: #0033ff;">super</span>(name, stock);  <span style="color: #666;">// スーパークラスのコンストラクタを呼ぶ</span>
     }
 }</pre>
@@ -155,25 +155,25 @@
 <li style="margin-bottom: 10px;">オーバーライドであることを明示するために、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override</code> をメソッドの直前に書く習慣がある（省略可能）。</li>
 </ul>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：ColdVendMachine で buy() をオーバーライドする</h3>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> ColdVendMachine <span style="color: #0033ff;">extends</span> VendMachine {
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendingHotNoodle で buy() をオーバーライドする</h3>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendingHotNoodle <span style="color: #0033ff;">extends</span> VendMachine {
 
-    <span style="color: #0033ff;">public</span> ColdVendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+    <span style="color: #0033ff;">public</span> VendingHotNoodle(String name, <span style="color: #0033ff;">int</span> stock) {
         <span style="color: #0033ff;">super</span>(name, stock);
     }
 
-    <span style="color: #666;">// スーパークラスの buy() をオーバーライド：冷飲料用のメッセージに変える</span>
+    <span style="color: #666;">// スーパークラスの buy() をオーバーライド：カップ麺用のメッセージに変える</span>
     @Override
     <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
         <span style="color: #0033ff;">if</span> (getStock() > 0) {
-            System.out.println(getName() + <span style="color: #cc0000;">"を購入しました。冷えてます。"</span>);
+            System.out.println(getName() + <span style="color: #cc0000;">"を購入しました。カップ麺のお湯として使います。"</span>);
             <span style="color: #0033ff;">super</span>.buy();
         } <span style="color: #0033ff;">else</span> {
             System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
         }
     }
 }</pre>
-<p>このようにサブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を書き直すと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">ColdVendMachine</code> のインスタンスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼んだとき「〇〇を購入しました。冷えてます。」と表示されます。</p>
+<p>このようにサブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を書き直すと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingHotNoodle</code> のインスタンスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼んだとき「〇〇を購入しました。カップ麺のお湯として使います。」と表示されます。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">

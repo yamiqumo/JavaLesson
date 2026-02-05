@@ -26,7 +26,7 @@
 <li><strong>オーバーライド</strong> — スーパークラスが持つメソッドを、サブクラスで「同じ名前・同じ引数」で書き直すこと。サブクラスの動きをスーパークラスと変えられる。</li>
 </ul>
 </div>
-<p style="margin-bottom: 0; font-size: 14px;">自販機を「共通の動き」をテンプレートにしつつ、「商品を2つ扱う」「カップ麺でお湯もチェックする」などの違いをサブクラスで表すイメージで進めます。</p>
+<p style="margin-bottom: 0; font-size: 14px;">自販機を「共通の動き」をベースにしつつ、「商品を2つ扱う」「カップ麺でお湯もチェックする」などの違いをサブクラスで表すイメージで進めます。</p>
 </div>
 </section>
 
@@ -59,7 +59,7 @@
 <p style="margin: 0;"><strong>ナナコ：</strong>「同じ buy() を呼んでいても、どの商品を選んだか、お湯が足りるか、などで表示が変わるってことですね。」</p>
 </div>
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-bottom: 10px;">
-<p style="margin: 0;"><strong>ユウタ：</strong>「共通の流れをテンプレート化して、差分だけサブクラスで書き換えるのがオーバーライド？」</p>
+<p style="margin: 0;"><strong>ユウタ：</strong>「共通の流れは同じで、ところどころだけサブクラスで書き換えるのがオーバーライド？」</p>
 </div>
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888;">
 <p style="margin: 0;"><strong>カバ先生：</strong>「そうそう。共通の骨組みはスーパークラスに置いて、差分をサブクラスでオーバーライドするやり方を見ていこう。」</p>
@@ -77,52 +77,39 @@
 <li style="margin-bottom: 10px;">サブクラスはスーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> なメソッド・フィールドを引き継ぐ。サブクラスだけで追加のフィールドやメソッドも持てる。</li>
 </ul>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：共通の流れをテンプレート化した VendMachine</h3>
-<p>スーパークラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> で buy() の「流れ」を固定し、差分はフックメソッドでサブクラスに任せる形にします。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// スーパークラス（テンプレート）</span>
-<span style="color: #0033ff;">public abstract class</span> VendMachine {
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendMachine を継承した ColdVendMachine（冷飲料専用機）</h3>
+<p>スーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を持っているとします。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// スーパークラス（ベースとなる自販機）</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendMachine {
+    <span style="color: #0033ff;">private</span> String name;
+    <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
 
-    <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> select = 1; <span style="color: #666;">// デフォルトは商品1</span>
-    <span style="color: #0033ff;">protected</span> String name;  <span style="color: #666;">// 単一商品の名称（カップ麺など）</span>
-    <span style="color: #0033ff;">protected</span> <span style="color: #0033ff;">int</span> stock;   <span style="color: #666;">// 単一商品の在庫</span>
-
-    <span style="color: #0033ff;">public</span> VendMachine() {}
     <span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
         <span style="color: #0033ff;">this</span>.name = name;
         <span style="color: #0033ff;">this</span>.stock = stock;
     }
 
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> setSelect(<span style="color: #0033ff;">int</span> n) {
-        <span style="color: #0033ff;">if</span> (n == 2) {
-            select = 2;
-        } <span style="color: #0033ff;">else</span> {
-            select = 1;
-        }
-    }
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> changeItem() {
-        <span style="color: #0033ff;">if</span> (select == 1) {
-            select = 2;
-        } <span style="color: #0033ff;">else</span> {
-            select = 1;
-        }
-    }
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getSelect() { <span style="color: #0033ff;">return</span> select; }
+    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getStock() { <span style="color: #0033ff;">return</span> stock; }
 
-    <span style="color: #666;">// 共通フロー：事前チェック→待つ→お湯→提供</span>
     <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
-        <span style="color: #0033ff;">if</span> (beforeBuy() == <span style="color: #0033ff;">true</span>) {
-            System.out.println(<span style="color: #cc0000;">"1分ほどお待ちください"</span>);
-            hotWaterServe();
-            dispense();
+        <span style="color: #0033ff;">if</span> (stock > 0) {
+            System.out.println(name + <span style="color: #cc0000;">"を購入しました"</span>);
+            stock--;
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
         }
     }
+}
 
-    <span style="color: #666;">// サブクラスで差し替えるフック</span>
-    <span style="color: #0033ff;">protected</span> <span style="color: #0033ff;">boolean</span> beforeBuy() { <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">true</span>; }
-    <span style="color: #0033ff;">protected</span> <span style="color: #0033ff;">void</span> hotWaterServe() {}
-    <span style="color: #0033ff;">protected</span> <span style="color: #0033ff;">void</span> dispense() {}
+<span style="color: #666;">// サブクラス：VendMachine を継承</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> ColdVendMachine <span style="color: #0033ff;">extends</span> VendMachine {
+
+    <span style="color: #0033ff;">public</span> ColdVendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+        <span style="color: #0033ff;">super</span>(name, stock);  <span style="color: #666;">// スーパークラスのコンストラクタを呼ぶ</span>
+    }
 }</pre>
-<p>このテンプレートに対して、2商品版・カップ麺版などのサブクラスを作り、差分だけをオーバーライドします。</p>
+<p>サブクラスでは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(引数)</code> でスーパークラスのコンストラクタを必ず呼びます。こうするとスーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> が初期化されます。サブクラスはスーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> をそのまま使えます。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
@@ -136,53 +123,32 @@
 <li style="margin-bottom: 10px;">オーバーライドであることを明示するために、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override</code> をメソッドの直前に書く習慣がある（省略可能）。</li>
 </ul>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendingHotNoodle でフックをオーバーライドする</h3>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// カップ麺用：在庫とお湯量をチェックし、お湯を注いで提供</span>
-<span style="color: #0033ff;">public class</span> VendingHotNoodle <span style="color: #0033ff;">extends</span> VendMachine {
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：ColdVendMachine で buy() をオーバーライドする</h3>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> ColdVendMachine <span style="color: #0033ff;">extends</span> VendMachine {
 
-    <span style="color: #0033ff;">private int</span> waterVolume;
-    <span style="color: #0033ff;">private int</span> requiredWater;
-
-    <span style="color: #0033ff;">public</span> VendingHotNoodle(String name, <span style="color: #0033ff;">int</span> stock,
-                               <span style="color: #0033ff;">int</span> waterVolume, <span style="color: #0033ff;">int</span> requiredWater) {
+    <span style="color: #0033ff;">public</span> ColdVendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
         <span style="color: #0033ff;">super</span>(name, stock);
-        <span style="color: #0033ff;">this</span>.waterVolume = waterVolume;
-        <span style="color: #0033ff;">this</span>.requiredWater = requiredWater;
     }
 
+    <span style="color: #666;">// スーパークラスの buy() をオーバーライド：冷飲料用のメッセージに変える</span>
     @Override
-    <span style="color: #0033ff;">protected boolean</span> beforeBuy() {
-        <span style="color: #0033ff;">if</span> (stock <= 0) {
-            System.out.println(name + <span style="color: #cc0000;">"は売り切れです"</span>);
-            <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">false</span>;
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (getStock() > 0) {
+            System.out.println(getName() + <span style="color: #cc0000;">"を購入しました。冷えてます。"</span>);
+            <span style="color: #0033ff;">super</span>.buy();
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
         }
-        <span style="color: #0033ff;">if</span> (waterVolume < requiredWater) {
-            System.out.println(<span style="color: #cc0000;">"お湯が足りません"</span>);
-            <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">false</span>;
-        }
-        stock--;
-        waterVolume = waterVolume - requiredWater;
-        <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">true</span>;
-    }
-
-    @Override
-    <span style="color: #0033ff;">protected void</span> hotWaterServe() {
-        System.out.println(<span style="color: #cc0000;">"お湯を注ぎます"</span>);
-    }
-
-    @Override
-    <span style="color: #0033ff;">protected void</span> dispense() {
-        System.out.println(name + <span style="color: #cc0000;">"を提供します"</span>);
     }
 }</pre>
-<p>テンプレートの buy() はどの自販機でも共通で呼ばれますが、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy</code>/<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">hotWaterServe</code>/<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense</code> をサブクラスが上書きすることで、同じメソッド呼び出しでも動きが変わります。</p>
+<p>このようにサブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を書き直すと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">ColdVendMachine</code> のインスタンスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼んだとき「〇〇を購入しました。冷えてます。」と表示されます。ここでは、もとの自販機（VendMachine）の買い方はそのまま残しつつ、その前に「冷えてます」という一言を足したいので、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.buy()</code> を呼んでいます。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】super でスーパークラスのメソッドを呼ぶ</h2>
-<p>オーバーライドしたメソッドの中から、<strong>スーパークラスの同じメソッド</strong>を呼びたいときは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.メソッド名(引数)</code> と書きます。在庫を減らす処理はスーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> に任せて、表示だけサブクラスで変える例です。</p>
+<p>オーバーライドしたメソッドの中から、<strong>スーパークラスの同じメソッド</strong>を呼びたいときは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.メソッド名(引数)</code> と書きます。もとの自販機の動き（在庫を減らす処理など）はそのまま使いながら、「一言メッセージを足す」といったときに便利です。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 表示だけサブクラスで変え、在庫処理はスーパークラスに任せる</span>
 @Override
 <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
@@ -210,7 +176,26 @@
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>サブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> をオーバーライドします。選択が1のときは商品1の在庫を、2のときは商品2の在庫を if でチェックしてください。</p>
+<p>サブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> をオーバーライドします。選択が1のときは商品1の在庫を、2のときは商品2の在庫を if でチェックします。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 10px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// ヒント用の穴埋めコード（イメージ）</span>
+@Override
+<span style="color: #0033ff;">protected boolean</span> beforeBuy() {
+    <span style="color: #0033ff;">if</span> (getSelect() == 1) {
+        <span style="color: #0033ff;">// ここで stock1 をチェックして減らす</span>
+    } <span style="color: #0033ff;">else</span> {
+        <span style="color: #0033ff;">// ここで stock2 をチェックして減らす</span>
+    }
+    <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">true</span>;  <span style="color: #666;">// 条件に合わないときは false を返す</span>
+}
+
+@Override
+<span style="color: #0033ff;">protected void</span> dispense() {
+    <span style="color: #0033ff;">if</span> (getSelect() == 1) {
+        <span style="color: #0033ff;">// 商品1の名前を表示</span>
+    } <span style="color: #0033ff;">else</span> {
+        <span style="color: #0033ff;">// 商品2の名前を表示</span>
+    }
+}</pre>
 </details>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
@@ -243,13 +228,31 @@
 </details>
 <br><br>
 <div>
-<strong>【問題2】カップ麺自販機でフックを使う</strong><br>
+<strong>【問題2】カップ麺自販機でメソッドを分けて使う</strong><br>
 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingHotNoodle</code> を作成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> / <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">hotWaterServe()</code> / <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> をオーバーライドしてください。お湯が足りない場合は販売を中断し、足りる場合は在庫とお湯量を減らして提供メッセージを出してください。
 </div>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>在庫と水量の2つを if でチェックし、true のときだけ在庫・水量を減らします。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">hotWaterServe()</code> では「お湯を注ぎます」を表示し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> で「カップ麺を提供します」を表示します。</p>
+<p>在庫と水量の2つを if でチェックし、条件を満たしたときだけ在庫・水量を減らします。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">hotWaterServe()</code> では「お湯を注ぎます」を表示し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> で「カップ麺を提供します」を表示します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 10px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// ヒント用の穴埋めコード（イメージ）</span>
+@Override
+<span style="color: #0033ff;">protected boolean</span> beforeBuy() {
+    <span style="color: #0033ff;">// 在庫があるかをチェック</span>
+    <span style="color: #0033ff;">// お湯が足りるかをチェック</span>
+    <span style="color: #0033ff;">// 条件を満たしたら在庫とお湯量を減らす</span>
+    <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">true</span>;  <span style="color: #666;">// 条件に合わないときは false を返す</span>
+}
+
+@Override
+<span style="color: #0033ff;">protected void</span> hotWaterServe() {
+    <span style="color: #0033ff;">// 「お湯を注ぎます」を表示</span>
+}
+
+@Override
+<span style="color: #0033ff;">protected void</span> dispense() {
+    <span style="color: #0033ff;">// 「カップ麺を提供します」を表示</span>
+}</pre>
 </details>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>

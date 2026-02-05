@@ -3,7 +3,7 @@ package src_10.txt_before;
 /**
  * 自販機の共通基底クラス。
  * - buy() の流れは固定
- * - 事前チェック / お湯提供 / 最終出力をフックで差し替える
+ * - 事前チェック / お湯提供 / 最終出力をサブクラス側のメソッドで差し替える
  */
 public abstract class VendMachine {
 

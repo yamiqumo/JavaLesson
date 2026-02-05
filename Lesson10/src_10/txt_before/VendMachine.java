@@ -7,19 +7,23 @@ package src_10.txt_before;
  */
 public abstract class VendMachine {
 
+    // フィールド
     private int select = 1; // デフォルト商品は1番
 
     protected String name; // 単一商品の名称（カップ麺などで利用）
     protected int stock;    // 単一商品の在庫（カップ麺などで利用）
 
+    // 引数なしコンストラクタ
     public VendMachine() {
     }
 
+    // name と stock を受け取るコンストラクタ
     public VendMachine(String name, int stock) {
         this.name = name;
         this.stock = stock;
     }
 
+    // 選択中の商品番号の setter（1 または 2）
     public void setSelect(int n) {
         if (n == 2) {
             select = 2;
@@ -28,6 +32,7 @@ public abstract class VendMachine {
         }
     }
 
+    // 商品を切り替えるメソッド（1 ⇔ 2）
     public void changeItem() {
         if (select == 1) {
             select = 2;
@@ -36,6 +41,7 @@ public abstract class VendMachine {
         }
     }
 
+    // 選択中の商品番号の getter
     public int getSelect() {
         return select;
     }

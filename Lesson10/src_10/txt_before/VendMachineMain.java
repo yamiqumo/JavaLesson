@@ -7,8 +7,9 @@ package src_10.txt_before;
  */
 public class VendMachineMain {
 
+    // 動作確認用 main メソッド
     public static void main(String[] args) {
-        // 2商品自販機
+        // 2商品自販機の動作確認
         VendMachine twoItem = new Vending2Item("コーラ", 2, "お茶", 1);
         twoItem.buy();          // デフォルトは1番
         twoItem.changeItem();   // 2番に切替
@@ -17,7 +18,7 @@ public class VendMachineMain {
 
         System.out.println("-----");
 
-        // カップ麺自販機（お湯量もチェック）
+        // カップ麺自販機（お湯量もチェック）の動作確認
         VendMachine noodle = new VendingHotNoodle("カップ麺", 2, 500, 250);
         noodle.buy();
         noodle.buy();

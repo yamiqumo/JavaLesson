@@ -6,11 +6,13 @@ package src_10.txt_before;
  */
 public class Vending2Item extends VendMachine {
 
+    // フィールド（商品1と商品2の名前と在庫）
     private String name1;
     private int stock1;
     private String name2;
     private int stock2;
 
+    // コンストラクタ（商品1・商品2の情報を受け取る）
     public Vending2Item(String name1, int stock1, String name2, int stock2) {
         this.name1 = name1;
         this.stock1 = stock1;
@@ -19,6 +21,7 @@ public class Vending2Item extends VendMachine {
         setSelect(1);
     }
 
+    // 購入前のチェック（在庫があるか確認し、在庫を1つ減らす）
     @Override
     protected boolean beforeBuy() {
         if (getSelect() == 1) {
@@ -39,6 +42,7 @@ public class Vending2Item extends VendMachine {
         return true;
     }
 
+    // 実際に商品を出す処理
     @Override
     protected void dispense() {
         if (getSelect() == 1) {

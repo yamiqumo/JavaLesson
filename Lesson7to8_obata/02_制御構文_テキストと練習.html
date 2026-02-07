@@ -1,0 +1,145 @@
+【テキスト＋練習】 制御構文（if / switch / for / while）
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Part 2：制御構文（約45〜50分）</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. このパートの目標</h2>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">if</code> / <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">else if</code> / <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">else</code> で条件分岐を書ける。</li>
+<li style="margin-bottom: 8px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">switch</code> 文で値に応じた分岐を書ける。</li>
+<li style="margin-bottom: 8px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">for</code> 文と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">while</code> 文で繰り返しを書ける。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. if 文（条件分岐）</h2>
+<p style="margin-bottom: 10px;">条件が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">true</code> のときだけブロック内を実行します。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">else if</code> で別の条件を、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">else</code> で「どれにも当てはまらないとき」を書けます。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">int</span> score = 75;
+<span style="color: #0033ff;">if</span> (score &gt;= 80) {
+    System.out.println(<span style="color: #cc0000;">"優"</span>);
+} <span style="color: #0033ff;">else if</span> (score &gt;= 60) {
+    System.out.println(<span style="color: #cc0000;">"良"</span>);
+} <span style="color: #0033ff;">else</span> {
+    System.out.println(<span style="color: #cc0000;">"要努力"</span>);
+}</pre>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. switch 文</h2>
+<p style="margin-bottom: 10px;">ある変数や式の値に応じて、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">case</code> で分岐します。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">break</code> を忘れると次の case に落ちるので注意。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">int</span> day = 2;
+<span style="color: #0033ff;">switch</span> (day) {
+    <span style="color: #0033ff;">case</span> 1: System.out.println(<span style="color: #cc0000;">"月"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 2: System.out.println(<span style="color: #cc0000;">"火"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 3: System.out.println(<span style="color: #cc0000;">"水"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">default</span>: System.out.println(<span style="color: #cc0000;">"その他"</span>); <span style="color: #0033ff;">break</span>;
+}</pre>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. for 文（繰り返し）</h2>
+<p style="margin-bottom: 10px;">「初期化 → 条件が true の間ブロック実行 → 更新」を繰り返します。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 0; i &lt; 3; i++) {
+    System.out.println(<span style="color: #cc0000;">"i = "</span> + i);
+}
+<span style="color: #666;">// 0, 1, 2 が表示される</span></pre>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. while 文（繰り返し）</h2>
+<p style="margin-bottom: 10px;">条件が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">true</code> の間、ブロックを繰り返します。条件がずっと true だと無限ループになるので、中で条件を変えるか <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">break</code> で抜けます。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">int</span> n = 0;
+<span style="color: #0033ff;">while</span> (n &lt; 3) {
+    System.out.println(n);
+    n++;
+}</pre>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習1】if で点数に応じた表示</h2>
+<p style="margin-bottom: 10px;">変数 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int score = 72;</code> に対して、次のように表示するコードを書いてください。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 6px;">80 以上 → 「合格（優）」</li>
+<li style="margin-bottom: 6px;">60 以上 80 未満 → 「合格（良）」</li>
+<li style="margin-bottom: 6px;">60 未満 → 「不合格」</li>
+</ul>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">if (score >= 80) { ... } else if (score >= 60) { ... } else { ... } の順で書きます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> score = 72;
+<span style="color: #0033ff;">if</span> (score &gt;= 80) {
+    System.out.println(<span style="color: #cc0000;">"合格（優）"</span>);
+} <span style="color: #0033ff;">else if</span> (score &gt;= 60) {
+    System.out.println(<span style="color: #cc0000;">"合格（良）"</span>);
+} <span style="color: #0033ff;">else</span> {
+    System.out.println(<span style="color: #cc0000;">"不合格"</span>);
+}</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習2】switch で曜日表示</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int week = 5;</code> のとき、1→月、2→火、…、7→日 と表示する switch 文を書いてください。1〜7 以外は「不正な値」と表示してください。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">switch (week) { case 1: ... break; case 2: ... break; ... default: ... break; } のように書きます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> week = 5;
+<span style="color: #0033ff;">switch</span> (week) {
+    <span style="color: #0033ff;">case</span> 1: System.out.println(<span style="color: #cc0000;">"月"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 2: System.out.println(<span style="color: #cc0000;">"火"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 3: System.out.println(<span style="color: #cc0000;">"水"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 4: System.out.println(<span style="color: #cc0000;">"木"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 5: System.out.println(<span style="color: #cc0000;">"金"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 6: System.out.println(<span style="color: #cc0000;">"土"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">case</span> 7: System.out.println(<span style="color: #cc0000;">"日"</span>); <span style="color: #0033ff;">break</span>;
+    <span style="color: #0033ff;">default</span>: System.out.println(<span style="color: #cc0000;">"不正な値"</span>); <span style="color: #0033ff;">break</span>;
+}</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習3】for で 1 から 5 の合計</h2>
+<p style="margin-bottom: 10px;">for 文を使って 1 から 5 までの整数の合計を求め、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println</code> で表示してください。結果は 15 になります。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">int sum = 0; を用意し、for (int i = 1; i <= 5; i++) { sum = sum + i; } のあと println(sum); で表示します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> sum = 0;
+<span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 5; i++) {
+    sum = sum + i;
+}
+System.out.println(sum);  <span style="color: #666;">// 15</span></pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">【発展】while で 0 になるまで 1 引く</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int count = 3;</code> から始めて、while で「表示してから 1 引く」を繰り返し、0 になったら終了するプログラムを書いてください。表示は 3, 2, 1 の順で出ればよいです。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">while (count > 0) { System.out.println(count); count--; } のように書けます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> count = 3;
+<span style="color: #0033ff;">while</span> (count &gt; 0) {
+    System.out.println(count);
+    count--;
+}</pre>
+</details>
+</section>
+
+</div>

@@ -1,0 +1,200 @@
+【テキスト＋練習】 クラスの基礎・コンストラクタ・継承
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Part 3：クラスの基礎・コンストラクタ・継承（約70〜80分）</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. このパートの目標</h2>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;">クラスとインスタンスの違いを説明できる。</li>
+<li style="margin-bottom: 8px;">フィールドとメソッドの役割を説明できる。</li>
+<li style="margin-bottom: 8px;">コンストラクタで初期値をセットできる。</li>
+<li style="margin-bottom: 8px;">カプセル化（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> と getter）を理解している。</li>
+<li style="margin-bottom: 8px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends</code> で継承し、オーバーライドでメソッドを書き換えられる。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. クラスとインスタンス</h2>
+<p style="margin-bottom: 10px;"><strong>クラス</strong>は設計図、<strong>インスタンス</strong>はその設計図から作った実物です。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new クラス名()</code> でインスタンスを作ります。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;"><strong>フィールド</strong> — データ（状態）を入れる。</li>
+<li style="margin-bottom: 8px;"><strong>メソッド</strong> — 処理（動き）を書く。メソッドの中でフィールドを使う。</li>
+</ul>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 10px;"><span style="color: #666;">// 定義する側（設計図）</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Robot {
+    String name;   <span style="color: #666;">// フィールド</span>
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> say() {   <span style="color: #666;">// メソッド</span>
+        System.out.println(name + <span style="color: #cc0000;">"です"</span>);
+    }
+}
+
+<span style="color: #666;">// 呼び出す側（Main）</span>
+Robot r = <span style="color: #0033ff;">new</span> Robot();
+r.name = <span style="color: #cc0000;">"ロボ太郎"</span>;
+r.say();   <span style="color: #666;">// ロボ太郎です</span></pre>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. コンストラクタ</h2>
+<p style="margin-bottom: 10px;">コンストラクタは、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> でインスタンスが作られるときに<strong>一度だけ</strong>実行される特別なメソッドです。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;">名前は<strong>クラス名と完全に同じ</strong>。</li>
+<li style="margin-bottom: 8px;">戻り値の型は書かない（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void</code> も不要）。</li>
+<li style="margin-bottom: 8px;">引数を受け取り、フィールドに代入して初期化する。</li>
+</ul>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 10px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Robot {
+    String name;
+    <span style="color: #0033ff;">public</span> Robot(String name) {
+        <span style="color: #0033ff;">this</span>.name = name;   <span style="color: #666;">// 引数をフィールドに代入</span>
+    }
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> say() { System.out.println(name + <span style="color: #cc0000;">"です"</span>); }
+}
+
+<span style="color: #666;">// 呼び出し</span>
+Robot r = <span style="color: #0033ff;">new</span> Robot(<span style="color: #cc0000;">"ロボ太郎"</span>);
+r.say();</pre>
+<p style="margin-top: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.フィールド名</code> で「このインスタンスのフィールド」を指します。引数名とフィールド名が同じときに区別するために使います。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. カプセル化（private と getter）</h2>
+<p style="margin-bottom: 10px;">フィールドを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にすると、クラスの外から直接アクセスできません。代わりに <strong>getter</strong>（値を返す <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> メソッド）で値を取得します。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 10px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Robot {
+    <span style="color: #0033ff;">private</span> String name;
+    <span style="color: #0033ff;">public</span> Robot(String name) { <span style="color: #0033ff;">this</span>.name = name; }
+    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }   <span style="color: #666;">// getter</span>
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> say() { System.out.println(name + <span style="color: #cc0000;">"です"</span>); }
+}
+
+<span style="color: #666;">// 外では r.name は使えない。r.getName() で取得</span></pre>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. 継承（extends）</h2>
+<p style="margin-bottom: 10px;">既存のクラス（<strong>スーパークラス</strong>）を土台に、新しいクラス（<strong>サブクラス</strong>）を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends</code> で定義します。サブクラスはスーパークラスのフィールド・メソッドを引き継ぎます。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 10px;"><span style="color: #666;">// スーパークラス</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Animal {
+    <span style="color: #0033ff;">private</span> String name;
+    <span style="color: #0033ff;">public</span> Animal(String name) { <span style="color: #0033ff;">this</span>.name = name; }
+    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> cry() { System.out.println(<span style="color: #cc0000;">"..."</span>); }
+}
+
+<span style="color: #666;">// サブクラス</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Dog <span style="color: #0033ff;">extends</span> Animal {
+    <span style="color: #0033ff;">public</span> Dog(String name) { <span style="color: #0033ff;">super</span>(name); }   <span style="color: #666;">// スーパーのコンストラクタを呼ぶ</span>
+    @Override
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> cry() { System.out.println(<span style="color: #cc0000;">"ワンワン"</span>); }   <span style="color: #666;">// オーバーライド</span>
+}</pre>
+<p style="margin-top: 10px;"><strong>オーバーライド</strong> — スーパークラスと同じ名前・同じ引数のメソッドをサブクラスで書き直すこと。サブクラスのインスタンスで呼ぶと、サブクラスの処理が実行されます。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(引数)</code> はスーパークラスのコンストラクタを呼ぶために必須です。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習1】クラスを作る（フィールド・メソッド）</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> クラスを作成してください。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 6px;">フィールド：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String name</code></li>
+<li style="margin-bottom: 6px;">メソッド：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void show()</code> — 「〇〇です」と表示</li>
+</ul>
+<p style="margin-top: 10px;">Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Item()</code> して <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> に「りんご」を代入し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んで確認してください。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">class Item { String name; public void show() { System.out.println(name + "です"); } } のように書きます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Item {
+    String name;
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> show() {
+        System.out.println(name + <span style="color: #cc0000;">"です"</span>);
+    }
+}
+<span style="color: #666;">// Main</span>
+Item i = <span style="color: #0033ff;">new</span> Item();
+i.name = <span style="color: #cc0000;">"りんご"</span>;
+i.show();</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習2】コンストラクタを追加する</h2>
+<p style="margin-bottom: 10px;">【練習1】の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> に、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String name</code> を受け取るコンストラクタを追加してください。コンストラクタ内で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code> とします。Main では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Item("りんご")</code> で生成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んで確認してください。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">public Item(String name) { this.name = name; } をクラス内に追加します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> Item(String name) {
+    <span style="color: #0033ff;">this</span>.name = name;
+}
+<span style="color: #666;">// Main</span>
+Item i = <span style="color: #0033ff;">new</span> Item(<span style="color: #cc0000;">"りんご"</span>);
+i.show();</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習3】private と getter を追加する</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> のフィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>（戻り値 String）を追加してください。コンストラクタと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> 内では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> をそのまま使ってかまいません（クラス内なので）。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">private String name; と public String getName() { return name; } を追加します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">private</span> String name;
+<span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【練習4】継承とオーバーライド</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> を継承した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Fruit</code> クラスを作成してください。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Item</code> で継承。</li>
+<li style="margin-bottom: 6px;">コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Fruit(String name)</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name)</code> を呼ぶ。</li>
+<li style="margin-bottom: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> をオーバーライドし、「フルーツ：〇〇」と表示する。</li>
+</ul>
+<p style="margin-top: 10px;">Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Fruit("りんご")</code> を生成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んで「フルーツ：りんご」と表示されることを確認してください。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">public class Fruit extends Item { public Fruit(String name) { super(name); } @Override public void show() { System.out.println("フルーツ：" + getName()); } } のように書きます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Fruit <span style="color: #0033ff;">extends</span> Item {
+    <span style="color: #0033ff;">public</span> Fruit(String name) { <span style="color: #0033ff;">super</span>(name); }
+    @Override
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> show() {
+        System.out.println(<span style="color: #cc0000;">"フルーツ："</span> + getName());
+    }
+}
+<span style="color: #666;">// Main</span>
+Fruit f = <span style="color: #0033ff;">new</span> Fruit(<span style="color: #cc0000;">"りんご"</span>);
+f.show();   <span style="color: #666;">// フルーツ：りんご</span></pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">【発展】Item と Fruit の両方で show() を呼ぶ</h2>
+<p style="margin-bottom: 10px;">Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> 型の配列（または2つの変数）を用意し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Item("本")</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Fruit("みかん")</code> を入れて、for でそれぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んでください。本は「本です」、みかんは「フルーツ：みかん」と表示されることを確認します。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p style="margin-top: 6px;">Item[] items = { new Item("本"), new Fruit("みかん") }; for (Item i : items) { i.show(); } のように書けます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;">Item[] items = { <span style="color: #0033ff;">new</span> Item(<span style="color: #cc0000;">"本"</span>), <span style="color: #0033ff;">new</span> Fruit(<span style="color: #cc0000;">"みかん"</span>) };
+<span style="color: #0033ff;">for</span> (Item i : items) {
+    i.show();
+}</pre>
+</details>
+</section>
+
+</div>

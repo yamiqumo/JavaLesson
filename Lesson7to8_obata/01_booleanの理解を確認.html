@@ -1,0 +1,89 @@
+【確認】 boolean の理解を確認
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Part 1：boolean の理解を確認（約20〜25分）</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">boolean とは</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">boolean</code> は「真（true）か偽（false）か」だけを表す型です。条件分岐（if 文）や繰り返し（for / while）の条件式は、この <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">boolean</code> 型の値になります。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 8px;">リテラル：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">true</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">false</code> のみ。</li>
+<li style="margin-bottom: 8px;">関係演算子（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">==</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">!=</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&lt;</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&gt;</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&lt;=</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&gt;=</code>）の結果は boolean。</li>
+<li style="margin-bottom: 8px;">論理演算子（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&&</code> かつ、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">||</code> または、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">!</code> 否定）も boolean を返す。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【確認1】次の式の結果は true か false か</h2>
+<p style="margin-bottom: 10px;">変数は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int a = 10; int b = 3;</code> とします。次の条件式の結果（true / false）を答えてください。</p>
+<table style="border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>No.</th>
+<th>式</th>
+<th>答え</th>
+</tr>
+<tr><td>1</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">a &gt; 5</code></td><td>（穴埋め）</td></tr>
+<tr><td>2</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">b == 3</code></td><td>（穴埋め）</td></tr>
+<tr><td>3</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">a &lt;= 10</code></td><td>（穴埋め）</td></tr>
+<tr><td>4</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">a != b</code></td><td>（穴埋め）</td></tr>
+<tr><td>5</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">a &gt; 10</code></td><td>（穴埋め）</td></tr>
+</tbody>
+</table>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">答え</summary>
+<p style="margin-top: 8px;">1. true（10 は 5 より大きい）<br>2. true（b は 3）<br>3. true（10 は 10 以下）<br>4. true（10 と 3 は等しくない）<br>5. false（10 は 10 より大きくない）</p>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【確認2】論理演算子 && と ||</h2>
+<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&&</code> は「かつ」、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">||</code> は「または」です。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int x = 5; int y = 8;</code> のとき、次の式の結果を答えてください。</p>
+<table style="border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>No.</th>
+<th>式</th>
+<th>答え</th>
+</tr>
+<tr><td>1</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">x &gt; 0 && y &gt; 0</code></td><td>（穴埋め）</td></tr>
+<tr><td>2</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">x &gt; 10 || y &gt; 5</code></td><td>（穴埋め）</td></tr>
+<tr><td>3</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">x &gt; 10 && y &gt; 10</code></td><td>（穴埋め）</td></tr>
+</tbody>
+</table>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">答え</summary>
+<p style="margin-top: 8px;">1. true（x&gt;0 も y&gt;0 も true）<br>2. true（y&gt;5 が true なので全体が true）<br>3. false（x&gt;10 が false なので && の結果は false）</p>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【確認3】if の条件になる式</h2>
+<p style="margin-bottom: 10px;">次のコードを実行したとき、どのメッセージが表示されますか。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int n = 7;</code> とします。</p>
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">if</span> (n &gt;= 10) {
+    System.out.println(<span style="color: #cc0000;">"A"</span>);
+} <span style="color: #0033ff;">else if</span> (n &gt;= 5) {
+    System.out.println(<span style="color: #cc0000;">"B"</span>);
+} <span style="color: #0033ff;">else</span> {
+    System.out.println(<span style="color: #cc0000;">"C"</span>);
+}</pre>
+<p style="margin-top: 10px;">表示されるのは A / B / C のどれですか。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">答え</summary>
+<p style="margin-top: 8px;"><strong>B</strong> が表示されます。n=7 なので n&gt;=10 は false、n&gt;=5 は true のため <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">else if</code> のブロックが実行されます。</p>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【確認4】boolean 変数を使う</h2>
+<p style="margin-bottom: 10px;">次の（　）に当てはまる語を答えてください。</p>
+<p style="margin-bottom: 8px;">・条件の結果を入れておく変数には、型（　①　）を使う。<br>・その型の値は（　②　）と（　③　）の2つだけである。</p>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">答え</summary>
+<p style="margin-top: 8px;">① boolean　② true　③ false</p>
+</details>
+</section>
+
+</div>

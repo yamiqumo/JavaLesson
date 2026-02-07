@@ -170,6 +170,25 @@
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【6】練習問題（継承）</h2>
 <div>
+<strong>【問題0】基本クラスを継承したサブクラスを作る</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> を継承した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">HotDrinkMachine</code>（温飲料用自販機）クラスを作成してください。コンストラクタは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">HotDrinkMachine(String name, int stock)</code> とし、その中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name, stock)</code> を呼んでください。ほかにメソッドを追加する必要はありません。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>クラス宣言は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class HotDrinkMachine extends VendMachine</code> と書きます。コンストラクタの先頭で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name, stock);</code> を呼びます。</p>
+</details>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> HotDrinkMachine <span style="color: #0033ff;">extends</span> VendMachine {
+
+    <span style="color: #0033ff;">public</span> HotDrinkMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+        <span style="color: #0033ff;">super</span>(name, stock);
+    }
+}</pre>
+</details>
+<br><br>
+<div>
 <strong>【問題1】2商品自販機のサブクラスを作る</strong><br>
 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Vending2Item</code> を作成してください。コンストラクタで商品1・商品2の名前と在庫を受け取り、内部で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setSelect(1)</code> にしてデフォルト選択を1番にしてください。
 </div>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- 講義用PDF：ブラウザで開き「印刷」→「PDFに保存」で出力。1ページ目は振り返り用の白紙、【1】〜【7】はキリのいいところで改ページ。 -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>第11回 抽象クラスとインタフェース（講義用）</title>
+<style>
+  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; }
+  .review-page { page-break-after: always; min-height: 100vh; box-sizing: border-box; }
+  .review-page h1 { padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 20px; }
+  .review-blank { min-height: 75vh; border: 2px dashed #ccc; background: #fff; margin-top: 20px; }
+  @media print {
+    body { max-width: 100%; }
+    .review-page { min-height: 100vh; page-break-after: always; }
+    .review-blank { min-height: 75vh; border: 1px dashed #999; }
+    section { page-break-inside: avoid; }
+    pre { page-break-inside: avoid; }
+    .section-new-page { page-break-before: always; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== 1ページ目：振り返り用 大きな白紙スペース ========== -->
+<div class="review-page">
+  <h1>第11回 抽象クラスとインタフェース — 振り返り</h1>
+  <p>この単元の前に、前回（継承・オーバーライド）の内容を振り返りましょう。下のスペースに図やメモを書いてもかまいません。</p>
+  <div class="review-blank" aria-label="振り返り用の白紙スペース"></div>
+</div>
+
+<!-- ========== 2ページ目以降：本編 ========== -->
+<div style="max-width: 800px; margin: 0 auto;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">抽象クラスとインタフェース（この単元）— Lesson 11・約2時間</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">この単元の前に：継承の復習</h2>
+<p>前回は継承（extends）とオーバーライドを学びました。VendMachine をスーパークラスに、Vending2Item・VendingHotNoodle をサブクラスとして拡張してきました。</p>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">この単元で学ぶこと</h3>
+<p>「抽象クラス」と「インタフェース」— 型の決まりをプログラムで表す仕組みです。次回の多態性の土台になります。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【1】具体的な学習目標</h2>
+<p><strong>【必須】</strong></p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 8px;">抽象クラスの役割を説明できる。</li>
+<li style="margin-bottom: 8px;">abstract class と abstract メソッドの書き方を理解する。</li>
+<li style="margin-bottom: 8px;">インタフェースの役割を説明できる。</li>
+<li style="margin-bottom: 8px;">interface と implements の書き方を理解する。</li>
+</ul>
+<p><strong>【オプション】</strong></p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 8px;">抽象クラスとインタフェースの違いを説明できる。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【2】導入：型の決まり</h2>
+<p>「この型の変数には、こういうメソッドが必ずある」という決まりを、抽象クラスやインタフェースで表します。次回の多態性で、同じ型でいろいろな自販機を扱う準備になります。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】抽象クラスとは</h2>
+<p>抽象クラス（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class</code>）は、そのクラス単体では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> でインスタンスを作れません。abstract メソッドは中身を書かず、サブクラスで必ず実装します。VendMachine を abstract にすると、共通の buy() の流れは持つが、beforeBuy() や dispense() はサブクラスで実装する、という設計になります。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】インタフェースとは</h2>
+<p>インタフェース（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">interface</code>）は、メソッドの「名前・引数・戻り値」だけを決めた約束です。クラスは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements インタフェース名</code> でその約束を実装します。例：CanSell（void buy();）を定義し、Vending2Item が implements CanSell する、など。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】抽象クラスとインタフェースの違い</h2>
+<p>extends は1つだけ、implements は複数可能。抽象クラスは「共通の骨組み＋サブクラスで実装」、インタフェースは「メソッドの約束だけ」を表します。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【6】練習問題・【7】まとめ</h2>
+<p>テキスト本編の【6】練習問題で、抽象クラスを継承したサブクラスの作成と、インタフェースの実装を練習します。【7】まとめでは、次回の多態性につなげることを確認します。</p>
+</section>
+
+</div>
+</body>
+</html>

@@ -70,11 +70,11 @@
 </ul>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">if (score >= 80) { ... } else if (score >= 60) { ... } else { ... } の順で書きます。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">if (score &gt;= 80) { ... } else if (score &gt;= 60) { ... } else { ... }</code> の順で書きます。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> score = 72;
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> score = 72;
 <span style="color: #0033ff;">if</span> (score &gt;= 80) {
     System.out.println(<span style="color: #cc0000;">"合格（優）"</span>);
 } <span style="color: #0033ff;">else if</span> (score &gt;= 60) {
@@ -90,11 +90,11 @@
 <p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int week = 5;</code> のとき、1→月、2→火、…、7→日 と表示する switch 文を書いてください。1〜7 以外は「不正な値」と表示してください。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">switch (week) { case 1: ... break; case 2: ... break; ... default: ... break; } のように書きます。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">switch (week) { case 1: ... break; case 2: ... break; ... default: ... break; }</code> のように書きます。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> week = 5;
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> week = 5;
 <span style="color: #0033ff;">switch</span> (week) {
     <span style="color: #0033ff;">case</span> 1: System.out.println(<span style="color: #cc0000;">"月"</span>); <span style="color: #0033ff;">break</span>;
     <span style="color: #0033ff;">case</span> 2: System.out.println(<span style="color: #cc0000;">"火"</span>); <span style="color: #0033ff;">break</span>;
@@ -113,11 +113,11 @@
 <p style="margin-bottom: 10px;">for 文を使って 1 から 5 までの整数の合計を求め、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println</code> で表示してください。結果は 15 になります。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">int sum = 0; を用意し、for (int i = 1; i <= 5; i++) { sum = sum + i; } のあと println(sum); で表示します。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int sum = 0;</code> を用意し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">for (int i = 1; i &lt;= 5; i++) { sum = sum + i; }</code> のあと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println(sum);</code> で表示します。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> sum = 0;
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> sum = 0;
 <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 1; i &lt;= 5; i++) {
     sum = sum + i;
 }
@@ -130,11 +130,11 @@ System.out.println(sum);  <span style="color: #666;">// 15</span></pre>
 <p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int count = 3;</code> から始めて、while で「表示してから 1 引く」を繰り返し、0 になったら終了するプログラムを書いてください。表示は 3, 2, 1 の順で出ればよいです。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">while (count > 0) { System.out.println(count); count--; } のように書けます。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">while (count &gt; 0) { System.out.println(count); count--; }</code> のように書けます。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> count = 3;
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">int</span> count = 3;
 <span style="color: #0033ff;">while</span> (count &gt; 0) {
     System.out.println(count);
     count--;

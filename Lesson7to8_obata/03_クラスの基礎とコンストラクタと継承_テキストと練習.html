@@ -104,11 +104,11 @@ r.say();</pre>
 <p style="margin-top: 10px;">Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Item()</code> して <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> に「りんご」を代入し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んで確認してください。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">class Item { String name; public void show() { System.out.println(name + "です"); } } のように書きます。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">class Item { String name; public void show() { System.out.println(name + "です"); } }</code> のように書きます。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Item {
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Item {
     String name;
     <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> show() {
         System.out.println(name + <span style="color: #cc0000;">"です"</span>);
@@ -126,11 +126,11 @@ i.show();</pre>
 <p style="margin-bottom: 10px;">【練習1】の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> に、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String name</code> を受け取るコンストラクタを追加してください。コンストラクタ内で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code> とします。Main では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Item("りんご")</code> で生成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んで確認してください。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">public Item(String name) { this.name = name; } をクラス内に追加します。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public Item(String name) { this.name = name; }</code> をクラス内に追加します。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> Item(String name) {
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> Item(String name) {
     <span style="color: #0033ff;">this</span>.name = name;
 }
 <span style="color: #666;">// Main</span>
@@ -144,11 +144,11 @@ i.show();</pre>
 <p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> のフィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> にし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>（戻り値 String）を追加してください。コンストラクタと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> 内では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> をそのまま使ってかまいません（クラス内なので）。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">private String name; と public String getName() { return name; } を追加します。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private String name;</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public String getName() { return name; }</code> を追加します。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">private</span> String name;
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">private</span> String name;
 <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }</pre>
 </details>
 </section>
@@ -164,11 +164,11 @@ i.show();</pre>
 <p style="margin-top: 10px;">Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Fruit("りんご")</code> を生成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んで「フルーツ：りんご」と表示されることを確認してください。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">public class Fruit extends Item { public Fruit(String name) { super(name); } @Override public void show() { System.out.println("フルーツ：" + getName()); } } のように書きます。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Fruit extends Item { ... public void show() { System.out.println("フルーツ：" + getName()); } }</code> のように書きます。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Fruit <span style="color: #0033ff;">extends</span> Item {
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Fruit <span style="color: #0033ff;">extends</span> Item {
     <span style="color: #0033ff;">public</span> Fruit(String name) { <span style="color: #0033ff;">super</span>(name); }
     @Override
     <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> show() {
@@ -186,11 +186,11 @@ f.show();   <span style="color: #666;">// フルーツ：りんご</span></pre>
 <p style="margin-bottom: 10px;">Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item</code> 型の配列（または2つの変数）を用意し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Item("本")</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Fruit("みかん")</code> を入れて、for でそれぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">show()</code> を呼んでください。本は「本です」、みかんは「フルーツ：みかん」と表示されることを確認します。</p>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p style="margin-top: 6px;">Item[] items = { new Item("本"), new Fruit("みかん") }; for (Item i : items) { i.show(); } のように書けます。</p>
+<p style="margin-top: 6px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Item[] items = { new Item("本"), new Fruit("みかん") }; for (Item i : items) { i.show(); }</code> のように書けます。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;">Item[] items = { <span style="color: #0033ff;">new</span> Item(<span style="color: #cc0000;">"本"</span>), <span style="color: #0033ff;">new</span> Fruit(<span style="color: #cc0000;">"みかん"</span>) };
+<pre style="background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin-top: 8px;">Item[] items = { <span style="color: #0033ff;">new</span> Item(<span style="color: #cc0000;">"本"</span>), <span style="color: #0033ff;">new</span> Fruit(<span style="color: #cc0000;">"みかん"</span>) };
 <span style="color: #0033ff;">for</span> (Item i : items) {
     i.show();
 }</pre>

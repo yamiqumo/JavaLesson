@@ -123,43 +123,15 @@
 <li style="margin-bottom: 10px;">オーバーライドであることを明示するために、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override</code> をメソッドの直前に書く習慣がある（省略可能）。</li>
 </ul>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：VendingHotNoodle で buy() をオーバーライドする</h3>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendingHotNoodle <span style="color: #0033ff;">extends</span> VendMachine {
-
-    <span style="color: #0033ff;">public</span> VendingHotNoodle(String name, <span style="color: #0033ff;">int</span> stock) {
-        <span style="color: #0033ff;">super</span>(name, stock);
-    }
-
-    <span style="color: #666;">// スーパークラスの buy() をオーバーライド：カップ麺用のメッセージに変える</span>
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
-        <span style="color: #0033ff;">if</span> (getStock() > 0) {
-            System.out.println(getName() + <span style="color: #cc0000;">"を購入しました。カップ麺のお湯として使います。"</span>);
-            <span style="color: #0033ff;">super</span>.buy();
-        } <span style="color: #0033ff;">else</span> {
-            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
-        }
-    }
-}</pre>
-<p>このようにサブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を書き直すと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingHotNoodle</code> のインスタンスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼んだとき「〇〇を購入しました。カップ麺のお湯として使います。」と表示されます。ここでは、もとの自販機（VendMachine）の買い方はそのまま残しつつ、その前に「カップ麺のお湯として使います」という一言を足したいので、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.buy()</code> を呼んでいます。</p>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：オーバーライドと super</h3>
+<p>サブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> をオーバーライドするとき、中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.buy()</code> を呼ぶと、<strong>スーパークラス（もとの自販機）の買い方</strong>がそのまま使えます。つまり、在庫を減らす処理などを書き直さずに、「元の水を購入する」動きを利用できます。くわしい書き方は練習問題で慣れていきましょう。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】super でスーパークラスのメソッドを呼ぶ</h2>
-<p>オーバーライドしたメソッドの中から、<strong>スーパークラスの同じメソッド</strong>を呼びたいときは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.メソッド名(引数)</code> と書きます。もとの自販機の動き（在庫を減らす処理など）はそのまま使いながら、「一言メッセージを足す」といったときに便利です。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 表示だけサブクラスで変え、在庫処理はスーパークラスに任せる</span>
-@Override
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
-    <span style="color: #0033ff;">if</span> (getStock() > 0) {
-        System.out.println(getName() + <span style="color: #cc0000;">"を購入しました。冷えてます。"</span>);
-        <span style="color: #0033ff;">super</span>.buy();  <span style="color: #666;">// スーパークラスの buy() で在庫を1減らす（スーパークラスの表示は出るので、スーパークラスの buy の表示を変えたい場合は上のように全部サブクラスで書く）</span>
-    } <span style="color: #0033ff;">else</span> {
-        System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
-    }
-}</pre>
-<p>スーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が「〇〇を購入しました」と表示するなら、サブクラスで「冷えてます」だけ追加して在庫は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.buy()</code> に任せる形もよくあります。どちらも「スーパークラスの処理を呼ぶ」ために <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super</code> を使います。</p>
+<p>オーバーライドしたメソッドの中から、<strong>スーパークラスの同じメソッド</strong>を呼びたいときは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.メソッド名(引数)</code> と書きます。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super.buy()</code> を呼べば、もとの自販機の「水を購入する」動き（在庫を減らすなど）がそのまま使えるので、<strong>元の水を購入することができます</strong>。くわしい使い方は練習問題で慣れていきましょう。</p>
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-top: 15px;">
 <p style="margin: 0;"><strong>ユウタ：</strong>「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super</code> はスーパークラスのコンストラクタを呼ぶときと、スーパークラスのメソッドを呼ぶときの両方で使うんだね。」</p>
 </div>

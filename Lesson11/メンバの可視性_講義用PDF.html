@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- 講義用PDF：ブラウザで開き「印刷」→「PDFに保存」で出力。 -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>第11回 メンバの可視性（アクセス修飾子）（講義用）</title>
+<style>
+  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; }
+  .review-page { page-break-after: always; min-height: 100vh; box-sizing: border-box; }
+  .review-page h1 { padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 20px; }
+  .review-blank { min-height: 75vh; border: 2px dashed #ccc; background: #fff; margin-top: 20px; }
+  @media print {
+    body { max-width: 100%; }
+    .review-page { min-height: 100vh; page-break-after: always; }
+    .review-blank { min-height: 75vh; border: 1px dashed #999; }
+    section { page-break-inside: avoid; }
+    .section-new-page { page-break-before: always; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="review-page">
+  <h1>第11回 メンバの可視性（アクセス修飾子） — 振り返り</h1>
+  <p>この単元の前に、Lesson9（カプセル化・private）と Lesson10（継承）の内容を振り返りましょう。下のスペースにメモを書いてもかまいません。</p>
+  <div class="review-blank" aria-label="振り返り用の白紙スペース"></div>
+</div>
+
+<div style="max-width: 800px; margin: 0 auto;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">オブジェクト指向学習カリキュラム</h1>
+<p style="margin-bottom: 10px;"><strong>メンバの可視性（アクセス修飾子）</strong>（約1時間）</p>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【1】学習目標</h2>
+<p style="margin-bottom: 8px;"><strong>【必須】</strong></p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 8px;">public・private・protected の違いを説明できる。</li>
+<li style="margin-bottom: 8px;">フィールドやメソッドにアクセス修飾子を付けて、意図した範囲だけからアクセスできるようにする。</li>
+<li style="margin-bottom: 8px;">サブクラスからスーパークラスのメンバにアクセスするとき、protected の意味を理解する。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【2】アクセス修飾子の整理</h2>
+<p><strong>public</strong> — どこからでもアクセスできる。外に提供するメソッド・コンストラクタ。</p>
+<p><strong>private</strong> — そのクラスの中だけ。フィールド、外に出したくないメソッド。</p>
+<p><strong>protected</strong> — 同じクラス＋サブクラスから。サブクラスでオーバーライドしたり使ったりするメソッド・フィールド。次回の抽象クラスでよく使う。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section class="section-new-page" style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】まとめ</h2>
+<p>この3つを押さえておくと、次回の抽象クラス・インタフェースで「実装メソッドは public」「abstract メソッドは protected でサブクラスにだけ見せる」といった話が理解しやすくなります。</p>
+</section>
+</div>
+</body>
+</html>

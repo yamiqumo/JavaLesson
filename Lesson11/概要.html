@@ -1,14 +1,14 @@
-【概要】 オブジェクト指向④ ～抽象クラスとインタフェース～
+【概要】 第11回 メンバの可視性（アクセス修飾子）
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 
-<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第11回：抽象クラスとインタフェース ～型の決まりを学ぶ～</h1>
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第11回：メンバの可視性（アクセス修飾子） ～public / private / protected～</h1>
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. 必要な前提知識</h2>
 <ul style="padding-left: 20px; margin-bottom: 0;">
-<li style="margin-bottom: 10px;"><strong>継承（extends）</strong>： スーパークラスを土台にサブクラスを拡張する仕組み。</li>
-<li style="margin-bottom: 10px;"><strong>オーバーライド</strong>： スーパークラスのメソッドをサブクラスで同じ名前・同じ引数で書き直すこと。</li>
-<li style="margin-bottom: 10px;"><strong>自販機（VendMachine）</strong>： 共通の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の流れを持ち、サブクラスで挙動を変える設計。</li>
+<li style="margin-bottom: 10px;"><strong>クラスとフィールド・メソッド</strong>： インスタンスの「状態」と「動き」を定義する。</li>
+<li style="margin-bottom: 10px;"><strong>カプセル化</strong>： <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> でフィールドを隠し、getter・setter で操作する（Lesson9 で学習）。</li>
+<li style="margin-bottom: 10px;"><strong>継承（extends）</strong>： サブクラスがスーパークラスのメンバを引き継ぐ（Lesson10 で学習）。</li>
 </ul>
 </section>
 
@@ -18,20 +18,16 @@
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. ポイント解説</h2>
 
 <div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff; margin-bottom: 15px;">
-<p style="margin: 0 0 10px 0;"><strong>💡 抽象クラスは「設計図だけのクラス」</strong></p>
-<p style="margin: 0 0 10px 0;">抽象クラス（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class</code>）は、そのクラス単体では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> でインスタンスを作れません。共通の骨組みと「サブクラスで必ず実装してほしいメソッド」を決めておき、具体的な動きはサブクラスに任せます。</p>
-<ul style="padding-left: 20px; margin: 0;">
-<li style="margin-bottom: 6px;"><strong>abstract メソッド</strong>： 中身を書かず、サブクラスで実装を強制する。</li>
-<li style="margin-bottom: 6px;"><strong>抽象クラスを継承</strong>： サブクラスで abstract メソッドをすべて実装する必要がある。</li>
-</ul>
+<p style="margin: 0 0 10px 0;"><strong>💡 アクセス修飾子で「見え方」を決める</strong></p>
+<p style="margin: 0 0 10px 0;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code>（どこからでも）、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code>（クラス内だけ）、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code>（同じクラス＋サブクラス）の3つを押さえます。次回の抽象クラス・インタフェースで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code> や「実装メソッドは public」の話が出てくるので、ここで整理しておきましょう。</p>
 </div>
 
 <div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff; margin-bottom: 0;">
-<p style="margin: 0 0 10px 0;"><strong>💡 インタフェースは「やることの約束」</strong></p>
-<p style="margin: 0 0 10px 0;">インタフェース（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">interface</code>）は、メソッドの「名前と引数・戻り値」だけを決めた約束です。クラスは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements インタフェース名</code> でその約束を実装します。次回学ぶ多態性で、同じ型として扱う準備になります。</p>
+<p style="margin: 0 0 10px 0;"><strong>💡 使い分けの目安</strong></p>
 <ul style="padding-left: 20px; margin: 0;">
-<li style="margin-bottom: 6px;"><strong>interface</strong>： メソッドの形だけを定義。中身は書かない。</li>
-<li style="margin-bottom: 6px;"><strong>implements</strong>： クラスがインタフェースで決めたメソッドを実装する。</li>
+<li style="margin-bottom: 6px;"><strong>public</strong> … 外に提供するメソッド・コンストラクタ。</li>
+<li style="margin-bottom: 6px;"><strong>private</strong> … フィールド、外に出したくないメソッド。</li>
+<li style="margin-bottom: 6px;"><strong>protected</strong> … サブクラスでオーバーライドしたり使ったりするメソッド・フィールド。</li>
 </ul>
 </div>
 </section>
@@ -40,8 +36,8 @@
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. 対象テキストのページ</h2>
-<p style="margin: 0;"><strong>Chapter 9（抽象クラス）</strong>・<strong>Chapter 10（インタフェース）</strong>： 該当章の 9.1・10.1 付近</p>
-<p style="margin: 10px 0 0 0; font-size: 14px; color: #555;">※「型の決まり」を定めることで、次回の多態性（同じ型でいろいろなインスタンスを扱う）につながることを意識して読み進めましょう。</p>
+<p style="margin: 0;"><strong>Chapter 7 オブジェクトの仕組み</strong>： メンバの可視性（アクセス修飾子）に該当する節</p>
+<p style="margin: 10px 0 0 0; font-size: 14px; color: #555;">※Udemy などでは「クラスメンバ」「可視性」などのキーワードで該当動画を探してください。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
@@ -49,10 +45,9 @@
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. 動画（タイトルをクリックして再生）</h2>
 <ul style="list-style: none; padding-left: 0; margin: 0;">
-<li style="margin-bottom: 12px; padding-left: 0;">▶ 130. <a href="https://www.udemy.com/course/hello-java/learn/lecture/47581459" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">継承設計と抽象</a> … 抽象クラスがなぜ必要かを学びます。</li>
-<li style="margin-bottom: 12px; padding-left: 0;">▶ 131. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293764" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">抽象クラス</a> … abstract クラス・メソッドの書き方を理解します。</li>
-<li style="margin-bottom: 12px; padding-left: 0;">▶ 137. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293782" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">インタフェース概要</a> … インタフェースの役割と定義の仕方を学びます。</li>
-<li style="margin-bottom: 12px; padding-left: 0;">▶ 138. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293784" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">実装</a> … implements でインタフェースを実装する方法です。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 99. <a href="https://www.udemy.com/course/hello-java/learn/lecture/47394807" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">カプセル化</a> … private と getter・setter（復習）。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 103. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293654" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">クラスメンバ</a> … クラスに属するメンバの考え方。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">※ public / private / protected の違いは、テキスト本編の表と合わせて確認してください。</li>
 </ul>
 </section>
 

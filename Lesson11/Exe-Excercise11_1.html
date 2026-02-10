@@ -1,0 +1,208 @@
+【練習問題】 第11回 メンバの可視性（アクセス修飾子）＋復習
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第11回 アクセス修飾子（復習：コンストラクタ・継承）</h1>
+<p style="margin-bottom: 20px;">この回では、<strong>コンストラクタとカプセル化（Lesson9）・継承（Lesson10）の復習</strong>をしつつ、<strong>アクセス修飾子（public / private / protected）</strong>を意識して自販機クラスを拡張していきます。</p>
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題 自販機クラスで復習＋アクセス修飾子＋継承と protected</h2>
+
+<p style="margin-bottom: 5px;"><strong>フィールド／メソッド一覧</strong></p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>クラス</th>
+<th>区分</th>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+<th>修飾子の目安</th>
+</tr>
+<tr>
+<td>VendMachine</td>
+<td>フィールド</td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code></td>
+<td>String, int</td>
+<td>商品名・在庫数</td>
+<td>private</td>
+</tr>
+<tr>
+<td>VendMachine</td>
+<td>コンストラクタ</td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine(String name, int stock)</code></td>
+<td>—</td>
+<td>名前・在庫を初期化</td>
+<td>public</td>
+</tr>
+<tr>
+<td>VendMachine</td>
+<td>メソッド</td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getStock()</code></td>
+<td>String, int</td>
+<td>getter</td>
+<td>public</td>
+</tr>
+<tr>
+<td>VendMachine</td>
+<td>メソッド</td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code></td>
+<td>void</td>
+<td>1本購入（在庫があれば減らして表示）</td>
+<td>public</td>
+</tr>
+<tr>
+<td>VendMachine</td>
+<td>メソッド</td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">reduceStock()</code></td>
+<td>void</td>
+<td>在庫を1減らす（サブクラスからだけ使いたい）</td>
+<td><strong>protected</strong></td>
+</tr>
+<tr>
+<td>HotDrinkVend</td>
+<td>—</td>
+<td>extends VendMachine</td>
+<td>—</td>
+<td>温飲料用サブクラス。コンストラクタで super(name, stock)、buy() で「温めます」表示後に在庫処理</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+
+<div>
+<strong>【ステップ1】VendMachine：コンストラクタ・カプセル化・アクセス修飾子（復習）</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> クラスを作成してください。<br>
+・フィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>（String）と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code>（int）は <strong>private</strong> にし、<strong>public</strong> コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine(String name, int stock)</code> で初期化する。<br>
+・<strong>public</strong> の getter <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getStock()</code> と、<strong>public</strong> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code>（在庫があれば「〇〇を購入しました」と表示して在庫を1減らす。なければ「売り切れです」）を実装する。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>コンストラクタでは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.stock = stock;</code> で代入。buy() 内では在庫を減らす処理を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock--;</code> でよいです（ステップ2で protected メソッドに分けます）。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> VendMachine {
+    <span style="color: #0033ff;">private</span> String name;
+    <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
+
+    <span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+        <span style="color: #0033ff;">this</span>.name = name;
+        <span style="color: #0033ff;">this</span>.stock = stock;
+    }
+
+    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getStock() { <span style="color: #0033ff;">return</span> stock; }
+
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (stock > 0) {
+            System.out.println(name + <span style="color: #cc0000;">"を購入しました"</span>);
+            stock--;
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
+        }
+    }
+}</pre>
+</details>
+</div>
+
+<br><br>
+
+<div>
+<strong>【ステップ2】VendMachine に protected メソッドを追加する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> に、<strong>protected</strong> のメソッド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">reduceStock()</code> を追加してください。中身は「在庫が 0 より大きければ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock--;</code> する」だけでよいです。<br>
+・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の「在庫を1減らす」処理を、この <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">reduceStock()</code> を呼ぶ形に書き換えてください。<br>
+・<strong>protected</strong> にすることで「外からは直接呼ばせず、サブクラスからは使える」ようにします。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected void reduceStock() { if (stock > 0) stock--; }</code> とし、buy() 内の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock--;</code> の代わりに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">reduceStock();</code> を呼びます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// buy() の一部を reduceStock() に置き換え</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+    <span style="color: #0033ff;">if</span> (stock > 0) {
+        System.out.println(name + <span style="color: #cc0000;">"を購入しました"</span>);
+        reduceStock();
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
+    }
+}
+
+<span style="color: #666;">// サブクラスからだけ使えるように protected</span>
+<span style="color: #0033ff;">protected</span> <span style="color: #0033ff;">void</span> reduceStock() {
+    <span style="color: #0033ff;">if</span> (stock > 0) stock--;
+}</pre>
+</details>
+</div>
+
+<br><br>
+
+<div>
+<strong>【ステップ3】継承の復習：サブクラス HotDrinkVend を作る</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> を継承したサブクラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">HotDrinkVend</code>（温飲料用自販機）を作成してください。<br>
+・コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">HotDrinkVend(String name, int stock)</code> で、<strong>super(name, stock)</strong> を呼んでスーパークラスに初期化を任せる。<br>
+・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を<strong>オーバーライド</strong>し、「温めます。少々お待ちください。」と表示したあと、在庫があれば <strong>reduceStock()</strong> を呼んで在庫を1減らす（getStock() で在庫を確認）。在庫が 0 以下なら「売り切れです」と表示する。<br>
+・ここで、サブクラスからスーパークラスの <strong>protected</strong> メソッド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">reduceStock()</code> が呼べることを確認します。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class HotDrinkVend extends VendMachine</code> とし、コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name, stock);</code> を先に呼びます。オーバーライドした buy() では、在庫チェックに getStock() を使い、在庫があれば reduceStock() を呼べます（protected なのでサブクラスからアクセス可能）。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> HotDrinkVend <span style="color: #0033ff;">extends</span> VendMachine {
+
+    <span style="color: #0033ff;">public</span> HotDrinkVend(String name, <span style="color: #0033ff;">int</span> stock) {
+        <span style="color: #0033ff;">super</span>(name, stock);
+    }
+
+    @Override
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        System.out.println(<span style="color: #cc0000;">"温めます。少々お待ちください。"</span>);
+        <span style="color: #0033ff;">if</span> (getStock() > 0) {
+            System.out.println(getName() + <span style="color: #cc0000;">"を購入しました"</span>);
+            reduceStock();  <span style="color: #666;">// protected なのでサブクラスから呼べる</span>
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
+        }
+    }
+}</pre>
+</details>
+</div>
+
+<br><br>
+
+<div>
+<strong>【ステップ4】Main でコンストラクタ・継承を確認する（復習）</strong><br>
+別クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachineMain</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> で、次のようにしてください。<br>
+・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendMachine("コーラ", 2)</code> で通常の自販機を生成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を2回呼ぶ。<br>
+・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new HotDrinkVend("コーヒー", 1)</code> で温飲料用自販機を生成し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶ。<br>
+・実行結果で、VendMachine は「コーラを購入しました」、HotDrinkVend は「温めます。少々お待ちください。」のあと「コーヒーを購入しました」と出ることを確認する。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+    VendMachine vm = <span style="color: #0033ff;">new</span> VendMachine(<span style="color: #cc0000;">"コーラ"</span>, 2);
+    vm.buy();
+    vm.buy();
+
+    HotDrinkVend hot = <span style="color: #0033ff;">new</span> HotDrinkVend(<span style="color: #cc0000;">"コーヒー"</span>, 1);
+    hot.buy();
+}</pre>
+</details>
+</div>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">確認問題 アクセス修飾子の整理</h2>
+<p style="margin-bottom: 10px;">次の説明に当てはまるアクセス修飾子を選んでください（public / private / protected）。</p>
+<ol style="padding-left: 24px;">
+<li style="margin-bottom: 10px;">「どこからでも」アクセスできる。</li>
+<li style="margin-bottom: 10px;">「そのクラスの中だけ」からアクセスできる。</li>
+<li style="margin-bottom: 10px;">「同じクラスとサブクラス」からアクセスできる。</li>
+</ol>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答</summary>
+<p>① public　② private　③ protected</p>
+</details>
+</div>

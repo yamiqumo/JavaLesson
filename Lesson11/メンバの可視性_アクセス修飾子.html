@@ -1,0 +1,119 @@
+【テキスト】 オブジェクトの仕組み② ～メンバの可視性（アクセス修飾子）～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">オブジェクト指向学習カリキュラム</h1>
+<p style="margin-bottom: 10px;"><strong>メンバの可視性（アクセス修飾子）</strong>（約1時間）</p>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">この単元の前に：カプセル化の復習</h2>
+<p style="margin-bottom: 10px;">Lesson9 では「カプセル化」で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> と getter・setter を学びました。ここでは、<strong>メンバの見え方</strong>を決める <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> / <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> / <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code> をまとめて整理します。</p>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">この単元で学ぶことのイメージ</h3>
+<p style="margin-bottom: 0;">「どこからそのフィールドやメソッドが見えるか」を<strong>アクセス修飾子</strong>で指定します。次回の抽象クラス・インタフェースで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code> や「実装メソッドは public」という話が出てくるので、ここで押さえておきます。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【1】具体的な学習目標</h2>
+<p style="margin-bottom: 10px;">この単元を終えたとき、以下のことができればゴールです。</p>
+<p style="margin-bottom: 8px;"><strong>【必須】</strong></p>
+<ul style="padding-left: 20px; margin: 0 0 10px 0;">
+<li style="margin-bottom: 10px;"><strong>public</strong>・<strong>private</strong>・<strong>protected</strong> の違い（どこから見えるか）を説明できる。</li>
+<li style="margin-bottom: 10px;">フィールドやメソッドにアクセス修飾子を付けて、意図した範囲だけからアクセスできるようにできる。</li>
+<li style="margin-bottom: 10px;">サブクラスからスーパークラスのメンバにアクセスするとき、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code> の意味を理解する。</li>
+</ul>
+<p style="margin-bottom: 8px;"><strong>【オプション】</strong></p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 10px;">修飾子を省略したときの「パッケージプライベート」に触れ、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> を明示的に書く習慣を意識する。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【2】導入：メンバの「見え方」を決めよう</h2>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「カプセル化では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code> でフィールドを隠したね。Java では、フィールドやメソッドの『どこから見えるか』を <strong>アクセス修飾子</strong>で指定する。public・private・protected の3つを整理しよう。」</p>
+</div>
+<div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>ユウタ：</strong>「getter には <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> を付けていました。外から見えるようにする、ってことですね。」</p>
+</div>
+<div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0;">
+<p style="margin: 0;"><strong>ナナコ：</strong>「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code> は、サブクラスからも見える、でしたよね。次にやる抽象クラスで出てくるそうです。」</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】アクセス修飾子の整理</h2>
+<p style="margin-bottom: 10px;">クラスの<strong>フィールド</strong>や<strong>メソッド</strong>（コンストラクタ含む）の前に、次のいずれかを付けます。</p>
+
+<table style="border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="8">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>修飾子</th>
+<th>意味</th>
+<th>主な使いどころ</th>
+</tr>
+<tr>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code></td>
+<td><strong>どこからでも</strong>アクセスできる</td>
+<td>クラスの外から呼びたいメソッド（getter・setter、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> など）、コンストラクタ</td>
+</tr>
+<tr>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private</code></td>
+<td><strong>そのクラスの中だけ</strong>からアクセスできる</td>
+<td>フィールド（中身を隠す）、外に出したくないヘルパーメソッド</td>
+</tr>
+<tr>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code></td>
+<td><strong>同じクラス＋サブクラス</strong>からアクセスできる</td>
+<td>サブクラスでオーバーライドしたり使ったりしたいメソッド・フィールド（抽象クラスでよく使う）</td>
+</tr>
+</tbody>
+</table>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：自販機クラスでの使い分け</h3>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public class</span> VendMachine {
+
+    <span style="color: #666;">// 外から直接触らせない → private</span>
+    <span style="color: #0033ff;">private</span> String name;
+    <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
+
+    <span style="color: #666;">// 外から new で呼ぶ → public</span>
+    <span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+        <span style="color: #0033ff;">this</span>.name = name;
+        <span style="color: #0033ff;">this</span>.stock = stock;
+    }
+
+    <span style="color: #666;">// 外から読ませるだけ → public getter</span>
+    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getStock() { <span style="color: #0033ff;">return</span> stock; }
+
+    <span style="color: #666;">// 外から呼ぶメソッド → public</span>
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (stock > 0) {
+            System.out.println(name + <span style="color: #cc0000;">"を購入しました"</span>);
+            stock--;
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"売り切れです"</span>);
+        }
+    }
+}</pre>
+<p style="margin-top: 10px;">継承したサブクラスで「スーパークラスのメソッドをオーバーライドして使う」場合、スーパークラス側のそのメソッドを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected</code> にすると、サブクラスから呼び出し・オーバーライドができます。次回の抽象クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected abstract void dispense();</code> のように出てきます。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】まとめのおさらい</h2>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;"><strong>public</strong> — どこからでも見える。外に提供するメソッド・コンストラクタに付ける。</li>
+<li style="margin-bottom: 10px;"><strong>private</strong> — そのクラス内だけ。フィールドや内部用メソッドに付ける。</li>
+<li style="margin-bottom: 10px;"><strong>protected</strong> — 同じクラスとサブクラスから見える。継承を前提にした設計で使う。</li>
+</ul>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「この3つを押さえておくと、次回の抽象クラス・インタフェースで『実装メソッドは public』『abstract メソッドは protected でサブクラスにだけ見せる』といった話がすっと理解できるよ。」</p>
+</div>
+</section>
+</div>

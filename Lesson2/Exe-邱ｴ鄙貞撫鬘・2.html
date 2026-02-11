@@ -1,0 +1,106 @@
+【練習問題】 第2回 ～基本文法(1) 変数・型・リテラル～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第2回 練習問題：変数・型・リテラル</h1>
+
+<p style="margin-bottom: 15px;">変数宣言、リテラル、print/println を使った問題です。次の3ステップで進めてください。</p>
+
+<p style="margin-bottom: 5px;"><strong>ステップ一覧</strong></p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 20px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>ステップ</th>
+<th>内容</th>
+<th>確認</th>
+</tr>
+<tr>
+<td>1</td>
+<td>整数・小数・文字列のリテラルを println で表示する</td>
+<td>コンソールに数値と文字列が正しく表示される</td>
+</tr>
+<tr>
+<td>2</td>
+<td>int / double / String の変数を宣言し、代入して表示する</td>
+<td>変数に代入した値がコンソールに表示される</td>
+</tr>
+<tr>
+<td>3</td>
+<td>print と println を組み合わせて、1行に複数項目を表示する</td>
+<td>改行の位置が意図どおりになる</td>
+</tr>
+</tbody>
+</table>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【ステップ1】リテラルの表示</h2>
+<p style="margin: 0 0 10px 0;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッド内で、次の3つを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println</code> を使って表示してください。</p>
+<ul style="padding-left: 20px; margin: 0 0 10px 0;">
+<li style="margin-bottom: 6px;">整数のリテラル（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">100</code>）</li>
+<li style="margin-bottom: 6px;">小数のリテラル（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">3.14</code>）</li>
+<li style="margin-bottom: 6px;">文字列のリテラル（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">"Hello"</code>）</li>
+</ul>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>整数はそのまま <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println(100)</code>、小数は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println(3.14)</code>、文字列はダブルクォートで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println("Hello")</code> と書きます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin: 0;">System.out.println(<span style="color: #cc0000;">100</span>);   <span style="color: #666;">// 整数リテラル</span>
+System.out.println(<span style="color: #cc0000;">3.14</span>);   <span style="color: #666;">// 小数リテラル</span>
+System.out.println(<span style="color: #cc0000;">"Hello"</span>); <span style="color: #666;">// 文字列リテラル</span></pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【ステップ2】変数の宣言と表示</h2>
+<p style="margin: 0 0 10px 0;">次の3つの変数を宣言し、値を代入したうえで、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> で表示してください。</p>
+<table style="border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>変数名</th>
+<th>型</th>
+<th>代入する値の例</th>
+</tr>
+<tr><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">age</code></td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int</code></td><td>20</td></tr>
+<tr><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">height</code></td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">double</code></td><td>1.65</td></tr>
+<tr><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code></td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td><td>"太郎"</td></tr>
+</tbody>
+</table>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>宣言と代入は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int age = 20;</code> のように「型 変数名 = 値;」で書きます。表示は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println(age)</code> のように変数名を渡します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin: 0;"><span style="color: #666;">// 変数を宣言し、値を代入</span>
+<span style="color: #0033ff;">int</span> age = 20;
+<span style="color: #0033ff;">double</span> height = 1.65;
+String name = <span style="color: #cc0000;">"太郎"</span>;
+<span style="color: #666;">// コンソールに表示</span>
+System.out.println(age);
+System.out.println(height);
+System.out.println(name);</pre>
+</details>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【ステップ3】print と println の組み合わせ</h2>
+<p style="margin: 0 0 10px 0;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">print</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> を使って、「名前：太郎 年齢：20」のように、ラベルと値を1行で表示するプログラムを書いてください。2つ以上の項目を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">print</code> で続けて表示し、最後に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">println</code> で改行する形にします。</p>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">print</code> は改行しないので、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">print("名前："); print("太郎 "); print("年齢："); println(20);</code> のようにすると1行にまとまります。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto; margin: 0;"><span style="color: #666;">// print は改行しない。最後の println で改行</span>
+System.out.print(<span style="color: #cc0000;">"名前："</span>);
+System.out.print(<span style="color: #cc0000;">"太郎 "</span>);
+System.out.print(<span style="color: #cc0000;">"年齢："</span>);
+System.out.println(<span style="color: #cc0000;">20</span>);</pre>
+</details>
+</section>
+
+</div>

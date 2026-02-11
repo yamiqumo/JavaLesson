@@ -1,339 +1,128 @@
-【練習問題】 第11回 メンバの可視性（アクセス修飾子）＋復習
+【練習問題】 第11回 メンバの可視性（アクセス修飾子）
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
-<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第11回 アクセス修飾子（復習：コンストラクタ・継承）</h1>
-<p style="margin-bottom: 20px;">この回では、<strong>コンストラクタとカプセル化（Lesson9）・継承（Lesson10）の復習</strong>をしつつ、<strong>アクセス修飾子（public / private / protected）</strong>を意識して、<strong>動物クラス（Animal）</strong>と<strong>社員クラス（Employee）</strong>を扱います。他レッスンの練習問題と同じ題材で一貫させています。</p>
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第11回 アクセス修飾子（カプセル化の流れ）</h1>
+<p style="margin-bottom: 20px;">この回では、<strong>public を private に変える → ゲッター・セッターを追加する → セッターでフィルタリングする</strong>という流れで、アクセス修飾子とカプセル化を練習します。題材は「年齢」とし、年齢にマイナスや 150 を超える値が入らないようにします。</p>
 
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスを利用した問題（アクセス修飾子＋継承＋protected）</h2>
-<p style="margin-bottom: 10px;">動物クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> を、コンストラクタ・カプセル化・アクセス修飾子を付けたうえで作成し、<strong>protected</strong> メソッドを追加してから、Dog・Cat で継承とオーバーライドの復習をします。</p>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">配布コード（コピペ用）</h2>
+<p style="margin-bottom: 10px;">以下は練習で使う基本のクラスと Main です。そのままコピペしてプロジェクトに追加してください。<strong>手動で別ファイルとして渡す場合は、講師の指示に従って受け取ったファイルをそのまま使ってください。</strong></p>
 
-<p style="margin-bottom: 5px;"><strong>フィールド／メソッド一覧（Animal）</strong></p>
-<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
-<tbody>
-<tr style="background-color: #f0f8ff;">
-<th>区分</th>
-<th>名前</th>
-<th>型</th>
-<th>説明</th>
-<th>修飾子の目安</th>
-</tr>
-<tr>
-<td>フィールド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td>
-<td>動物の名前</td>
-<td>private</td>
-</tr>
-<tr>
-<td>コンストラクタ</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal(String name)</code></td>
-<td>—</td>
-<td>名前を初期化</td>
-<td>public</td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td>
-<td>名前を返す getter</td>
-<td>public</td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void</code></td>
-<td>鳴き声を表示（Animal では「〇〇が鳴きます。」）</td>
-<td>public</td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry(String message)</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void</code></td>
-<td>引数の文字列をそのまま表示（サブクラスからだけ使いたい）</td>
-<td><strong>protected</strong></td>
-</tr>
-</tbody>
-</table>
-<p style="margin-bottom: 5px;"><strong>Dog・Cat（Lesson10 と同様）</strong></p>
-<ul style="padding-left: 20px; margin-bottom: 15px;">
-<li style="margin-bottom: 6px;"><strong>Dog</strong> — <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Animal</code>。コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name)</code>。cry() をオーバーライドして「ワンワン」と表示（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry("ワンワン")</code> を呼ぶと protected の利用になる）。</li>
-<li style="margin-bottom: 6px;"><strong>Cat</strong> — 同様に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Animal</code>。cry() をオーバーライドして「ニャー」と表示。</li>
-</ul>
+<div style="margin-bottom: 20px;">
+<p style="margin-bottom: 5px;"><strong>Person.java（初期版・フィールドは public）</strong></p>
+<pre style="font-family: monospace; background-color: #f5f5f5; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto;"><span style="color: #666;">// 練習用：名前と年齢を持つクラス（ここから private / getter・setter にしていく）</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Person {
+    <span style="color: #0033ff;">public</span> String name;
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> age;
 
-<div>
-<strong>【ステップ1】Animal：コンストラクタ・カプセル化・アクセス修飾子（復習）</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> クラスを作成してください。<br>
-・フィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>（String）は <strong>private</strong>、コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal(String name)</code> は <strong>public</strong>、getter <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code> は <strong>public</strong>。<br>
-・<strong>public</strong> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> で「〇〇が鳴きます。」と表示する（Lesson10 の Animal と同じ仕様）。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.name = name;</code>。cry() では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println(name + "が鳴きます。");</code> でよいです。</p>
-</details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Animal {
-    <span style="color: #0033ff;">private</span> String name;
-
-    <span style="color: #0033ff;">public</span> Animal(String name) {
+    <span style="color: #0033ff;">public</span> Person(String name, <span style="color: #0033ff;">int</span> age) {
         <span style="color: #0033ff;">this</span>.name = name;
-    }
-
-    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
-
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> cry() {
-        System.out.println(name + <span style="color: #cc0000;">"が鳴きます。"</span>);
+        <span style="color: #0033ff;">this</span>.age = age;
     }
 }</pre>
-</details>
+</div>
+<div style="margin-bottom: 25px;">
+<p style="margin-bottom: 5px;"><strong>Main.java（初期版）</strong></p>
+<pre style="font-family: monospace; background-color: #f5f5f5; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Main {
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">static</span> <span style="color: #0033ff;">void</span> main(String[] args) {
+        Person p = <span style="color: #0033ff;">new</span> Person(<span style="color: #cc0000;">"山田"</span>, 25);
+        System.out.println(p.name + <span style="color: #cc0000;">", "</span> + p.age);
+    }
+}</pre>
 </div>
 
-<br><br>
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題 アクセス修飾子とカプセル化の流れ</h2>
+<p style="margin-bottom: 15px;">配布コードの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Person</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> を使って、次の①～④の順に進めてください。</p>
 
 <div>
-<strong>【ステップ2】Animal に protected メソッドを追加する</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> に、<strong>protected</strong> のメソッド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry(String message)</code> を追加してください。中身は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println(message);</code> だけでよいです。<br>
-・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> の表示を、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry(name + "が鳴きます。");</code> を呼ぶ形に書き換えてください。これにより、サブクラスからも <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry</code> が使えます。<br>
+<strong>【ステップ①】public を private に修正して、アクセスできないことを確認する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Person</code> のフィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">age</code> を <strong>private</strong> に変更してください。<br>
+その状態で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.name</code> や <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.age</code> は、クラスの外からは参照できないため、<strong>コンパイルエラーになる</strong>ことを確認してください。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected void printCry(String message) { System.out.println(message); }</code> とし、cry() 内で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry(name + "が鳴きます。");</code> を呼びます。</p>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public String name;</code> を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private String name;</code> に、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public int age;</code> を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">private int age;</code> に変えます。Main では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.name</code> や <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.age</code> が使えなくなり、コンパイルエラーになります。</p>
 </details>
 <details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// cry() を printCry を使う形に変更</span>
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> cry() {
-    printCry(name + <span style="color: #cc0000;">"が鳴きます。"</span>);
-}
-
-<span style="color: #666;">// サブクラスからだけ使えるように protected</span>
-<span style="color: #0033ff;">protected</span> <span style="color: #0033ff;">void</span> printCry(String message) {
-    System.out.println(message);
-}</pre>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例（Person の変更部分）</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">private</span> String name;
+<span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> age;</pre>
 </details>
 </div>
 
 <br><br>
 
 <div>
-<strong>【ステップ3】Dog・Cat で継承とオーバーライドの復習＋protected の利用</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Animal</code> し、コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name)</code> を呼んでください。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> をオーバーライドし、<strong>printCry("ワンワン");</strong> を呼んで「ワンワン」と表示する（protected なのでサブクラスから呼べる）。<br>
-同様に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Animal</code> し、cry() で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry("ニャー");</code> を呼んでください。<br>
+<strong>【ステップ②】private にしたので、ゲッター・セッターを設定する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Person</code> に、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> 用の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setName(String name)</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">age</code> 用の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getAge()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setAge(int age)</code> を <strong>public</strong> で追加してください。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>Dog は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog extends Animal</code>、コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public Dog(String name) { super(name); }</code>。cry() は @Override を付けて <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">printCry("ワンワン");</code> のみ。</p>
+<p>getter はフィールドの値を return、setter は引数をフィールドに代入するだけの形でよいです。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Dog <span style="color: #0033ff;">extends</span> Animal {
-    <span style="color: #0033ff;">public</span> Dog(String name) { <span style="color: #0033ff;">super</span>(name); }
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> cry() {
-        printCry(<span style="color: #cc0000;">"ワンワン"</span>);  <span style="color: #666;">// protected なのでサブクラスから呼べる</span>
-    }
-}
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// name の getter / setter</span>
+<span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> setName(String name) { <span style="color: #0033ff;">this</span>.name = name; }
 
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Cat <span style="color: #0033ff;">extends</span> Animal {
-    <span style="color: #0033ff;">public</span> Cat(String name) { <span style="color: #0033ff;">super</span>(name); }
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> cry() {
-        printCry(<span style="color: #cc0000;">"ニャー"</span>);
-    }
-}</pre>
+<span style="color: #666;">// age の getter / setter（ステップ④で setAge にフィルタを入れる）</span>
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">int</span> getAge() { <span style="color: #0033ff;">return</span> age; }
+<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> setAge(<span style="color: #0033ff;">int</span> age) { <span style="color: #0033ff;">this</span>.age = age; }</pre>
 </details>
 </div>
 
 <br><br>
 
 <div>
-<strong>【ステップ4】Main で Animal・Dog・Cat を確認する</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Animal("何か")</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Dog("ポチ")</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Cat("タマ")</code> を生成し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んで「何かが鳴きます。」「ワンワン」「ニャー」と出ることを確認してください。<br>
+<strong>【ステップ③】ゲッター・セッターを介して、Main からアクセスできることを確認する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> を、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.name</code> や <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.age</code> の代わりに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.getName()</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.getAge()</code> で表示し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">p.setAge(30)</code> などで年齢を変更できることを確認してください。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Animal a = <span style="color: #0033ff;">new</span> Animal(<span style="color: #cc0000;">"何か"</span>);
-Dog d = <span style="color: #0033ff;">new</span> Dog(<span style="color: #cc0000;">"ポチ"</span>);
-Cat c = <span style="color: #0033ff;">new</span> Cat(<span style="color: #cc0000;">"タマ"</span>);
-a.cry();  <span style="color: #666;">// 何かが鳴きます。</span>
-d.cry();  <span style="color: #666;">// ワンワン</span>
-c.cry();  <span style="color: #666;">// ニャー</span></pre>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例（Main）</summary>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Person p = <span style="color: #0033ff;">new</span> Person(<span style="color: #cc0000;">"山田"</span>, 25);
+System.out.println(p.getName() + <span style="color: #cc0000;">", "</span> + p.getAge());  <span style="color: #666;">// 山田, 25</span>
+p.setAge(30);
+System.out.println(p.getName() + <span style="color: #cc0000;">", "</span> + p.getAge());  <span style="color: #666;">// 山田, 30</span></pre>
 </details>
 </div>
 
-<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
-
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスを利用した問題（アクセス修飾子＋継承＋protected）</h2>
-<p style="margin-bottom: 10px;">社員クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code> を、コンストラクタ・カプセル化・アクセス修飾子を付けたうえで作成し、<strong>protected</strong> メソッドを追加してから、Manager・PartTimer で継承とオーバーライドの復習をします（Lesson10・12 の社員仕様に合わせています）。</p>
-
-<p style="margin-bottom: 5px;"><strong>フィールド／メソッド一覧（Employee）</strong></p>
-<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
-<tbody>
-<tr style="background-color: #f0f8ff;">
-<th>区分</th>
-<th>名前</th>
-<th>型</th>
-<th>説明</th>
-<th>修飾子の目安</th>
-</tr>
-<tr>
-<td>フィールド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">department</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td>
-<td>社員の名前・部署名</td>
-<td>private</td>
-</tr>
-<tr>
-<td>コンストラクタ</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee(String name, String department)</code></td>
-<td>—</td>
-<td>名前・部署を初期化</td>
-<td>public</td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName()</code>, <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getDepartment()</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td>
-<td>getter（サブクラス用）</td>
-<td>public</td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void</code></td>
-<td>自己紹介を表示（Employee では「〇〇です。〇〇部です。」）</td>
-<td>public</td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getIntroductionSuffix()</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">String</code></td>
-<td>自己紹介の末尾部分を返す（サブクラスでオーバーライドして変えたい）</td>
-<td><strong>protected</strong></td>
-</tr>
-</tbody>
-</table>
-<p style="margin-bottom: 5px;"><strong>Manager・PartTimer（Lesson10・12 と同様）</strong></p>
-<ul style="padding-left: 20px; margin-bottom: 15px;">
-<li style="margin-bottom: 6px;"><strong>Manager</strong> — <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code>。コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name, department)</code>。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getIntroductionSuffix()</code> をオーバーライドして「部の管理職です。」を返す。これにより、introduce() を継承のままにすると「〇〇です。〇〇部の管理職です。」と表示される。</li>
-<li style="margin-bottom: 6px;"><strong>PartTimer</strong> — <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code>。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> をオーバーライドして「〇〇です。パートで勤務しています。」と表示。</li>
-</ul>
+<br><br>
 
 <div>
-<strong>【ステップ1】Employee：コンストラクタ・カプセル化・アクセス修飾子（復習）</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code> クラスを作成してください。<br>
-・フィールド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">department</code>（String）は <strong>private</strong>、コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee(String name, String department)</code> は <strong>public</strong>、getter は <strong>public</strong>。<br>
-・<strong>public</strong> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> で「〇〇です。〇〇部です。」と表示する（Lesson10・12 と同じ仕様）。<br>
+<strong>【ステップ④】セッターにフィルタリングを設定する</strong><br>
+年齢は <strong>0 歳以上 150 歳以下</strong>だけ有効とします。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setAge(int age)</code> を修正し、<strong>0～150 のときだけ</strong> <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.age = age;</code> で代入し、それ以外の値のときは代入しない（変更させない）ようにしてください。必要なら「無効な年齢です」などメッセージを表示してもかまいません。<br>
+Main で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setAge(-5)</code> や <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">setAge(200)</code> を呼んでも、年齢が変わらないことを確認してください。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>introduce() では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println(name + "です。" + department + "部です。");</code> でよいです（ステップ2で getIntroductionSuffix() を使う形にします）。</p>
+<p>if で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">age &gt;= 0 && age &lt;= 150</code> のときだけ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">this.age = age;</code> を実行します。</p>
 </details>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Employee {
-    <span style="color: #0033ff;">private</span> String name;
-    <span style="color: #0033ff;">private</span> String department;
-
-    <span style="color: #0033ff;">public</span> Employee(String name, String department) {
-        <span style="color: #0033ff;">this</span>.name = name;
-        <span style="color: #0033ff;">this</span>.department = department;
-    }
-
-    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
-    <span style="color: #0033ff;">public</span> String getDepartment() { <span style="color: #0033ff;">return</span> department; }
-
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> introduce() {
-        System.out.println(name + <span style="color: #cc0000;">"です。"</span> + department + <span style="color: #cc0000;">"部です。"</span>);
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> setAge(<span style="color: #0033ff;">int</span> age) {
+    <span style="color: #0033ff;">if</span> (age >= 0 && age <= 150) {
+        <span style="color: #0033ff;">this</span>.age = age;
+    } <span style="color: #0033ff;">else</span> {
+        System.out.println(<span style="color: #cc0000;">"無効な年齢です（0～150の範囲で指定してください）"</span>);
     }
 }</pre>
-</details>
-</div>
-
-<br><br>
-
-<div>
-<strong>【ステップ2】Employee に protected メソッドを追加する</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code> に、<strong>protected</strong> のメソッド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getIntroductionSuffix()</code>（戻り値 String）を追加してください。Employee では「部です。」を返すようにします。<br>
-・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> の表示を、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getName() + "です。" + getDepartment() + getIntroductionSuffix()</code> を使う形に書き換えてください。これにより、サブクラスで getIntroductionSuffix() をオーバーライドすれば、紹介文の末尾だけ変えられます。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected String getIntroductionSuffix() { return "部です。"; }</code> とし、introduce() では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">System.out.println(getName() + "です。" + getDepartment() + getIntroductionSuffix());</code> とします。</p>
-</details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// introduce() を getIntroductionSuffix を使う形に変更</span>
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> introduce() {
-    System.out.println(getName() + <span style="color: #cc0000;">"です。"</span> + getDepartment() + getIntroductionSuffix());
-}
-
-<span style="color: #666;">// サブクラスでオーバーライドして末尾を変えられるように protected</span>
-<span style="color: #0033ff;">protected</span> String getIntroductionSuffix() {
-    <span style="color: #0033ff;">return</span> <span style="color: #cc0000;">"部です。"</span>;
-}</pre>
-</details>
-</div>
-
-<br><br>
-
-<div>
-<strong>【ステップ3】Manager・PartTimer で継承とオーバーライドの復習＋protected の利用</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code> し、コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager(String name, String department)</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name, department)</code> を呼んでください。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">getIntroductionSuffix()</code> をオーバーライドして「部の管理職です。」を返す。introduce() は継承のままなので、「〇〇です。〇〇部の管理職です。」と表示されます。<br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code> し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> をオーバーライドして「〇〇です。パートで勤務しています。」と表示する（Lesson10・12 と同じ）。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>Manager は getIntroductionSuffix() だけオーバーライド。PartTimer は introduce() をオーバーライドし、getName() を使って「〇〇です。パートで勤務しています。」と表示します。</p>
-</details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Manager <span style="color: #0033ff;">extends</span> Employee {
-    <span style="color: #0033ff;">public</span> Manager(String name, String department) { <span style="color: #0033ff;">super</span>(name, department); }
-    @Override
-    <span style="color: #0033ff;">protected</span> String getIntroductionSuffix() {
-        <span style="color: #0033ff;">return</span> <span style="color: #cc0000;">"部の管理職です。"</span>;
-    }
-}
-
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> PartTimer <span style="color: #0033ff;">extends</span> Employee {
-    <span style="color: #0033ff;">public</span> PartTimer(String name, String department) { <span style="color: #0033ff;">super</span>(name, department); }
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> introduce() {
-        System.out.println(getName() + <span style="color: #cc0000;">"です。パートで勤務しています。"</span>);
-    }
-}</pre>
-</details>
-</div>
-
-<br><br>
-
-<div>
-<strong>【ステップ4】Main で Employee・Manager・PartTimer を確認する</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Employee("山田", "営業")</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Manager("佐藤", "開発")</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new PartTimer("鈴木", "総務")</code> を生成し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> を呼んで「山田です。営業部です。」「佐藤です。開発部の管理職です。」「鈴木です。パートで勤務しています。」と出ることを確認してください。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Employee e = <span style="color: #0033ff;">new</span> Employee(<span style="color: #cc0000;">"山田"</span>, <span style="color: #cc0000;">"営業"</span>);
-Manager m = <span style="color: #0033ff;">new</span> Manager(<span style="color: #cc0000;">"佐藤"</span>, <span style="color: #cc0000;">"開発"</span>);
-PartTimer p = <span style="color: #0033ff;">new</span> PartTimer(<span style="color: #cc0000;">"鈴木"</span>, <span style="color: #cc0000;">"総務"</span>);
-e.introduce();  <span style="color: #666;">// 山田です。営業部です。</span>
-m.introduce();  <span style="color: #666;">// 佐藤です。開発部の管理職です。</span>
-p.introduce();  <span style="color: #666;">// 鈴木です。パートで勤務しています。</span></pre>
 </details>
 </div>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">確認問題 アクセス修飾子の整理</h2>
-<p style="margin-bottom: 10px;">次の説明に当てはまるアクセス修飾子を選んでください（public / private / protected）。</p>
+<p style="margin-bottom: 10px;">次の説明に当てはまるアクセス修飾子を選んでください（public / private / protected / 無印（デフォルト））。</p>
 <ol style="padding-left: 24px;">
 <li style="margin-bottom: 10px;">「どこからでも」アクセスできる。</li>
 <li style="margin-bottom: 10px;">「そのクラスの中だけ」からアクセスできる。</li>
-<li style="margin-bottom: 10px;">「同じクラスとサブクラス」からアクセスできる。</li>
+<li style="margin-bottom: 10px;">「同じクラスとサブクラス（同一パッケージ含む）」からアクセスできる。</li>
+<li style="margin-bottom: 10px;">「同じパッケージ内」だけからアクセスできる（修飾子を書かない場合）。</li>
 </ol>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 5px;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答</summary>
-<p>① public　② private　③ protected</p>
+<p>① public　② private　③ protected　④ 無印（デフォルト）</p>
 </details>
 </div>

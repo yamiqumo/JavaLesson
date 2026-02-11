@@ -1,7 +1,7 @@
 【練習問題】 Lesson101 1時間集中デバッグ・トレーニング（Java）
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 
-<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java 集中デバッグ・トレーニング（50問）— まずは1問で「意図」を言語化せよ</h1>
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java 集中デバッグ・トレーニング（50問）— まずは1問で「意図」を言語化してみよう</h1>
 
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 10px;">
 <p style="margin: 0;"><strong>カバ先生：</strong>「言語化は“はっきりさせること”だよ。赤字を消すことだけに集中しないで、まずは『本来やりたかったこと（ゴールのイメージ）』を言葉にしてみよう。いっしょに必要条件も考えてみよう。」</p>
@@ -12,12 +12,13 @@
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-bottom: 20px;">
 <p style="margin: 0;"><strong>ユウタ：</strong>「エラーが出たら、とりあえず修正…じゃなくて、まず読む・仮説・切り分け、ですね。」</p>
 </div>
+<p style="margin: 0 0 20px 0; font-size: 13px; color: #555;">※ここでの A→B は、「今の状態（A）」から「こうなっていてほしい状態（B）」への変化、という意味です。</p>
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">最初に約束（この教材のルール）</h2>
 <ul style="padding-left: 20px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>ゴール</strong>：エラーを消すことではなく、<strong>本来やりたかったこと（ゴールのイメージ）</strong>を明確にして原因へ到達すること。</li>
-  <li style="margin-bottom: 10px;"><strong>禁止</strong>：「とりあえず直す」「当てずっぽうで書き換える」「動いたからOK」</li>
+  <li style="margin-bottom: 10px;"><strong>なるべく避けたいこと</strong>：「とりあえず直す」「当てずっぽうで書き換える」「動いたからOK」</li>
   <li style="margin-bottom: 0;"><strong>推奨</strong>：仮説は1個に絞って検証する（同時に3箇所いじらない）。</li>
 </ul>
 </section>
@@ -41,7 +42,7 @@
 
 <!-- ======================== Q1 ======================== -->
 <section style="margin-bottom: 30px;">
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q1】脊髄反射で「;」を足す前に、「本来やりたかったこと」を言え</h2>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q1】脊髄反射で「;」を足す前に、「本来やりたかったこと」が言えるかどうか確かめよう</h2>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">ユーザーが名前を入力したら、コンソールに <strong>「Hello, 名前」</strong> と表示できる。</p>
@@ -260,7 +261,7 @@ public class Main {
 
 <!-- ======================== Q5 ======================== -->
 <section style="margin-bottom: 30px;">
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q5】NullPointerException：赤字を消す前に「何が null か」を特定せよ</h2>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q5】NullPointerException：赤字を消す前に「何が null か」を特定してみよう</h2>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">名前が設定されていれば「こんにちは、名前」を表示したい。</p>

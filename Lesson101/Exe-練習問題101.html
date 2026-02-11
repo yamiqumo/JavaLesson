@@ -4,7 +4,7 @@
 <h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java 集中デバッグ・トレーニング（50問）— まずは1問で「意図」を言語化せよ</h1>
 
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 10px;">
-<p style="margin: 0;"><strong>カバ先生：</strong>「言語化は“はっきりさせること”だよ。赤字を消すことだけに集中しないで、まず State B（本来のゴール）を言葉にしてみよう。いっしょに必要条件も考えてみよう。」</p>
+<p style="margin: 0;"><strong>カバ先生：</strong>「言語化は“はっきりさせること”だよ。赤字を消すことだけに集中しないで、まずは『本来やりたかったこと（ゴールのイメージ）』を言葉にしてみよう。いっしょに必要条件も考えてみよう。」</p>
 </div>
 <div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0; margin-bottom: 10px;">
 <p style="margin: 0;"><strong>ナナコ：</strong>「“いい感じに直す” じゃなくて、何がどうなる（A→B）を言葉にします…！」</p>
@@ -16,9 +16,24 @@
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">最初に約束（この教材のルール）</h2>
 <ul style="padding-left: 20px; margin: 0;">
-  <li style="margin-bottom: 10px;"><strong>ゴール</strong>：エラーを消すことではなく、<strong>State B（本来やりたかったこと）</strong>を明確にして原因へ到達すること。</li>
+  <li style="margin-bottom: 10px;"><strong>ゴール</strong>：エラーを消すことではなく、<strong>本来やりたかったこと（ゴールのイメージ）</strong>を明確にして原因へ到達すること。</li>
   <li style="margin-bottom: 10px;"><strong>禁止</strong>：「とりあえず直す」「当てずっぽうで書き換える」「動いたからOK」</li>
-  <li style="margin-bottom: 0;"><strong>推奨</strong>：仮説は1個に絞って検証する（同時に3箇所いじるな）。</li>
+  <li style="margin-bottom: 0;"><strong>推奨</strong>：仮説は1個に絞って検証する（同時に3箇所いじらない）。</li>
+</ul>
+</section>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #888888; padding-left: 10px; color: #555555; font-size: 18px; margin-bottom: 15px;">講師向け：認識のズレを見つける質問の例</h2>
+<p style="margin-bottom: 10px;">学習者がつまずいているときは、「コードのどの部分をどう理解しているか」を一緒に確認するだけで、誤解の場所が見えやすくなります。例えば次のような質問が使えます。</p>
+<ul style="padding-left: 20px; margin: 0;">
+  <li style="margin-bottom: 10px;">1行のコードを分解して聞く（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal an = new Animal();</code>）。
+    <ul style="padding-left: 20px; margin: 5px 0 0 0;">
+      <li style="margin-bottom: 5px;">左辺だけを指して「ここでは何をしていますか？」と聞く。</li>
+      <li style="margin-bottom: 5px;">右辺だけを指して「ここでは何をしていますか？」と聞く。</li>
+      <li style="margin-bottom: 0;">さらに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Animal()</code> の部分を指して「この部分は何をしている言葉ですか？」と聞く。</li>
+    </ul>
+  </li>
+  <li style="margin-bottom: 0;">正しい文法の行のいちばん最後にある <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">;</code> を指して、「この <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">;</code> は何をしていますか？」「もし無かったらどうなると思いますか？」と聞く。</li>
 </ul>
 </section>
 
@@ -26,9 +41,9 @@
 
 <!-- ======================== Q1 ======================== -->
 <section style="margin-bottom: 30px;">
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q1】脊髄反射で「;」を足す前に、State B を言え</h2>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q1】脊髄反射で「;」を足す前に、「本来やりたかったこと」を言え</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B：価値の定義）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">ユーザーが名前を入力したら、コンソールに <strong>「Hello, 名前」</strong> と表示できる。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -43,7 +58,7 @@ public class Main {
     }
 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;">
-  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択してCursorへドラッグ（再現用）：</p>
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して、Eclipse やお使いのエディタへドラッグ（再現用）：</p>
   <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">import java.util.Scanner;
 
 public class Main {
@@ -65,9 +80,9 @@ public class Main {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①エラー内容の確認</strong>：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">';' expected</code> は「文の終わりが足りない」ことが多い。行番号と該当行を指させる。</li>
-  <li style="margin-bottom: 10px;"><strong>②これまでの思考の言語化</strong>：「今、何を“できるようにしたい”の？（B を1文で）」</li>
+  <li style="margin-bottom: 10px;"><strong>②これまでの思考の言語化</strong>：「今、何を“できるようにしたい”の？（本来やりたかったことを1文で）」</li>
   <li style="margin-bottom: 10px;"><strong>③仮説</strong>：「Javaで“文が終わる”のは何？ その行は終わってる？」</li>
-  <li style="margin-bottom: 10px;"><strong>④理解度の確認</strong>：「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">;</code> を付ける“理由”を説明して。『なんとなく』は禁止。」</li>
+  <li style="margin-bottom: 10px;"><strong>④理解度の確認</strong>：正しい文法の行の最後にある <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">;</code> を指して、「この <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">;</code> は何をしていますか？」「もし無かったらどうなると思う？」と聞く。</li>
   <li style="margin-bottom: 10px;"><strong>⑤切り分け</strong>：該当行だけをコメントアウトしても、B は満たせない。だから「消す」は不正解。</li>
   <li style="margin-bottom: 10px;"><strong>⑥解読・検索ヒント</strong>：検索するなら <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Java ';' expected</code>。ただし検索前に「その行の構文」を読む。</li>
   <li style="margin-bottom: 10px;"><strong>⑦修正箇所のヒント</strong>：同じファイル内で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">;</code> が付いている行と付いていない行を比較させる。</li>
@@ -81,7 +96,7 @@ public class Main {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q2】“存在しない名前”を作って赤字を黙らせるな（タイポ）</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">商品名が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">coffee</code> のときだけ「在庫チェックOK」と表示したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -133,7 +148,7 @@ public class Main {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q3】エラーが出ないバグが一番危険（equals と 意図）</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">入力が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">yes</code> のときだけ「購入します」と表示したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -180,7 +195,7 @@ public class Main {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：「エラーが無い＝正しい」ではない。症状は「期待と違う出力」。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「State B をもう一回。『いつ』『何が』『どう表示される』？」</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことをもう一回。『いつ』『何が』『どう表示される』？」</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「比較している“もの”は何？ 文字列は“同じ”をどう定義する？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">==</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">.equals()</code> の違いを“結果”で説明して」</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分けは「入力の値をそのまま表示」→「比較だけする」→「分岐後の表示」の順で確認。</li>
@@ -196,7 +211,7 @@ public class Main {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q4】配列の境界：1つ多く回すのは“偶然動く”だけ</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">3つの文字列を順番に表示したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -247,7 +262,7 @@ public class Main {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q5】NullPointerException：赤字を消す前に「何が null か」を特定せよ</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">名前が設定されていれば「こんにちは、名前」を表示したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -276,7 +291,7 @@ public class Main {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：null 参照。どの変数が null で、どの操作で落ちたかを言わせる。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「B は “大文字にする” が必要？ それとも “挨拶を出す” が必要？」（必要条件を分解）</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことは “大文字にする” ？ それとも “挨拶を出す” ？」（必要条件を分解）</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">toUpperCase()</code> は何に対して呼べる？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「null のときの仕様を決めてる？ “空欄なら何を表示する？”」</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分けは name を表示（null か確認）→ toUpperCase を呼ぶ前に分岐、の順。</li>
@@ -292,7 +307,7 @@ public class Main {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q6】NumberFormatException：入力仕様を言語化していないだけ</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">金額を入力したら、税込（10%）の金額を整数で表示したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -335,7 +350,7 @@ public class Main {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：どの入力で落ちるかを特定（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">1,000</code>）。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「B は“税込計算”。そのための必要条件は“価格が数値として扱える”だよね？」</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことは“税込計算”。そのための必要条件は“価格が数値として扱える”だよね？」</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「入力は必ず数字だけ？ カンマは許す？ 仕様はどっち？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「仕様を決めないまま直すと、次に何が起きる？」（再発を言わせる）</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分け：入力→整形（前処理）→変換→計算、の4段階に分ける。</li>
@@ -351,7 +366,7 @@ public class Main {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q7】@Override が怒るのは“意図と署名がズレた”証拠</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">スーパークラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を、サブクラスで上書き（オーバーライド）してメッセージを変えたい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -392,7 +407,7 @@ class HotVendMachine extends VendMachine {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：override できていない。つまり「スーパークラスに同じ署名が無い」。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「B は“上書き”。上書きとは“何が一致”している必要がある？」</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことは“上書き”。上書きとは“何が一致”している必要がある？」</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「buy の“引数”と“戻り値”が一致してる？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「@Override は何のために付ける？（ミスを早期に発見するため）」と言わせる。</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分け：スーパークラスの buy の宣言だけ見る→サブクラスの宣言と比較。</li>
@@ -408,7 +423,7 @@ class HotVendMachine extends VendMachine {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q8】static の場に“誰の箱”が無い（static context）</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">自販機の名前を表示したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -442,12 +457,12 @@ class HotVendMachine extends VendMachine {
 <pre style="font-family: monospace; background-color: #f5f5f5; color: #333; padding: 10px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto;">error: non-static method printName() cannot be referenced from a static context</pre>
 
 <h3 style="padding-left: 10px; color: #cc0000; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【思考の罠】</h3>
-<p style="margin-bottom: 0;">「じゃあ全部 static にする」。それで State B は達成できても、設計（箱と専門家の分離）が壊れる。</p>
+<p style="margin-bottom: 0;">「じゃあ全部 static にする」。それで本来やりたかったことは達成できても、設計（箱と専門家の分離）が壊れる。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：static context は「インスタンス無し」。誰の name か決まっていない。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「B は“名前を出す”。そのために必要なのは“どの自販機の名前か”だよね？」</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことは“名前を出す”。そのために必要なのは“どの自販機の名前か”だよね？」</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「“どの箱（インスタンス）”から呼ぶのが正しい？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「static にするのと、インスタンスを作るのと、違いは？」</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分け：main は static。printName はインスタンス。矛盾を図で説明させる。</li>
@@ -463,7 +478,7 @@ class HotVendMachine extends VendMachine {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【Q9】型の不一致：キャストは“定義のごまかし”になりやすい</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">文字列の数値（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">"3"</code>）を受け取って、合計に足したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -498,7 +513,7 @@ class HotVendMachine extends VendMachine {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：型が違う。足し算の相手が int ではない。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「B は“数として足す”。そのための必要条件は“add が数”」</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことは“数として足す”。そのための必要条件は“add が数”」</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「add は“文字列”。どうやって“数”にする？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「キャストと変換の違いを説明できる？」</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分け：まず add を数にできるか（単体）→ その後 total に足す。</li>
@@ -514,7 +529,7 @@ class HotVendMachine extends VendMachine {
 <section style="margin-bottom: 0;">
 <h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">【Q10】止まる/終わらない：エラーが無いときこそ切り分けが必要</h2>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（State B）】</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【本来やりたかったこと（ゴールのイメージ）】</h3>
 <p style="margin-bottom: 10px;">1〜5 を表示して終了したい。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">【バグのあるソースコード】</h3>
@@ -551,7 +566,7 @@ class HotVendMachine extends VendMachine {
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">【8ステップ・エスコートガイド】</h3>
 <ol style="padding-left: 24px; margin: 0;">
   <li style="margin-bottom: 10px;"><strong>①</strong>：症状は「終わらない」。条件式と“変化”を確認。</li>
-  <li style="margin-bottom: 10px;"><strong>②</strong>：「B は“1〜5を出して終わる”。必要条件は“i が増える”だよね？」</li>
+  <li style="margin-bottom: 10px;"><strong>②</strong>：「本来やりたかったことは“1〜5を出して終わる”。必要条件は“i が増える”だよね？」</li>
   <li style="margin-bottom: 10px;"><strong>③</strong>：「このループの中で、i はどこで変化してる？」</li>
   <li style="margin-bottom: 10px;"><strong>④</strong>：「“変化がない” とき、ループの判定はどうなる？」を言わせる。</li>
   <li style="margin-bottom: 10px;"><strong>⑤</strong>：切り分け：ループ内で i を毎回表示→更新行を注視→更新が無いならそこが原因候補。</li>

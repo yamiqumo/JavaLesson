@@ -73,28 +73,25 @@
 
 3. **区切り線**
    - 問題文とヒント・解答のブロックを視覚的に分ける。
-   - 推奨フォーマット:
-     - Markdown水平線: `---`
-     - もしくは HTML: `<div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>`
+   - 推奨: `<div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>`
+
+4. **各問題ブロックの構成**（順序を守る）
+   - **【問題】** — 問題文を太字で記載。
+   - **ヒント** — `<details><summary>▶ ヒント</summary>...</details>`
+   - **解答** — `<details style="margin-top:10px;"><summary>▶ 解答</summary>...</details>` のなかに、解説（任意）・カラー表示用 `<pre>` ・**ドラッグ貼り付け用**の `<div>` + `<textarea>`（プレーンテキストの Java コード、user-select:all）を入れる。詳細な HTML テンプレートは **`_Doc/4-デザインルール.md` の「⑤ 練習問題の解答ブロック」** に従う。
 
 ---
 
 ### 4. ヒントブロック
 
-- **概要**:
-  - ヒントは0個以上設けることができる。
-  - 折り畳み表示するため、Markdown 内で HTML の `<details>` / `<summary>` を利用する。
+- ヒントは 0 個以上。折り畳みは `<details>` / `<summary>` を使用。summary は **▶ ヒント**。
+- 解答側の summary は **▶ 解答**。解答内に「解説・確認用」の p、pre（カラー）、ドラッグ用 textarea を含める（4-デザインルール参照）。
 
-- **フォーマット例**:
+---
 
-<details>
-  <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+### 4.1 解答・サンプルコードの記述ルール
 
-ここにヒントの本文を記載する。
-複数行になってもよい。
-必要であれば、アルゴリズムの考え方や注意点のみを書き、
-直接の答えになりすぎないようにする。
-</details>
+解答およびテキスト内のサンプルコードは **`.cursorrules` の「3. Javaコーディング規約」** に従う。戻り値は変数に代入してから return、文字列比較は .equals()、型名を明示（var は使わない）、メソッド上部および main 内の呼び出し箇所に解説コメントを入れる。
 
 ---
 

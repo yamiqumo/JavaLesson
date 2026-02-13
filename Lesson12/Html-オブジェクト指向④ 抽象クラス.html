@@ -53,9 +53,32 @@
 <li style="margin-bottom: 10px;">抽象クラスを継承したサブクラスは、すべての abstract メソッドを実装しないとコンパイルエラーになる。</li>
 </ul>
 
-<!-- 【図の挿入場所】継承の説明用（抽象クラス・スーパー/サブの関係） -->
-<div style="background-color: #f9f9f9; border: 2px dashed #ccc; border-radius: 8px; padding: 24px; margin: 15px 0; text-align: center; color: #666;">
-<p style="margin: 0; font-size: 14px;">【図の挿入場所】継承の説明用（抽象クラス・スーパー/サブの関係など）</p>
+<!-- 【図の仕様】継承の説明用（抽象クラス・スーパー/サブの関係） -->
+<div style="background-color: #f0f8ff; border: 1px solid #0033ff; border-radius: 8px; padding: 20px; margin: 15px 0;">
+<h4 style="margin: 0 0 12px 0; color: #0033ff; font-size: 14px;">図で描く内容（クラス図の仕様）</h4>
+<p style="margin: 0 0 12px 0; font-size: 13px; color: #333;">以下の構成でクラス図を描く。日本語の説明を入れる。</p>
+<dl style="margin: 0; font-size: 13px; line-height: 1.7;">
+<dt style="font-weight: bold; color: #0033ff; margin-top: 10px;">抽象クラス（スーパークラス）</dt>
+<dd style="margin-left: 0; padding-left: 1em;">
+<strong>VendingMachine</strong><br>
+・フィールド：<code>drinkName</code>（String）、<code>stock</code>（int）<br>
+・メソッド：<code>buy()</code>
+</dd>
+<dt style="font-weight: bold; color: #0033ff; margin-top: 10px;">継承したサブクラス1</dt>
+<dd style="margin-left: 0; padding-left: 1em;">
+<strong>VendingHotNoodle</strong> クラス<br>
+・追加フィールド：<code>water</code>（int）<br>
+・説明：温かい麺用自販機（お湯の量を管理）
+</dd>
+<dt style="font-weight: bold; color: #0033ff; margin-top: 10px;">継承したサブクラス2</dt>
+<dd style="margin-left: 0; padding-left: 1em;">
+<strong>Vending2Items</strong> クラス<br>
+・追加フィールド：<code>drinkName1</code>（String）、<code>drinkName2</code>（String）、<code>stock1</code>（int）、<code>stock2</code>（int）、<code>selected</code>（int）<br>
+・メソッド：<code>buy()</code> — 選択したアイテムを購入する<br>
+・説明：2種類の商品を扱う自販機（選択番号でどちらを出すか決める）
+</dd>
+</dl>
+<p style="margin: 12px 0 0 0; font-size: 12px; color: #666;">※図では VendingMachine から下に矢印を伸ばし、VendingHotNoodle と Vending2Items が継承している関係を示す。</p>
 </div>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：抽象クラス VendMachine</h3>

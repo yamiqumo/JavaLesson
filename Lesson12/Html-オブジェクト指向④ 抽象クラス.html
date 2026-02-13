@@ -1,0 +1,110 @@
+【テキスト】 オブジェクト指向④ ～抽象クラス～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">オブジェクト指向学習カリキュラム</h1>
+<p style="margin-bottom: 10px;"><strong>抽象クラス</strong>（第12回）</p>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">この単元の前に：継承の復習</h2>
+<p style="margin-bottom: 10px;">前回までに「継承」と「オーバーライド」を自販機で学んでいます。短くおさらいします。</p>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">復習：前回までに学んだこと</h3>
+<div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff;">
+<ul style="padding-left: 20px; margin-bottom: 0;">
+<li style="margin-bottom: 10px;"><strong>継承</strong> — <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends スーパークラス名</code> でサブクラスがスーパークラスの機能を引き継ぐ。</li>
+<li style="margin-bottom: 10px;"><strong>オーバーライド</strong> — スーパークラスと同じ名前・同じ引数のメソッドをサブクラスで定義し直すこと。オーバーライドしたメソッドには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> をつけておく。</li>
+<li><strong>VendMachine</strong> — 自販機の共通の流れ（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> など）を持ち、サブクラスで差分を実装してきた。</li>
+</ul>
+</div>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">この単元で学ぶこと</h3>
+<p style="margin-bottom: 0;">この単元では「抽象クラス」を学びます。次回インタフェース、その次に多態性の土台になります。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【1】具体的な学習目標</h2>
+<p style="margin-bottom: 10px;">この単元を終えたとき、以下のことができればゴールです。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 10px;">抽象クラスの役割（基本とするためのクラスとしてしか使わず、サブクラスに実装を任せる）を説明できる。</li>
+<li style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract メソッド</code> の書き方を理解する。</li>
+<li style="margin-bottom: 10px;">「1つでも抽象メソッドがあるクラスは抽象クラス」であることを理解する。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【2】導入：基本とするクラスに具体的なメソッドは要らない</h2>
+<div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 10px;">
+<p style="margin: 0;"><strong>カバ先生：</strong>「サブクラスで書き換えるのなら、そもそもスーパークラスに具体的に書く必要はないよね。なので、基本とするためのクラスとしてしか使わないなら、スーパークラスのメソッドを抽象メソッドにします。」</p>
+</div>
+<div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff;">
+<p style="margin: 0;"><strong>ユウタ：</strong>「1つでも抽象メソッドがあるクラスが、抽象クラスなんですね。」</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】抽象クラス：設計図だけのクラス</h2>
+<p style="margin-bottom: 10px;">抽象クラスは、<strong>そのクラス単体では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> でインスタンスを作れないクラス</strong>です。クラス名の前に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> を付けます。</p>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;"><strong>abstract class クラス名</strong> — 抽象クラス。サブクラスで継承して使うことを前提にする。</li>
+<li style="margin-bottom: 10px;"><strong>abstract メソッド</strong> — 中身（本体）を書かず、サブクラスで「必ず実装する」ことを強制する。</li>
+<li style="margin-bottom: 10px;">抽象クラスを継承したサブクラスは、すべての abstract メソッドを実装しないとコンパイルエラーになる。</li>
+</ul>
+
+<!-- 【図の挿入場所】継承の説明用（抽象クラス・スーパー/サブの関係） -->
+<div style="background-color: #f9f9f9; border: 2px dashed #ccc; border-radius: 8px; padding: 24px; margin: 15px 0; text-align: center; color: #666;">
+<p style="margin: 0; font-size: 14px;">【図の挿入場所】継承の説明用（抽象クラス・スーパー/サブの関係など）</p>
+</div>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：抽象クラス VendMachine</h3>
+<p style="margin-bottom: 10px;">自販機の「買う」流れは共通にしたいが、中身（在庫の持ち方・チェックの仕方）はサブクラスで違う、という設計です。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 抽象クラス：new できない。サブクラスで実装する前提。</span>
+<span style="color: #0033ff;">public abstract class</span> VendMachine {
+
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (beforeBuy() == <span style="color: #0033ff;">true</span>) {
+            System.out.println(<span style="color: #cc0000;">"1分ほどお待ちください"</span>);
+            hotWaterServe();
+            dispense();
+        }
+    }
+
+    <span style="color: #666;">// サブクラスで必ず実装する（中身は書かない）</span>
+    <span style="color: #0033ff;">protected abstract boolean</span> beforeBuy();
+    <span style="color: #0033ff;">protected abstract void</span> dispense();
+
+    <span style="color: #0033ff;">protected void</span> hotWaterServe() {
+        <span style="color: #666;">// デフォルトは何もしない。必要なサブクラスだけオーバーライド</span>
+    }
+}</pre>
+<p style="margin-bottom: 0;">このように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class VendMachine</code> と書くと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendMachine()</code> はできません。代わりにサブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> を実装して使います。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】練習問題</h2>
+<div>
+<strong>【問題】抽象クラスを継承する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> が抽象クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected abstract boolean beforeBuy();</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected abstract void dispense();</code> を持っているとき、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SimpleVend</code> というサブクラスを作り、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> では常に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">true</code> を返し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> では「商品を出しました」と表示するように実装してください。
+</div>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin: 0.5em 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class SimpleVend extends VendMachine</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> を実装します。オーバーライドしたメソッドには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> をつけておきましょう。</p>
+</details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】まとめ</h2>
+<ul style="padding-left: 20px;">
+<li style="margin-bottom: 10px;"><strong>抽象クラス</strong> — <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class</code> で宣言。そのクラスでは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new</code> できない。1つでも抽象メソッドがあるクラスが抽象クラス。</li>
+<li style="margin-bottom: 10px;">抽象メソッドはサブクラスで必ず実装する。オーバーライドしたメソッドには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> をつけておく。</li>
+<li style="margin-bottom: 10px;">次回はインタフェース、その次に多態性（ポリモーフィズム）を学びます。</li>
+</ul>
+</section>
+</div>

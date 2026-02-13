@@ -1,6 +1,6 @@
-【練習問題】 第12回 オブジェクト指向④ ～抽象クラスとインタフェース～
+【練習問題】 第12回 オブジェクト指向④ ～抽象クラス～
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
-<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第12回 抽象クラス・インタフェース</h1>
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第12回 抽象クラス</h1>
 
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスを利用した問題（抽象クラス）</h2>
 <p style="margin-bottom: 10px;">動物クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> を<strong>抽象クラス</strong>として定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を抽象メソッドにしたうえで、Dog・Cat で実装する形に拡張してください。</p>
@@ -116,114 +116,7 @@
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスを利用した問題（インタフェース）</h2>
-<p style="margin-bottom: 10px;">「自己紹介する」というメソッドの約束を<strong>インタフェース</strong>で定義し、社員クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code> がそのインタフェースを実装する形にしてください。</p>
-<p style="margin-bottom: 5px;"><strong>インタフェース・クラス一覧</strong></p>
-<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
-<tbody>
-<tr style="background-color: #f0f8ff;">
-<th>区分</th>
-<th>名前</th>
-<th>内容</th>
-</tr>
-<tr>
-<td>インタフェース</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Introducible</code></td>
-<td>メソッド <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void introduce();</code> のみを定義</td>
-</tr>
-<tr>
-<td>クラス</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code></td>
-<td>name, department を持ち、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Introducible</code>。introduce() で「〇〇です。〇〇部です。」と表示</td>
-</tr>
-<tr>
-<td>クラス</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager</code></td>
-<td>Employee を継承。introduce() をオーバーライドして「〇〇です。〇〇部の管理職です。」</td>
-</tr>
-<tr>
-<td>クラス</td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code></td>
-<td>Employee を継承。introduce() をオーバーライドして「〇〇です。パートで勤務しています。」</td>
-</tr>
-</tbody>
-</table>
-<div>
-<strong>【ステップ1】Introducible インタフェースと Employee クラスを作る</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Introducible</code> インタフェースに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void introduce();</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code> クラスが <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Introducible</code> するようにしてください。Employee は name, department、コンストラクタ、getter、introduce() で「〇〇です。〇〇部です。」と表示する実装にします。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>interface は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface Introducible { void introduce(); }</code> のように書きます。Employee は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Employee implements Introducible</code> と宣言し、introduce() の本体を実装します。</p>
-</details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// Introducible.java</span>
-<span style="color: #0033ff;">public interface</span> Introducible {
-    <span style="color: #0033ff;">void</span> introduce();
-}
-
-<span style="color: #666;">// Employee.java</span>
-<span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Employee <span style="color: #0033ff;">implements</span> Introducible {
-    <span style="color: #0033ff;">private</span> String name;
-    <span style="color: #0033ff;">private</span> String department;
-    <span style="color: #0033ff;">public</span> Employee(String name, String department) {
-        <span style="color: #0033ff;">this</span>.name = name;
-        <span style="color: #0033ff;">this</span>.department = department;
-    }
-    <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
-    <span style="color: #0033ff;">public</span> String getDepartment() { <span style="color: #0033ff;">return</span> department; }
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> introduce() {
-        System.out.println(name + <span style="color: #cc0000;">"です。"</span> + department + <span style="color: #cc0000;">"部です。"</span>);
-    }
-}</pre>
-</details>
-</div>
-<br><br>
-<div>
-<strong>【ステップ2】Manager で Employee を継承し、introduce() をオーバーライドする</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code> し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> をオーバーライドして「〇〇です。〇〇部の管理職です。」と表示してください。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>Manager は Employee を継承するので、Introducible は再び implements しなくても、Employee が実装しているため introduce() を持っています。オーバーライドするだけです。</p>
-</details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Manager <span style="color: #0033ff;">extends</span> Employee {
-    <span style="color: #0033ff;">public</span> Manager(String name, String department) { <span style="color: #0033ff;">super</span>(name, department); }
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> introduce() {
-        System.out.println(getName() + <span style="color: #cc0000;">"です。"</span> + getDepartment() + <span style="color: #cc0000;">"部の管理職です。"</span>);
-    }
-}</pre>
-</details>
-</div>
-<br><br>
-<div>
-<strong>【ステップ3】PartTimer でも継承し、introduce() をオーバーライドする</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code> し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">introduce()</code> をオーバーライドして「〇〇です。パートで勤務しています。」と表示してください。Main で Employee・Manager・PartTimer を生成し、それぞれ introduce() を呼んで確認します。<br>
-<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>PartTimer も Manager と同様に extends Employee で継承し、introduce() で「〇〇です。パートで勤務しています。」と表示します。</p>
-</details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> PartTimer <span style="color: #0033ff;">extends</span> Employee {
-    <span style="color: #0033ff;">public</span> PartTimer(String name, String department) { <span style="color: #0033ff;">super</span>(name, department); }
-    @Override
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> introduce() {
-        System.out.println(getName() + <span style="color: #cc0000;">"です。パートで勤務しています。"</span>);
-    }
-}</pre>
-</details>
-</div>
-
-<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
-
-<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ 抽象クラス型の配列で複数インスタンスを扱う</h2>
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題② 抽象クラス型の配列で複数インスタンスを扱う</h2>
 <p style="margin-bottom: 5px;"><strong>【問題】Animal 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
 <p style="margin-bottom: 10px;">基本問題①で作った <strong>抽象クラス</strong> <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> と、そのサブクラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">

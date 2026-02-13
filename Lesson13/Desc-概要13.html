@@ -1,0 +1,52 @@
+【概要】 オブジェクト指向⑤ ～インタフェース～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第13回：インタフェース ～メソッドの約束と複数実装～</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. 必要な前提知識</h2>
+<ul style="padding-left: 20px; margin-bottom: 0;">
+<li style="margin-bottom: 10px;"><strong>抽象クラス（第12回）</strong>： 抽象メソッドでサブクラスに実装を任せる。1つでも抽象メソッドがあるクラスが抽象クラス。</li>
+<li style="margin-bottom: 10px;"><strong>継承（extends）</strong>： 単一継承のみ。インタフェースは implements で複数実装可能。</li>
+<li style="margin-bottom: 10px;">実装したメソッドには public をつけておく。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. ポイント解説</h2>
+
+<div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff; margin-bottom: 15px;">
+<p style="margin: 0 0 10px 0;"><strong>💡 インタフェースは「抽象メソッドだけ」を極限にしたもの</strong></p>
+<p style="margin: 0 0 10px 0;">スーパークラスを極限まで抽象化すると、抽象メソッドだけのクラスができあがります。それはインタフェースとして別に定義します。abstract の記述は不要になり、複数の実装（implements）が可能になります。</p>
+<ul style="padding-left: 20px; margin: 0;">
+<li style="margin-bottom: 6px;"><strong>interface</strong>： メソッドの形だけを定義。中身は書かない。</li>
+<li style="margin-bottom: 6px;"><strong>implements</strong>： クラスがインタフェースで決めたメソッドを実装する。複数指定可能。</li>
+</ul>
+</div>
+
+<div style="background-color: #f9f9f9; border: 2px dashed #ccc; border-radius: 8px; padding: 24px; margin: 15px 0; text-align: center; color: #666;">
+<p style="margin: 0; font-size: 14px;">【図の挿入場所】インタフェースの説明用（実装の関係・複数 implements など）</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. 対象テキストのページ</h2>
+<p style="margin: 0;"><strong>Chapter 10（インタフェース）</strong>： 10.1 付近</p>
+<p style="margin: 10px 0 0 0; font-size: 14px; color: #555;">※次回の多態性で、抽象クラスとインタフェースの両方を使います。</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. 動画（タイトルをクリックして再生）</h2>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 137. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293782" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">インタフェース概要</a> … インタフェースの役割と定義の仕方を学びます。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 138. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293784" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">実装</a> … implements でインタフェースを実装する方法です。</li>
+</ul>
+</section>
+
+</div>

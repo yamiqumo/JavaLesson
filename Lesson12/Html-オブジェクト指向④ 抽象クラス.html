@@ -81,40 +81,52 @@
 <p style="margin: 12px 0 0 0; font-size: 12px; color: #666;">※図では VendingMachine から下に矢印を伸ばし、VendingHotNoodle と Vending2Items が継承している関係を示す。</p>
 </div>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：抽象クラス VendMachine</h3>
-<p style="margin-bottom: 10px;">自販機の「買う」流れは共通にしたいが、中身（在庫の持ち方・チェックの仕方）はサブクラスで違う、という設計です。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 抽象クラス：new できない。サブクラスで実装する前提。</span>
-<span style="color: #0033ff;">public abstract class</span> VendMachine {
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">前回までの基本クラス VendMachine</h3>
+<p style="margin-bottom: 10px;">基底クラスとして <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drinkName</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> を持ち、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> で「〇〇を購入しました」と表示するだけのシンプルなクラスです。この単元では、ここに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> や継承を自分で付けていくハンズオンに挑戦します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 基底クラス：drinkName と stock を持ち、buy で購入表示するだけ</span>
+<span style="color: #0033ff;">public class</span> VendMachine {
 
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
-        <span style="color: #0033ff;">if</span> (beforeBuy() == <span style="color: #0033ff;">true</span>) {
-            System.out.println(<span style="color: #cc0000;">"1分ほどお待ちください"</span>);
-            dispense();
-        }
+    <span style="color: #0033ff;">private</span> String drinkName;
+    <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
+
+    <span style="color: #0033ff;">public</span> VendMachine(String drinkName, <span style="color: #0033ff;">int</span> stock) {
+        <span style="color: #0033ff;">this</span>.drinkName = drinkName;
+        <span style="color: #0033ff;">this</span>.stock = stock;
     }
 
-    <span style="color: #666;">// サブクラスで必ず実装する（中身は書かない）</span>
-    <span style="color: #0033ff;">protected abstract boolean</span> beforeBuy();
-    <span style="color: #0033ff;">protected abstract void</span> dispense();
+    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> buy() {
+        <span style="color: #0033ff;">if</span> (stock >= 1) {
+            stock--;
+            System.out.println(drinkName + <span style="color: #cc0000;">"を購入しました"</span>);
+        } <span style="color: #0033ff;">else</span> {
+            System.out.println(<span style="color: #cc0000;">"在庫がありません"</span>);
+        }
+    }
 }</pre>
 <p style="font-size:12px;color:#666;margin-top:8px;margin-bottom:6px;">※最初に基本クラスをここからドラッグして読み込みます。メインメソッドは含みません。</p>
 <details style="margin: 0 0 12px 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 基本クラス（VendMachine）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 抽象クラス：new できない。サブクラスで実装する前提。
-public abstract class VendMachine {
+  <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 基底クラス：drinkName と stock を持ち、buy で購入表示するだけ
+public class VendMachine {
 
-    public void buy() {
-        if (beforeBuy() == true) {
-            System.out.println("1分ほどお待ちください");
-            dispense();
-        }
+    private String drinkName;
+    private int stock;
+
+    public VendMachine(String drinkName, int stock) {
+        this.drinkName = drinkName;
+        this.stock = stock;
     }
 
-    // サブクラスで必ず実装する（中身は書かない）
-    protected abstract boolean beforeBuy();
-    protected abstract void dispense();
+    public void buy() {
+        if (stock >= 1) {
+            stock--;
+            System.out.println(drinkName + "を購入しました");
+        } else {
+            System.out.println("在庫がありません");
+        }
+    }
 }</textarea>
 </div>
 </details>
@@ -122,8 +134,8 @@ public abstract class VendMachine {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 VendingHotNoodle をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:200px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 温かい麺用自販機（お湯の量を管理）
-public class VendingHotNoodle extends VendMachine {
+  <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 温かい麺用自販機（お湯の量を管理）— ただのクラス
+public class VendingHotNoodle {
 
     /** お湯の量（mL） */
     private int water;
@@ -133,24 +145,18 @@ public class VendingHotNoodle extends VendMachine {
         this.water = water;
     }
 
-    @Override
-    protected boolean beforeBuy() {
+    public void buy() {
         if (water >= 200) {
-            return true;
+            water -= 200;
+            System.out.println("温かい麺を購入しました");
+        } else {
+            System.out.println("お湯が足りません");
         }
-        System.out.println("お湯が足りません");
-        return false;
-    }
-
-    @Override
-    protected void dispense() {
-        water -= 200;
-        System.out.println("温かい麺をお出ししました");
     }
 }</textarea>
 </div>
 </details>
-<p style="margin-bottom: 0;">このように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class VendMachine</code> と書くと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendMachine()</code> はできません。代わりにサブクラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> を実装して使います。</p>
+<p style="margin-bottom: 0;">上記はすべてただのクラスです。この基本クラスをもとに、ハンズオンで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> や継承を自分で付けていきます。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
@@ -158,30 +164,30 @@ public class VendingHotNoodle extends VendMachine {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】練習問題</h2>
 <div>
-<strong>【問題】抽象クラスを継承する</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> が抽象クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected abstract boolean beforeBuy();</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">protected abstract void dispense();</code> を持っているとき、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SimpleVend</code> というサブクラスを作り、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> では常に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">true</code> を返し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> では「商品を出しました」と表示するように実装してください。
+<strong>【問題】VendMachine に abstract を付けて継承する</strong><br>
+上の基本クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> に、自分で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> と抽象メソッド（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code>）を付け、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SimpleVend</code> というサブクラスで継承・実装してみましょう。
 </div>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class SimpleVend extends VendMachine</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> を実装します。オーバーライドしたメソッドには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> をつけておきましょう。</p>
+<p>VendMachine を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract class</code> にし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の流れのうちサブクラスに任せたい部分を abstract メソッドにします。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class SimpleVend extends VendMachine</code> で継承し、@Override で抽象メソッドを実装します。</p>
 </details>
 <div style="margin-top: 25px;">
 <strong>【問題】Vending2Items クラスを自分で書いてみる</strong><br>
-<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> を継承し、<strong>2種類の商品</strong>を扱う <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Vending2Items</code> クラスを自分で書いてみましょう。
+<strong>2種類の商品</strong>を扱う <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Vending2Items</code> クラスを、ただのクラスとして自分で書いてみましょう。継承はしなくてかまいません。
 </div>
 <div style="margin: 8px 0 0 0; font-size: 13px;">
-仕様：フィールドに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drinkName1</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drinkName2</code>（String）、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock1</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock2</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">selected</code>（int）を持ち、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">selected</code> の値（1 または 2）に応じて対応する在庫を減らし「選択したアイテムを購入した」と分かる表示をすること。
+仕様：フィールドに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drinkName1</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drinkName2</code>（String）、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock1</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock2</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">selected</code>（int）を持ち、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">selected</code> が <strong>0 か 1</strong> で購入する商品が変わるように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を実装すること。最初はエラーが出てもかまいません。自分で組んでいけるように挑戦してみてください。
 </div>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendMachine</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code> では selected が 1 または 2 かつ対応する在庫が 1 以上かどうかを返す。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code> では selected に応じて stock1 または stock2 を減らし、どちらの商品を出したか表示する。</p>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> 内で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">selected == 0</code> のときは商品1（stock1 を減らし drinkName1 を表示）、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">selected == 1</code> のときは商品2（stock2 を減らし drinkName2 を表示）にする。在庫チェックを忘れずに。</p>
 </details>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】selected が 1 のときは商品1、2 のときは商品2を出します。抽象メソッド beforeBuy() と dispense() を実装します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Vending2Items extends VendMachine {
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】selected が 0 のときは商品1、1 のときは商品2を出します。ただのクラスとして実装した例です。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Vending2Items {
     private String drinkName1, drinkName2;
     private int stock1, stock2, selected;
 
@@ -190,22 +196,21 @@ public class VendingHotNoodle extends VendMachine {
         stock1 = s1; stock2 = s2; selected = sel;
     }
 
-    @Override
-    protected boolean beforeBuy() {
-        if (selected == 1 && stock1 >= 1) return true;
-        if (selected == 2 && stock2 >= 1) return true;
-        System.out.println("在庫がありません");
-        return false;
-    }
-
-    @Override
-    protected void dispense() {
-        if (selected == 1) {
-            stock1--;
-            System.out.println(drinkName1 + "を購入しました");
+    public void buy() {
+        if (selected == 0) {
+            if (stock1 >= 1) {
+                stock1--;
+                System.out.println(drinkName1 + "を購入しました");
+            } else {
+                System.out.println("在庫がありません");
+            }
         } else {
-            stock2--;
-            System.out.println(drinkName2 + "を購入しました");
+            if (stock2 >= 1) {
+                stock2--;
+                System.out.println(drinkName2 + "を購入しました");
+            } else {
+                System.out.println("在庫がありません");
+            }
         }
     }
 }</pre>
@@ -213,7 +218,7 @@ public class VendingHotNoodle extends VendMachine {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 解答をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:200px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Vending2Items extends VendMachine {
+  <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Vending2Items {
     private String drinkName1, drinkName2;
     private int stock1, stock2, selected;
 
@@ -222,22 +227,21 @@ public class VendingHotNoodle extends VendMachine {
         stock1 = s1; stock2 = s2; selected = sel;
     }
 
-    @Override
-    protected boolean beforeBuy() {
-        if (selected == 1 && stock1 >= 1) return true;
-        if (selected == 2 && stock2 >= 1) return true;
-        System.out.println("在庫がありません");
-        return false;
-    }
-
-    @Override
-    protected void dispense() {
-        if (selected == 1) {
-            stock1--;
-            System.out.println(drinkName1 + "を購入しました");
+    public void buy() {
+        if (selected == 0) {
+            if (stock1 >= 1) {
+                stock1--;
+                System.out.println(drinkName1 + "を購入しました");
+            } else {
+                System.out.println("在庫がありません");
+            }
         } else {
-            stock2--;
-            System.out.println(drinkName2 + "を購入しました");
+            if (stock2 >= 1) {
+                stock2--;
+                System.out.println(drinkName2 + "を購入しました");
+            } else {
+                System.out.println("在庫がありません");
+            }
         }
     }
 }</textarea>

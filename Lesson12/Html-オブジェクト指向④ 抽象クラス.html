@@ -79,6 +79,28 @@
 </dd>
 </dl>
 <p style="margin: 12px 0 0 0; font-size: 12px; color: #666;">※図では VendingMachine から下に矢印を伸ばし、VendingHotNoodle と Vending2Items が継承している関係を示す。</p>
+
+<p style="margin: 15px 0 8px 0; font-size: 13px; font-weight: bold; color: #333;">GASで描画する用（表なし・テキスト形式プロンプト）</p>
+<pre style="font-size: 12px; background-color: #f5f5f5; padding: 16px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto; white-space: pre-wrap; margin: 0;">以下の内容で、Javaの抽象クラスと継承のクラス図を描いてください。図中に日本語の説明を入れてください。
+
+【抽象クラス・一番上に配置】
+クラス名：VendingMachine
+フィールド：drinkName（型 String）、stock（型 int）
+メソッド：buy
+
+【継承したサブクラス1・VendingMachineの下（左側など）に配置】
+クラス名：VendingHotNoodle
+追加フィールド：water（型 int）
+図に書く日本語説明：温かい麺用自販機。お湯の量を管理する。
+
+【継承したサブクラス2・VendingMachineの下（右側など）に配置】
+クラス名：Vending2Items
+追加フィールド：drinkName1（String）、drinkName2（String）、stock1（int）、stock2（int）、selected（int）
+メソッド：buy — 選択したアイテムを購入する
+図に書く日本語説明：2種類の商品を扱う自販機。選択番号でどちらを出すか決める。
+
+【図の関係】
+VendingMachine から下向きに矢印を2本伸ばす。1本は VendingHotNoodle へ、もう1本は Vending2Items へ。矢印は継承（extends）を表す。</pre>
 </div>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：抽象クラス VendMachine</h3>

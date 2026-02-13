@@ -2,6 +2,130 @@
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 <h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第12回 抽象クラス</h1>
 
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">配布コード（基本クラス・継承先の元 — ドラッグでコピー）</h2>
+<p style="margin-bottom: 10px; font-size: 14px;">以下から基本クラスと継承先の元となるソースコードをドラッグでコピーして使えます。メインメソッドは含みません。</p>
+<p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【自販機（テキスト本編と共通）】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 基本クラス（VendMachine）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 基底クラス：drinkName と stock を持ち、buy で購入表示するだけ
+public class VendMachine {
+
+    private String drinkName;
+    private int stock;
+
+    public VendMachine(String drinkName, int stock) {
+        this.drinkName = drinkName;
+        this.stock = stock;
+    }
+
+    public void buy() {
+        if (stock >= 1) {
+            stock--;
+            System.out.println(drinkName + "を購入しました");
+        } else {
+            System.out.println("在庫がありません");
+        }
+    }
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 継承先の元（VendingHotNoodle）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:200px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 温かい麺用自販機（お湯の量を管理）— ただのクラス
+public class VendingHotNoodle {
+
+    /** お湯の量（mL） */
+    private int water;
+
+    /** コンストラクタ：お湯量を初期設定 */
+    public VendingHotNoodle(int water) {
+        this.water = water;
+    }
+
+    public void buy() {
+        if (water >= 200) {
+            water -= 200;
+            System.out.println("温かい麺を購入しました");
+        } else {
+            System.out.println("お湯が足りません");
+        }
+    }
+}</textarea>
+</div>
+</details>
+<p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題① 動物クラス用】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 基本クラス（Animal・抽象クラス）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:140px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public abstract class Animal {
+    private String name;
+    public Animal(String name) { this.name = name; }
+    public String getName() { return name; }
+    public abstract void cry();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 継承先の元（Dog）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Dog extends Animal {
+    public Dog(String name) { super(name); }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</textarea>
+</div>
+</details>
+<p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題② 社員クラス用】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 基本クラス（Employee・抽象クラス）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public abstract class Employee {
+    private String name;
+    private int baseSalary;
+
+    public Employee(String name, int baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+    public String getName() { return name; }
+    public int getBaseSalary() { return baseSalary; }
+    /** 給与を計算する。サブクラスで実装する */
+    public abstract int calcSalary();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 継承先の元（Manager）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Manager extends Employee {
+    private int bonus;
+
+    public Manager(String name, int baseSalary, int bonus) {
+        super(name, baseSalary);
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return getBaseSalary() + bonus;
+    }
+}</textarea>
+</div>
+</details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスを利用した問題（抽象クラス）</h2>
 <p style="margin-bottom: 10px;">動物クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> を<strong>抽象クラス</strong>として定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を抽象メソッドにしたうえで、Dog・Cat で実装する形に拡張してください。</p>
 <p style="margin-bottom: 5px;"><strong>フィールド／メソッド一覧（Animal：抽象クラス）</strong></p>
@@ -60,17 +184,27 @@
 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract class</code> で宣言し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract void cry();</code> のみを持たせてください。コンストラクタ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal(String name)</code> と name の getter は通常どおり実装してかまいません。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
 <p>クラス宣言は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract class Animal</code> とし、cry() は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract void cry();</code> とだけ書いて中身は書きません。</p>
 </details>
 <details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】abstract class と abstract void cry(); のみ中身なし。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public abstract class</span> Animal {
     <span style="color: #0033ff;">private</span> String name;
     <span style="color: #0033ff;">public</span> Animal(String name) { <span style="color: #0033ff;">this</span>.name = name; }
     <span style="color: #0033ff;">public</span> String getName() { <span style="color: #0033ff;">return</span> name; }
     <span style="color: #0033ff;">public abstract void</span> cry();
 }</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:100px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public abstract class Animal {
+    private String name;
+    public Animal(String name) { this.name = name; }
+    public String getName() { return name; }
+    public abstract void cry();
+}</textarea>
+</div>
 </details>
 </div>
 <br><br>
@@ -79,11 +213,12 @@
 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Animal</code> し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を実装して「ワンワン」と表示してください。コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">super(name)</code> を呼びます。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
 <p>抽象メソッド cry() は、サブクラスで @Override を付けて中身を書けば「実装」になります。System.out.println("ワンワン"); でよいです。</p>
 </details>
 <details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】extends Animal で super(name) を呼び、cry() を実装。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Dog <span style="color: #0033ff;">extends</span> Animal {
     <span style="color: #0033ff;">public</span> Dog(String name) { <span style="color: #0033ff;">super</span>(name); }
     @Override
@@ -91,6 +226,16 @@
         System.out.println(<span style="color: #cc0000;">"ワンワン"</span>);
     }
 }</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:100px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Dog extends Animal {
+    public Dog(String name) { super(name); }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</textarea>
+</div>
 </details>
 </div>
 <br><br>
@@ -99,11 +244,12 @@
 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Animal</code> し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を実装して「ニャー」と表示してください。Main で Dog と Cat の両方を生成し、それぞれ cry() を呼んで確認します。<br>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
 <p>Cat も Dog と同様に extends Animal で継承し、cry() で「ニャー」と表示します。</p>
 </details>
 <details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Dog と同様に extends Animal、cry() で「ニャー」。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public</span> <span style="color: #0033ff;">class</span> Cat <span style="color: #0033ff;">extends</span> Animal {
     <span style="color: #0033ff;">public</span> Cat(String name) { <span style="color: #0033ff;">super</span>(name); }
     @Override
@@ -111,12 +257,169 @@
         System.out.println(<span style="color: #cc0000;">"ニャー"</span>);
     }
 }</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:100px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Cat extends Animal {
+    public Cat(String name) { super(name); }
+    @Override
+    public void cry() {
+        System.out.println("ニャー");
+    }
+}</textarea>
+</div>
+</details>
+</div>
+</div>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスを利用した問題（抽象クラス）</h2>
+<p style="margin-bottom: 10px;">社員クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Employee</code> を<strong>抽象クラス</strong>として定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> を抽象メソッドにしたうえで、Manager・PartTimer で実装する形に拡張してください。上記「配布コード」から基本クラス（Employee）と継承先の元（Manager）をドラッグでコピーして使えます。</p>
+<p style="margin-bottom: 5px;"><strong>フィールド／メソッド一覧（Employee：抽象クラス）</strong></p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>区分</th>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr>
+<tr><td>フィールド</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code></td><td>String</td><td>社員名</td></tr>
+<tr><td>フィールド</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">baseSalary</code></td><td>int</td><td>基本給</td></tr>
+<tr><td>メソッド</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code></td><td>int</td><td><strong>抽象メソッド</strong>。サブクラスで実装する</td></tr>
+</tbody>
+</table>
+<p style="margin-bottom: 5px;"><strong>ステップ一覧</strong></p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>ステップ</th>
+<th>内容</th>
+<th>確認</th>
+</tr>
+<tr><td>1</td><td>Employee を抽象クラスで作る（name, baseSalary、abstract int calcSalary()）</td><td>new Employee() はコンパイルエラーになることを確認</td></tr>
+<tr><td>2</td><td>Manager が Employee を継承し、bonus を追加して calcSalary() で baseSalary + bonus を返す</td><td>Main で new Manager("田中", 300000, 50000) を生成し、calcSalary() で 350000 となることを確認</td></tr>
+<tr><td>3</td><td>PartTimer が Employee を継承し、勤務時間と時給を持ち、calcSalary() で 勤務時間×時給 を返す</td><td>Main で Manager と PartTimer を生成し、それぞれ calcSalary() を呼んで確認</td></tr>
+</tbody>
+</table>
+<div>
+<strong>【ステップ1】Employee を抽象クラスで作る</strong><br>
+上記「配布コード」の基本クラス（Employee）をコピーして使い、足りない場合は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract class Employee</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract int calcSalary();</code> になっているか確認してください。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>配布コードの Employee をそのまま使えば、すでに abstract class と abstract int calcSalary() になっています。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードの Employee と同じです。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public abstract class Employee {
+    private String name;
+    private int baseSalary;
+    public Employee(String name, int baseSalary) { this.name = name; this.baseSalary = baseSalary; }
+    public String getName() { return name; }
+    public int getBaseSalary() { return baseSalary; }
+    public abstract int calcSalary();
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:140px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public abstract class Employee {
+    private String name;
+    private int baseSalary;
+    public Employee(String name, int baseSalary) { this.name = name; this.baseSalary = baseSalary; }
+    public String getName() { return name; }
+    public int getBaseSalary() { return baseSalary; }
+    public abstract int calcSalary();
+}</textarea>
+</div>
+</details>
+</div>
+<br><br>
+<div>
+<strong>【ステップ2】Manager で継承し、calcSalary() を実装する</strong><br>
+配布コードの Manager をコピーして使い、bonus を加えた給与を返す calcSalary() になっているか確認してください。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>getBaseSalary() + bonus を return します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードの Manager と同じです。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Manager extends Employee {
+    private int bonus;
+    public Manager(String name, int baseSalary, int bonus) {
+        super(name, baseSalary);
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return getBaseSalary() + bonus;
+    }
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:140px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Manager extends Employee {
+    private int bonus;
+    public Manager(String name, int baseSalary, int bonus) {
+        super(name, baseSalary);
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return getBaseSalary() + bonus;
+    }
+}</textarea>
+</div>
+</details>
+</div>
+<br><br>
+<div>
+<strong>【ステップ3】PartTimer で継承し、calcSalary() を実装する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code> クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends Employee</code> し、勤務時間（int）と時給（int）をフィールドに持ち、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> で 勤務時間×時給 を返すように実装してください。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>コンストラクタで name, baseSalary（0 でよい）, 勤務時間, 時給 を受け取り、calcSalary() で 勤務時間 * 時給 を return します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】勤務時間×時給を返します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class PartTimer extends Employee {
+    private int hours;
+    private int hourlyPay;
+    public PartTimer(String name, int hours, int hourlyPay) {
+        super(name, 0);
+        this.hours = hours;
+        this.hourlyPay = hourlyPay;
+    }
+    @Override
+    public int calcSalary() {
+        return hours * hourlyPay;
+    }
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:150px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class PartTimer extends Employee {
+    private int hours;
+    private int hourlyPay;
+    public PartTimer(String name, int hours, int hourlyPay) {
+        super(name, 0);
+        this.hours = hours;
+        this.hourlyPay = hourlyPay;
+    }
+    @Override
+    public int calcSalary() {
+        return hours * hourlyPay;
+    }
+}</textarea>
+</div>
 </details>
 </div>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
-<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題② 抽象クラス型の配列で複数インスタンスを扱う</h2>
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ 抽象クラス型の配列で複数インスタンスを扱う</h2>
 <p style="margin-bottom: 5px;"><strong>【問題】Animal 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
 <p style="margin-bottom: 10px;">基本問題①で作った <strong>抽象クラス</strong> <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code> と、そのサブクラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
@@ -142,11 +445,12 @@
 <div>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
 <p>抽象クラス Animal は new できませんが、<strong>Animal 型の変数</strong>には、Dog や Cat のインスタンスを代入できます。配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal[] animals = { new Dog("ポチ"), new Cat("タマ"), new Dog("ハチ"), new Cat("ミケ") };</code> のように作れます。</p>
 </details>
 <details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Animal 型の配列に Dog と Cat を入れ、拡張 for で cry() を呼びます。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Animal[] animals = {
     <span style="color: #0033ff;">new</span> Dog(<span style="color: #cc0000;">"ポチ"</span>),
     <span style="color: #0033ff;">new</span> Cat(<span style="color: #cc0000;">"タマ"</span>),
@@ -156,6 +460,18 @@
 <span style="color: #0033ff;">for</span> (Animal a : animals) {
     a.cry();
 }</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Cursor 画面へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">Animal[] animals = {
+    new Dog("ポチ"),
+    new Cat("タマ"),
+    new Dog("ハチ"),
+    new Cat("ミケ")
+};
+for (Animal a : animals) {
+    a.cry();
+}</textarea>
+</div>
 </details>
 </div>
 </div>

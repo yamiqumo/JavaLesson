@@ -1,0 +1,344 @@
+【練習問題】 第13回 オブジェクト指向⑤ ～インタフェース～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第13回 インタフェース</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">配布コード（インタフェース・実装クラス — ドラッグでコピー）</h2>
+<p style="margin-bottom: 10px; font-size: 14px;">以下からインタフェースと実装クラスのソースコードをドラッグでコピーして使えます。メインメソッドは含みません。</p>
+<p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【自販機（テキスト本編と共通）】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（CanSell）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public interface CanSell {
+    void sell();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（VendMachine implements CanSell）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:240px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class VendMachine implements CanSell {
+    private String drinkName;
+    private int stock;
+
+    public VendMachine(String drinkName, int stock) {
+        this.drinkName = drinkName;
+        this.stock = stock;
+    }
+
+    @Override
+    public void sell() {
+        if (stock >= 1) {
+            stock--;
+            System.out.println(drinkName + "を購入しました");
+        } else {
+            System.out.println("在庫がありません");
+        }
+    }
+}</textarea>
+</div>
+</details>
+<p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題① 動物クラス用】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（CanCry）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public interface CanCry {
+    void cry();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（Dog implements CanCry）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Dog implements CanCry {
+    private String name;
+    public Dog(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</textarea>
+</div>
+</details>
+<p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題② 社員クラス用】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Payable）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public interface Payable {
+    int calcSalary();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（Manager implements Payable）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Manager implements Payable {
+    private String name;
+    private int baseSalary;
+    private int bonus;
+
+    public Manager(String name, int baseSalary, int bonus) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return baseSalary + bonus;
+    }
+}</textarea>
+</div>
+</details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスを利用した問題（インタフェース）</h2>
+<p style="margin-bottom: 10px;">「鳴く」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements CanCry</code> して、それぞれ「ワンワン」「ニャー」と表示するように実装してください。上記「配布コード」からコピーして使えます。</p>
+<p style="margin-bottom: 5px;"><strong>ステップ一覧</strong></p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;">
+<th>ステップ</th>
+<th>内容</th>
+</tr>
+<tr><td>1</td><td>CanCry インタフェースを定義（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void cry();</code> のみ）</td></tr>
+<tr><td>2</td><td>Dog が implements CanCry し、cry() で「ワンワン」と表示</td></tr>
+<tr><td>3</td><td>Cat が implements CanCry し、cry() で「ニャー」と表示</td></tr>
+</tbody>
+</table>
+<div>
+<strong>【ステップ1】CanCry インタフェースを定義する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface CanCry { void cry(); }</code> のように、メソッドの形だけを書きます。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>インタフェース内のメソッドは修飾子を省略すると public abstract として扱われます。中身は書きません。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】メソッドの形だけを定義します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface CanCry {
+    void cry();
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:60px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public interface CanCry {
+    void cry();
+}</textarea>
+</div>
+</details>
+</div>
+<br><br>
+<div>
+<strong>【ステップ2】Dog が implements CanCry し、cry() を実装する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog implements CanCry</code> とし、@Override で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public void cry()</code> を実装して「ワンワン」と表示します。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>実装するメソッドには public をつけ、中身で System.out.println("ワンワン"); を呼びます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードの Dog と同じです。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Dog implements CanCry {
+    private String name;
+    public Dog(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Dog implements CanCry {
+    private String name;
+    public Dog(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</textarea>
+</div>
+</details>
+</div>
+<br><br>
+<div>
+<strong>【ステップ3】Cat も implements CanCry し、cry() で「ニャー」と表示する</strong><br>
+Dog と同様に Cat クラスで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements CanCry</code> し、cry() で「ニャー」と表示してください。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>Cat も Dog と同様に implements CanCry で cry() を実装し、「ニャー」と表示します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Dog と同様の構造で cry() の表示だけ「ニャー」にします。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Cat implements CanCry {
+    private String name;
+    public Cat(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ニャー");
+    }
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Cat implements CanCry {
+    private String name;
+    public Cat(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ニャー");
+    }
+}</textarea>
+</div>
+</details>
+</div>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスを利用した問題（インタフェース）</h2>
+<p style="margin-bottom: 10px;">「給与を計算できる」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Payable</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int calcSalary();</code> を持たせてください。続けて、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Payable</code> し、それぞれ給与計算を実装してください。</p>
+<div>
+<strong>【ステップ1】Payable インタフェースを定義する</strong><br>
+<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int calcSalary();</code> のみを持つインタフェースを定義します。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>public interface Payable { int calcSalary(); } でよいです。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】戻り値 int のメソッドの形だけを定義します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface Payable {
+    int calcSalary();
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:60px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public interface Payable {
+    int calcSalary();
+}</textarea>
+</div>
+</details>
+</div>
+<br><br>
+<div>
+<strong>【ステップ2】Manager と PartTimer が implements Payable する</strong><br>
+Manager は基本給+賞与、PartTimer は勤務時間×時給を返すように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> を実装してください。<br>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>Manager は baseSalary + bonus、PartTimer は hours * hourlyPay を return します。どちらも @Override public int calcSalary() で実装します。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Manager）</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードの Manager と同じです。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Manager implements Payable {
+    private String name;
+    private int baseSalary;
+    private int bonus;
+    public Manager(String name, int baseSalary, int bonus) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return baseSalary + bonus;
+    }
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class Manager implements Payable {
+    private String name;
+    private int baseSalary;
+    private int bonus;
+    public Manager(String name, int baseSalary, int bonus) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return baseSalary + bonus;
+    }
+}</textarea>
+</div>
+</details>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（PartTimer）</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】勤務時間×時給を返します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class PartTimer implements Payable {
+    private String name;
+    private int hours;
+    private int hourlyPay;
+    public PartTimer(String name, int hours, int hourlyPay) {
+        this.name = name;
+        this.hours = hours;
+        this.hourlyPay = hourlyPay;
+    }
+    @Override
+    public int calcSalary() {
+        return hours * hourlyPay;
+    }
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:170px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class PartTimer implements Payable {
+    private String name;
+    private int hours;
+    private int hourlyPay;
+    public PartTimer(String name, int hours, int hourlyPay) {
+        this.name = name;
+        this.hours = hours;
+        this.hourlyPay = hourlyPay;
+    }
+    @Override
+    public int calcSalary() {
+        return hours * hourlyPay;
+    }
+}</textarea>
+</div>
+</details>
+</div>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ インタフェース型の変数で複数実装を扱う</h2>
+<p style="margin-bottom: 5px;"><strong>【問題】CanCry 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
+<p style="margin-bottom: 10px;">基本問題①で作った <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> と、それを実装した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry[]</code> 型の配列に Dog と Cat のインスタンスを入れ、拡張 for 文で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。次回の多態性の準備になります。</p>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;">
+<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>インタフェース型の変数には、そのインタフェースを実装したクラスのインスタンスを代入できます。配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry[] animals = { new Dog("ポチ"), new Cat("タマ") };</code> のように作れます。</p>
+</details>
+<details style="margin-top: 5px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】CanCry 型の配列に Dog と Cat を入れ、拡張 for で cry() を呼びます。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">CanCry[] animals = {
+    new Dog("ポチ"),
+    new Cat("タマ")
+};
+for (CanCry a : animals) {
+    a.cry();
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:90px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">CanCry[] animals = {
+    new Dog("ポチ"),
+    new Cat("タマ")
+};
+for (CanCry a : animals) {
+    a.cry();
+}</textarea>
+</div>
+</details>
+</div>
+</div>

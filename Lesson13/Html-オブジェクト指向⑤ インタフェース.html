@@ -62,6 +62,11 @@
 <li style="margin-bottom: 10px;">インタフェースのメソッドは修飾子を省略すると <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract</code> として扱われる。実装側では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override</code> を付け、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> で実装する。</li>
 </ul>
 
+<div style="margin: 20px 0; text-align: center;">
+<p style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold; color: #0033ff;">図：インタフェースと実装の関係（1つのインタフェースを複数のクラスが実装）</p>
+<img src="diagram/interface1.png" alt="インタフェースと実装の関係（インタフェースAをクラスA・クラスBが実装）" style="max-width: 100%; height: auto; border: 1px solid #e1dbbd; border-radius: 5px;" />
+</div>
+
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：「販売できる」を表すインタフェース CanSell</h3>
 <p style="margin-bottom: 10px;">自販機が「販売する」という振る舞いを約束するために、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanSell</code> インタフェースを定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> が実装する例です。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// インタフェース：売るという振る舞いの約束だけ</span>
@@ -97,6 +102,10 @@
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】抽象クラスとインタフェースの違い（整理）</h2>
+<div style="margin: 20px 0; text-align: center;">
+<p style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold; color: #0033ff;">図：多重継承の禁止と多重実装（継承は1つだけ、実装は複数OK）</p>
+<img src="diagram/interface2.png" alt="継承は多重不可・実装は多重OKの比較図" style="max-width: 100%; height: auto; border: 1px solid #e1dbbd; border-radius: 5px;" />
+</div>
 <table style="border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="8">
 <tbody>
 <tr style="background-color: #f0f8ff;">

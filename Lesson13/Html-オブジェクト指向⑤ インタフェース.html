@@ -41,7 +41,7 @@
 <p style="margin: 0;"><strong>ユウタ：</strong>「インタフェースには、どんなメソッドを書けばいいか、名前と引数と戻り値の<strong>約束だけ</strong>を書く、という理解でいいですか？」</p>
 </div>
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 10px;">
-<p style="margin: 0;"><strong>カバ先生：</strong>「その通りです。そして大事な違いがもう一つ。クラスは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends</code> で<strong>1つしか継承できません</strong>が、インタフェースは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements</code> で<strong>複数実装できます</strong>。だから『販売できる』と『動かせる』を別々のインタフェースにして、1つのクラスが両方実装する、といったことができます。」</p>
+<p style="margin: 0;"><strong>カバ先生：</strong>「その通りです。そして大事な違いがもう一つ。クラスは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends</code> で<strong>1つしか継承できません</strong>が、インタフェースは <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements</code> で<strong>複数実装できます</strong>。だから『移動できる（Movable）』と『呼び込みできる（Speakable）』を別々のインタフェースにして、1つの移動販売機クラスが両方実装する、といったことができます。」</p>
 </div>
 <div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0;">
 <p style="margin: 0;"><strong>ナナコ：</strong>「実装するとき、そのメソッドには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> をつける、と前回習いました。インタフェースで決めたメソッドをクラスで実装するときも、同じように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> でオーバーライドする、という理解でよいでしょうか。」</p>
@@ -97,58 +97,73 @@
 <div style="min-height: 200px; border: 1px dashed #ccc; border-radius: 5px; background-color: #fafafa; display: flex; align-items: center; justify-content: center;"><span style="color: #999; font-size: 14px;">※図の差し込みエリア（LearningBoxで手差し）</span></div>
 </div>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">本単元の基本クラス（Movable・VendingCar）</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">導入のストーリー：なぜ Speakable（呼び込み能力）が必要か？</h3>
+<p style="margin-bottom: 10px;">題材は<strong>次世代の「移動販売型」自動販売機（VendingMachine クラス）</strong>です。現在、VendingMachine は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Movable</code>（移動能力）を実装しており、顧客の元へ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> で移動できます。</p>
+<div style="background-color: #fff8e6; padding: 15px; border-radius: 5px; border-left: 5px solid #e6a800; margin-bottom: 10px;">
+<p style="margin: 0;">せっかく移動販売で近くまで来ても、<strong>無音ではお客様に気づいてもらえません</strong>。焼き芋屋さんのチャイムや、アイスクリーム車の音楽のように、自分の存在を知らせる<strong>「Speakable（呼び込み能力）」</strong>を追加して、売上を最大化しましょう！</p>
+</div>
+
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">本単元の基本クラス（Movable・Speakable・VendingMachine）</h3>
 <p style="margin-bottom: 10px;">基本的に、<strong>編集前の基本クラスを読み込んでから</strong>、テキストの中で貼り付けをします。ソースコードは<strong>ファイルごとに TextArea に用意</strong>してあり、<strong>選択してドラッグで転載</strong>できます。</p>
 <details style="margin: 0 0 12px 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Movable）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public interface Movable {
+  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Movable {
     void move();
 }</textarea>
 </div>
 </details>
 <details style="margin: 0 0 12px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（VendingCar implements Movable）をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Speakable）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:200px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">public class VendingCar implements Movable {
+  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Speakable {
+    void speak();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 12px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（VendingMachine implements Movable, Speakable）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:280px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class VendingMachine implements Movable, Speakable {
     private String name;
 
-    public VendingCar(String name) {
+    public VendingMachine(String name) {
         this.name = name;
     }
 
     @Override
     public void move() {
-        System.out.println(name + "が移動しました");
+        System.out.println(name + "が指定の場所へ移動しました");
+    }
+
+    @Override
+    public void speak() {
+        System.out.println("ピロリロ〜ン♪ 淹れたてのコーヒーはいかがですか？");
     }
 }</textarea>
 </div>
 </details>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：「動かせる」を表すインタフェース Movable</h3>
-<p style="margin-bottom: 10px;">移動販売車が「動く」という振る舞いを約束するために、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Movable</code> インタフェースを定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingCar</code> が実装する例です。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// インタフェース：動くという振る舞いの約束だけ</span>
-<span style="color: #0033ff;">public interface</span> Movable {
-    <span style="color: #666;">// このメソッドを実装するクラスは「動く」ことができる</span>
-    <span style="color: #0033ff;">void</span> move();
-}
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">インタフェースの作成と多重実装</h3>
+<p style="margin-bottom: 8px;"><strong>Speakable.java</strong> は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void speak();</code> だけを持たせます。移動販売機は「移動ユニット」と「音響ユニット」という<strong>2つの異なる能力（インタフェース）</strong>を装備するイメージです。</p>
+<div style="margin: 15px 0; text-align: center;">
+<p style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold; color: #0033ff;">図：1つのクラスが Movable と Speakable の2つを実装（多重実装）</p>
+<div style="min-height: 120px; border: 1px dashed #ccc; border-radius: 5px; background-color: #fafafa; display: flex; align-items: center; justify-content: center;"><span style="color: #999; font-size: 14px;">※図の差し込みエリア（LearningBoxで手差し）</span></div>
+</div>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 多重実装：class VendingMachine implements Movable, Speakable</span>
+<span style="color: #0033ff;">public interface</span> Movable { <span style="color: #0033ff;">void</span> move(); }
+<span style="color: #0033ff;">public interface</span> Speakable { <span style="color: #0033ff;">void</span> speak(); }
 
-<span style="color: #666;">// VendingCar が Movable を実装する</span>
-<span style="color: #0033ff;">public class</span> VendingCar <span style="color: #0033ff;">implements</span> Movable {
+<span style="color: #0033ff;">public class</span> VendingMachine <span style="color: #0033ff;">implements</span> Movable, Speakable {
     <span style="color: #0033ff;">private</span> String name;
-
-    <span style="color: #0033ff;">public</span> VendingCar(String name) {
-        <span style="color: #0033ff;">this</span>.name = name;
-    }
-
-    <span style="color: #0033ff;">@Override</span>
-    <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> move() {
-        System.out.println(name + <span style="color: #cc0000;">"が移動しました"</span>);
-    }
+    <span style="color: #0033ff;">public</span> VendingMachine(String name) { <span style="color: #0033ff;">this</span>.name = name; }
+    <span style="color: #0033ff;">@Override</span> <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> move() { System.out.println(name + <span style="color: #cc0000;">"が指定の場所へ移動しました"</span>); }
+    <span style="color: #0033ff;">@Override</span> <span style="color: #0033ff;">public</span> <span style="color: #0033ff;">void</span> speak() { System.out.println(<span style="color: #cc0000;">"ピロリロ〜ン♪ 淹れたてのコーヒーはいかがですか？"</span>); }
 }</pre>
-<p style="margin-bottom: 0;">このように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Movable</code> と書くと、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> を必ず実装する必要があります。次回の多態性では、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Movable</code> 型の変数に移動販売車や別の「動けるもの」を入れて、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> を呼ぶ、という扱いを学びます。</p>
+<p style="margin-bottom: 0;">このように <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Movable, Speakable</code> と<strong>複数カンマで並べる</strong>と、1つのクラスが2つのインタフェースのメソッドをすべて実装する必要があります。次回の多態性では、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Movable</code> 型や <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Speakable</code> 型の変数で受け、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">speak()</code> を呼ぶ扱いを学びます。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
@@ -193,15 +208,28 @@
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
 <section style="margin-bottom: 30px;">
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】練習問題</h2>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【5】練習問題（VendingMachine で営業フローを実装）</h2>
 <div>
-<strong>【問題】インタフェースを定義し、クラスで実装する</strong><br>
-「鳴く」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void cry();</code> だけを持たせてください。続けて、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> クラスが <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements CanCry</code> し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> で「ワンワン」と表示するように実装してください。
+<strong>【問題】Main クラスで「移動 → 呼び込み」の営業フローを実装する</strong><br>
+上記の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code>（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Movable, Speakable</code>）を使い、<strong>指定の場所に移動（move）したあと、元気よく呼び込み（speak）をする</strong>という一連の営業フローを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> クラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドで実装してください。
 </div>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface CanCry { void cry(); }</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog implements CanCry</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override public void cry() { ... }</code> を実装します。</p>
+<p>VendingMachine のインスタンスを作り、まず <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> を呼んでから <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">speak()</code> を呼ぶ順番にします。例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine vm = new VendingMachine("コーヒー号"); vm.move(); vm.speak();</code></p>
+</details>
+<details style="margin-top: 10px;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Main の main 内）</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】移動してから呼び込みの順で実行します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">VendingMachine vm = new VendingMachine("コーヒー号");
+vm.move();
+vm.speak();</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">VendingMachine vm = new VendingMachine("コーヒー号");
+vm.move();
+vm.speak();</textarea>
+</div>
 </details>
 </section>
 

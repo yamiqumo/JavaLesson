@@ -106,16 +106,30 @@
 </tbody>
 </table>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
 <p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface Cryable { void cry(); }</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog implements Cryable</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override public void cry() { ... }</code> を実装します。Cat も同様です。</p>
 </details>
-<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Cryable・Dog・Cat）</summary>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例（Cryable・Dog・Cat）</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードと同様の構成で、Cat は cry() で「ニャー」と表示します。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface Cryable { void cry(); }
 public class Dog implements Cryable { ... cry() で「ワンワン」 }
 public class Cat implements Cryable { ... cry() で「ニャー」 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <p style="font-size:12px;color:#333;margin-bottom:4px;">Cryable</p>
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;margin-bottom:10px;">public interface Cryable {
+    void cry();
+}</textarea>
+  <p style="font-size:12px;color:#333;margin-bottom:4px;">Dog</p>
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;margin-bottom:10px;">public class Dog implements Cryable {
+    private String name;
+    public Dog(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</textarea>
+  <p style="font-size:12px;color:#333;margin-bottom:4px;">Cat</p>
   <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Cat implements Cryable {
     private String name;
     public Cat(String name) { this.name = name; }
@@ -132,16 +146,37 @@ public class Cat implements Cryable { ... cry() で「ニャー」 }</pre>
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスを利用した問題（インタフェース）</h2>
 <p style="margin-bottom: 10px;">「給与を計算できる」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Payable</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int calcSalary();</code> を持たせてください。続けて、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Payable</code> し、それぞれ給与計算を実装してください。</p>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
 <p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface Payable { int calcSalary(); }</code>。Manager は baseSalary + bonus、PartTimer は hours * hourlyPay を return します。</p>
 </details>
-<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Payable・Manager・PartTimer）</summary>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例（Payable・Manager・PartTimer）</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Manager は配布コードと同様。PartTimer は勤務時間×時給を返します。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface Payable { int calcSalary(); }
 // Manager: baseSalary + bonus
 // PartTimer: hours * hourlyPay</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <p style="font-size:12px;color:#333;margin-bottom:4px;">Payable</p>
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;margin-bottom:10px;">public interface Payable {
+    int calcSalary();
+}</textarea>
+  <p style="font-size:12px;color:#333;margin-bottom:4px;">Manager</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;margin-bottom:10px;">public class Manager implements Payable {
+    private String name;
+    private int baseSalary;
+    private int bonus;
+
+    public Manager(String name, int baseSalary, int bonus) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
+    }
+    @Override
+    public int calcSalary() {
+        return baseSalary + bonus;
+    }
+}</textarea>
+  <p style="font-size:12px;color:#333;margin-bottom:4px;">PartTimer</p>
   <textarea readonly style="width:100%;height:170px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class PartTimer implements Payable {
     private String name;
     private int hours;
@@ -192,10 +227,10 @@ public class Cat implements Cryable { ... cry() で「ニャー」 }</pre>
 </div>
 </details>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
 <p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends</code> を先に、続けて <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements</code> を書きます。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog extends Animal implements Cryable, Walkable</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">walk()</code> の両方を @Override で実装します。</p>
 </details>
-<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】extends と implements を同時に使った Dog クラスです。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Dog extends Animal implements Cryable, Walkable {
     public Dog(String name) { super(name); }

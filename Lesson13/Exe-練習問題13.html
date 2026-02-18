@@ -37,19 +37,19 @@
 </table>
 <p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【基本問題① 動物クラス用】</p>
 <details style="margin: 0 0 10px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（CanCry）をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Cryable）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface CanCry {
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Cryable {
     void cry();
 }</textarea>
 </div>
 </details>
 <details style="margin: 0 0 10px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（Dog implements CanCry）をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（Dog implements Cryable）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Dog implements CanCry {
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Dog implements Cryable {
     private String name;
     public Dog(String name) { this.name = name; }
     @Override
@@ -95,28 +95,28 @@
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスを利用した問題（インタフェース）</h2>
-<p style="margin-bottom: 10px;">「鳴く」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements CanCry</code> して、それぞれ「ワンワン」「ニャー」と表示するように実装してください。上記「配布コード」からコピーして使えます。</p>
+<p style="margin-bottom: 10px;">「鳴く」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Cryable</code> して、それぞれ「ワンワン」「ニャー」と表示するように実装してください。上記「配布コード」からコピーして使えます。</p>
 <p style="margin-bottom: 5px;"><strong>ステップ一覧</strong></p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
-<tr><td>1</td><td>CanCry インタフェースを定義（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void cry();</code> のみ）</td></tr>
-<tr><td>2</td><td>Dog が implements CanCry し、cry() で「ワンワン」と表示</td></tr>
-<tr><td>3</td><td>Cat が implements CanCry し、cry() で「ニャー」と表示</td></tr>
+<tr><td>1</td><td>Cryable インタフェースを定義（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void cry();</code> のみ）</td></tr>
+<tr><td>2</td><td>Dog が implements Cryable し、cry() で「ワンワン」と表示</td></tr>
+<tr><td>3</td><td>Cat が implements Cryable し、cry() で「ニャー」と表示</td></tr>
 </tbody>
 </table>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface CanCry { void cry(); }</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog implements CanCry</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override public void cry() { ... }</code> を実装します。Cat も同様です。</p>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface Cryable { void cry(); }</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog implements Cryable</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override public void cry() { ... }</code> を実装します。Cat も同様です。</p>
 </details>
-<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（CanCry・Dog・Cat）</summary>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Cryable・Dog・Cat）</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードと同様の構成で、Cat は cry() で「ニャー」と表示します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface CanCry { void cry(); }
-public class Dog implements CanCry { ... cry() で「ワンワン」 }
-public class Cat implements CanCry { ... cry() で「ニャー」 }</pre>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface Cryable { void cry(); }
+public class Dog implements Cryable { ... cry() で「ワンワン」 }
+public class Cat implements Cryable { ... cry() で「ニャー」 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Cat implements CanCry {
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Cat implements Cryable {
     private String name;
     public Cat(String name) { this.name = name; }
     @Override
@@ -162,28 +162,28 @@ public class Cat implements CanCry { ... cry() で「ニャー」 }</pre>
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
 <h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ インタフェース型の変数で複数実装を扱う</h2>
-<p style="margin-bottom: 5px;"><strong>【問題】CanCry 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
-<p style="margin-bottom: 10px;">基本問題①で作った <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> と、それを実装した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry[]</code> 型の配列に Dog と Cat のインスタンスを入れ、拡張 for 文で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。次回の多態性の準備になります。</p>
+<p style="margin-bottom: 5px;"><strong>【問題】Cryable 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
+<p style="margin-bottom: 10px;">基本問題①で作った <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable</code> と、それを実装した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable[]</code> 型の配列に Dog と Cat のインスタンスを入れ、拡張 for 文で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。次回の多態性の準備になります。<strong>呼び出し側のメインメソッドに以下を記述</strong>してください。</p>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p>配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry[] animals = { new Dog("ポチ"), new Cat("タマ") };</code> のように作り、拡張 for で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼びます。</p>
+<p>配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable[] animals = { new Dog("ポチ"), new Cat("タマ") };</code> のように作り、拡張 for で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼びます。</p>
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】CanCry 型の配列に Dog と Cat を入れ、拡張 for で cry() を呼びます。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">CanCry[] animals = {
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】<strong>呼び出し側のメインメソッドに以下を記述</strong>します。Cryable 型の配列に Dog と Cat を入れ、拡張 for で cry() を呼びます。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Cryable[] animals = {
     new Dog("ポチ"),
     new Cat("タマ")
 };
-for (CanCry a : animals) {
+for (Cryable a : animals) {
     a.cry();
 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:90px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">CanCry[] animals = {
+  <textarea readonly style="width:100%;height:90px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">Cryable[] animals = {
     new Dog("ポチ"),
     new Cat("タマ")
 };
-for (CanCry a : animals) {
+for (Cryable a : animals) {
     a.cry();
 }</textarea>
 </div>

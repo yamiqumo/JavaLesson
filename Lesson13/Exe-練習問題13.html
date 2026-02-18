@@ -35,44 +35,57 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【移動販売機（テキスト本編と共通）】</p>
+<p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【基本問題① 動物クラス用】</p>
 <details style="margin: 0 0 10px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Movable）をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（CanCry）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Movable {
-    void move();
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface CanCry {
+    void cry();
 }</textarea>
 </div>
 </details>
 <details style="margin: 0 0 10px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Speakable）をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（Dog implements CanCry）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Speakable {
-    void speak();
-}</textarea>
-</div>
-</details>
-<details style="margin: 0 0 10px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（VendingMachine implements Movable, Speakable）をドラッグでコピー（クリックで開く）</summary>
-<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
-  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:280px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class VendingMachine implements Movable, Speakable {
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Dog implements CanCry {
     private String name;
+    public Dog(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+}</textarea>
+</div>
+</details>
+<p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題② 社員クラス用】</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 インタフェース（Payable）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Payable {
+    int calcSalary();
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 実装クラス（Manager implements Payable）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Manager implements Payable {
+    private String name;
+    private int baseSalary;
+    private int bonus;
 
-    public VendingMachine(String name) {
+    public Manager(String name, int baseSalary, int bonus) {
         this.name = name;
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
     }
-
     @Override
-    public void move() {
-        System.out.println(name + "が指定の場所へ移動しました");
-    }
-
-    @Override
-    public void speak() {
-        System.out.println("ピロリロ〜ン♪ 淹れたてのコーヒーはいかがですか？");
+    public int calcSalary() {
+        return baseSalary + bonus;
     }
 }</textarea>
 </div>
@@ -81,97 +94,97 @@
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① Main で「移動 → 呼び込み」の営業フローを実装する</h2>
-<p style="margin-bottom: 10px;">配布コードの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code>（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Movable, Speakable</code>）を使い、<strong>指定の場所に移動（move）したあと、元気よく呼び込み（speak）をする</strong>という一連の営業フローを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> クラスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> メソッドで実装してください。</p>
-<p style="margin-bottom: 5px;"><strong>ステップ</strong></p>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスを利用した問題（インタフェース）</h2>
+<p style="margin-bottom: 10px;">「鳴く」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements CanCry</code> して、それぞれ「ワンワン」「ニャー」と表示するように実装してください。上記「配布コード」からコピーして使えます。</p>
+<p style="margin-bottom: 5px;"><strong>ステップ一覧</strong></p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
-<tr style="background-color: #f0f8ff;">
-<th>ステップ</th>
-<th>内容</th>
-</tr>
-<tr><td>1</td><td>VendingMachine のインスタンスを生成する（例：名前「コーヒー号」）</td></tr>
-<tr><td>2</td><td>まず <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> を呼び、続けて <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">speak()</code> を呼ぶ</td></tr>
+<tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+<tr><td>1</td><td>CanCry インタフェースを定義（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void cry();</code> のみ）</td></tr>
+<tr><td>2</td><td>Dog が implements CanCry し、cry() で「ワンワン」と表示</td></tr>
+<tr><td>3</td><td>Cat が implements CanCry し、cry() で「ニャー」と表示</td></tr>
 </tbody>
 </table>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p>VendingMachine のインスタンスを作り、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> → <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">speak()</code> の順で呼びます。例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine vm = new VendingMachine("コーヒー号"); vm.move(); vm.speak();</code></p>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface CanCry { void cry(); }</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog implements CanCry</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">@Override public void cry() { ... }</code> を実装します。Cat も同様です。</p>
 </details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Main の main 内）</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】移動してから呼び込みの順で実行します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">VendingMachine vm = new VendingMachine("コーヒー号");
-vm.move();
-vm.speak();</pre>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（CanCry・Dog・Cat）</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】配布コードと同様の構成で、Cat は cry() で「ニャー」と表示します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface CanCry { void cry(); }
+public class Dog implements CanCry { ... cry() で「ワンワン」 }
+public class Cat implements CanCry { ... cry() で「ニャー」 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:80px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">VendingMachine vm = new VendingMachine("コーヒー号");
-vm.move();
-vm.speak();</textarea>
+  <textarea readonly style="width:100%;height:110px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Cat implements CanCry {
+    private String name;
+    public Cat(String name) { this.name = name; }
+    @Override
+    public void cry() {
+        System.out.println("ニャー");
+    }
+}</textarea>
 </div>
 </details>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 2台の移動販売機で営業フローを実行する</h2>
-<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> を2台（例：「コーヒー号」と「ジュース号」）用意し、それぞれで<strong>移動（move）→ 呼び込み（speak）</strong>の営業フローを <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Main</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">main</code> 内で順に実行してください。</p>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスを利用した問題（インタフェース）</h2>
+<p style="margin-bottom: 10px;">「給与を計算できる」という振る舞いを表すインタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Payable</code> を定義し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">int calcSalary();</code> を持たせてください。続けて、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Manager</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">PartTimer</code> が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements Payable</code> し、それぞれ給与計算を実装してください。</p>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p>1台目で move() → speak()、続けて2台目で move() → speak() を呼びます。</p>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public interface Payable { int calcSalary(); }</code>。Manager は baseSalary + bonus、PartTimer は hours * hourlyPay を return します。</p>
 </details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Main の main 内）</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】2台それぞれで move → speak を実行します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">VendingMachine vm1 = new VendingMachine("コーヒー号");
-vm1.move();
-vm1.speak();
-VendingMachine vm2 = new VendingMachine("ジュース号");
-vm2.move();
-vm2.speak();</pre>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例（Payable・Manager・PartTimer）</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Manager は配布コードと同様。PartTimer は勤務時間×時給を返します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public interface Payable { int calcSalary(); }
+// Manager: baseSalary + bonus
+// PartTimer: hours * hourlyPay</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">VendingMachine vm1 = new VendingMachine("コーヒー号");
-vm1.move();
-vm1.speak();
-VendingMachine vm2 = new VendingMachine("ジュース号");
-vm2.move();
-vm2.speak();</textarea>
+  <textarea readonly style="width:100%;height:170px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class PartTimer implements Payable {
+    private String name;
+    private int hours;
+    private int hourlyPay;
+    public PartTimer(String name, int hours, int hourlyPay) {
+        this.name = name;
+        this.hours = hours;
+        this.hourlyPay = hourlyPay;
+    }
+    @Override
+    public int calcSalary() {
+        return hours * hourlyPay;
+    }
+}</textarea>
 </div>
 </details>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
-<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ 配列で複数台の移動販売機を扱う</h2>
-<p style="margin-bottom: 5px;"><strong>【問題】VendingMachine の配列で複数台に move → speak をループで実行する</strong></p>
-<p style="margin-bottom: 10px;"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine[]</code> 型の配列に複数台の移動販売機を入れ、拡張 for 文でそれぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">move()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">speak()</code> を呼んでください。次回の多態性の準備になります。</p>
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ インタフェース型の変数で複数実装を扱う</h2>
+<p style="margin-bottom: 5px;"><strong>【問題】CanCry 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
+<p style="margin-bottom: 10px;">基本問題①で作った <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry</code> と、それを実装した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry[]</code> 型の配列に Dog と Cat のインスタンスを入れ、拡張 for 文で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。次回の多態性の準備になります。</p>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
-<details style="margin-top: 8px;">
-<summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p>配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine[] machines = { new VendingMachine("コーヒー号"), new VendingMachine("ジュース号") };</code> のように作り、for (VendingMachine v : machines) { v.move(); v.speak(); } で回せます。</p>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
+<p>配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">CanCry[] animals = { new Dog("ポチ"), new Cat("タマ") };</code> のように作り、拡張 for で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼びます。</p>
 </details>
-<details style="margin-top: 5px;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】VendingMachine の配列でループし、各台で move → speak を実行します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">VendingMachine[] machines = {
-    new VendingMachine("コーヒー号"),
-    new VendingMachine("ジュース号")
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】CanCry 型の配列に Dog と Cat を入れ、拡張 for で cry() を呼びます。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">CanCry[] animals = {
+    new Dog("ポチ"),
+    new Cat("タマ")
 };
-for (VendingMachine v : machines) {
-    v.move();
-    v.speak();
+for (CanCry a : animals) {
+    a.cry();
 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">VendingMachine[] machines = {
-    new VendingMachine("コーヒー号"),
-    new VendingMachine("ジュース号")
+  <textarea readonly style="width:100%;height:90px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">CanCry[] animals = {
+    new Dog("ポチ"),
+    new Cat("タマ")
 };
-for (VendingMachine v : machines) {
-    v.move();
-    v.speak();
+for (CanCry a : animals) {
+    a.cry();
 }</textarea>
 </div>
 </details>

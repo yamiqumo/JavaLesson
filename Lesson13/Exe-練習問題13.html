@@ -161,30 +161,61 @@ public class Cat implements Cryable { ... cry() で「ニャー」 }</pre>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
-<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ インタフェース型の変数で複数実装を扱う</h2>
-<p style="margin-bottom: 5px;"><strong>【問題】Cryable 型の配列に Dog と Cat を入れ、for で cry() を呼ぶ</strong></p>
-<p style="margin-bottom: 10px;">基本問題①で作った <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable</code> と、それを実装した <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code>・<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cat</code> を使います。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable[]</code> 型の配列に Dog と Cat のインスタンスを入れ、拡張 for 文で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。次回の多態性の準備になります。<strong>呼び出し側のメインメソッドに以下を記述</strong>してください。</p>
+<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ 継承と2つのインタフェースを組み合わせる</h2>
+<div style="background-color: #f0f8ff; padding: 15px; border-radius: 5px; border-left: 5px solid #0033ff; margin-bottom: 15px;">
+<p style="margin: 0 0 10px 0;"><strong>継承とインタフェースの実装は同時に可能です。</strong></p>
+<p style="margin: 0 0 8px 0;">A を継承して、B と C を実装する場合の書き方：</p>
+<p style="margin: 0 0 4px 0; font-size: 14px;"><strong>【サブクラスでの書き方】</strong></p>
+<pre style="margin: 0; font-family: monospace; background-color: #fff; color: #333; padding: 10px; border-radius: 5px; border: 1px solid #91d5ff; font-size: 13px;">public class ○○Class extends A implements B, C {
+}</pre>
+</div>
+<p style="margin-bottom: 5px;"><strong>【問題】Animal を継承し、Cryable と Walkable の2つを実装する Dog クラスを作成する</strong></p>
+<p style="margin-bottom: 10px;">スーパークラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Animal</code>（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">name</code> フィールドのみ）を継承し、インタフェース <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Walkable</code>（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">void walk();</code> のみ）の<strong>両方を実装</strong>する <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Dog</code> クラスを作成してください。extends と implements を同時に使う書き方で書きます。</p>
+<p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【発展問題用】Animal と Walkable の配布</p>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Animal（スーパークラス）をドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:100px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Animal {
+    protected String name;
+    public Animal(String name) { this.name = name; }
+}</textarea>
+</div>
+</details>
+<details style="margin: 0 0 10px 0;">
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Walkable インタフェースをドラッグでコピー（クリックで開く）</summary>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Walkable {
+    void walk();
+}</textarea>
+</div>
+</details>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p>配列は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable[] animals = { new Dog("ポチ"), new Cat("タマ") };</code> のように作り、拡張 for で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼びます。</p>
+<p><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends</code> を先に、続けて <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">implements</code> を書きます。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class Dog extends Animal implements Cryable, Walkable</code> とし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">walk()</code> の両方を @Override で実装します。</p>
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">▶ 解答例</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】<strong>呼び出し側のメインメソッドに以下を記述</strong>します。Cryable 型の配列に Dog と Cat を入れ、拡張 for で cry() を呼びます。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Cryable[] animals = {
-    new Dog("ポチ"),
-    new Cat("タマ")
-};
-for (Cryable a : animals) {
-    a.cry();
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】extends と implements を同時に使った Dog クラスです。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Dog extends Animal implements Cryable, Walkable {
+    public Dog(String name) { super(name); }
+    @Override
+    public void cry() { System.out.println("ワンワン"); }
+    @Override
+    public void walk() { System.out.println(name + "が歩きます"); }
 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:90px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">Cryable[] animals = {
-    new Dog("ポチ"),
-    new Cat("タマ")
-};
-for (Cryable a : animals) {
-    a.cry();
+  <textarea readonly style="width:100%;height:140px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Dog extends Animal implements Cryable, Walkable {
+    public Dog(String name) { super(name); }
+    @Override
+    public void cry() {
+        System.out.println("ワンワン");
+    }
+    @Override
+    public void walk() {
+        System.out.println(name + "が歩きます");
+    }
 }</textarea>
 </div>
 </details>

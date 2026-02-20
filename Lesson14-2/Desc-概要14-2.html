@@ -1,0 +1,44 @@
+【概要】 オブジェクト指向⑥-2 ～多態性（アップキャスト・引数と戻り値）～
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">第14-2回：多態性② ～アップキャスト・引数と戻り値～</h1>
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. 必要な前提知識</h2>
+<ul style="padding-left: 20px; margin-bottom: 0;">
+<li style="margin-bottom: 10px;"><strong>第14-1回</strong>： 配列と for でスーパークラス型をまとめて扱う。自販機型の配列で buy() を呼ぶ。</li>
+<li style="margin-bottom: 10px;"><strong>抽象クラス・インタフェース</strong>： 型として変数に代入できる（アップキャスト）。</li>
+</ul>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. ポイント解説</h2>
+<div style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; border-left: 5px solid #0033ff;">
+<p style="margin: 0 0 10px 0;"><strong>💡 アップキャストと、引数・戻り値でのポリモーフィズム</strong></p>
+<p style="margin: 0;">サブクラスや実装クラスのインスタンスを、スーパークラス型・インタフェース型の変数に代入するのがアップキャストです。メソッドの<strong>引数</strong>や<strong>戻り値</strong>の型をその型にすると、呼び出し側は「どの具象クラスか」を気にせず、差し替えやすい設計になります。</p>
+</div>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. 対象テキスト・練習</h2>
+<p style="margin: 0;"><strong>テキスト</strong> … Html-オブジェクト指向⑥-2 多態性（アップキャスト・引数戻り値）.html</p>
+<p style="margin: 8px 0 0 0;"><strong>練習問題</strong> … Exe-練習問題14-2.html</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. 動画（タイトルをクリックして再生）</h2>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 127. <a href="https://www.udemy.com/course/hello-java/learn/lecture/47581453" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">アップキャスト</a> … サブクラスのインスタンスをスーパークラス型の変数で受けます。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 128. <a href="https://www.udemy.com/course/hello-java/learn/lecture/47616193" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">アップキャスト・オーバーライド</a> … 型で受けても、実際はオーバーライドしたメソッドが動きます。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 139. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293788" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">インタフェース効果</a> … インタフェース型で受けると、実装を差し替えやすくなります。</li>
+<li style="margin-bottom: 12px; padding-left: 0;">▶ 140. <a href="https://www.udemy.com/course/hello-java/learn/lecture/43293790" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">機能差し替え</a> … 同じインタフェースを実装した別のクラスに切り替える例です。</li>
+</ul>
+</section>
+
+</div>

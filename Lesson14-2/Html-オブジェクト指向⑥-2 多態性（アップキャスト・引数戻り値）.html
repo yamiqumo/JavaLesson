@@ -6,10 +6,10 @@
 <!-- ========== 復習：第14-1回の内容をソース付き・会話で理解 ========== -->
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【復習】第14-1回でやったこと — ソースコードでおさらい</h2>
-<p style="margin-bottom: 15px;">第14-2回に入る前に、第14-1回の内容を<strong>ソースコードを見ながら</strong>振り返ります。ポイントは「<strong>自販機型の変数・配列</strong>に、温麺機・2品目機・ガチャ機を入れて、<strong>同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶと、中身に応じて違う動きになる</strong>」ことです。3人で会話しながら確認していきましょう。</p>
+<p style="margin-bottom: 15px;">第14-2回に入る前に、第14-1回の内容を<strong>ソースコードを見ながら</strong>振り返ります。ポイントは「<strong>自販機型の変数・配列</strong>に、カップ麺自販機・2品目自販機・ガチャガチャ自販機を入れて、<strong>同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶと、中身に応じて違う動きになる</strong>」ことです。3人で会話しながら確認していきましょう。</p>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">第14-1回で使った4つのクラス（概要）</h3>
-<p style="margin-bottom: 10px;">自販機の<strong>スーパークラス（抽象クラス）</strong>が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を抽象メソッドとして「購入処理を必ず持つ」と約束しています。3つのサブクラス（温麺用・2品目・ガチャ）がそれぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を実装しています。</p>
+<p style="margin-bottom: 10px;">自販機の<strong>スーパークラス（抽象クラス）</strong>が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を抽象メソッドとして「購入処理を必ず持つ」と約束しています。3つのサブクラス（カップ麺自販機クラス・2品目自販機クラス・ガチャガチャ自販機クラス）がそれぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を実装しています。</p>
 
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
 <p style="margin: 0;"><strong>カバ先生：</strong>「第14-1回では、『自販機型の配列』に3種類の自販機を入れて、for 文で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶと、どの機種でもその機種の動きになったよね。今日はその『型で受ける』部分をもう少しはっきりさせて、<strong>アップキャスト</strong>と、<strong>メソッドの引数・戻り値</strong>でどう使うかを学ぶよ。」</p>
@@ -22,18 +22,18 @@
 }</pre>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">復習用ソース②：サブクラス3つ（抜粋）</h3>
-<p style="margin-bottom: 8px;">温麺用・2品目・ガチャの3クラスは、いずれも <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendingMachine</code> で継承し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の中身だけが違います。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 温麺用：購入 → 2分待つ → お湯を注ぐ</span>
+<p style="margin-bottom: 8px;">カップ麺自販機・2品目自販機・ガチャガチャ自販機の3クラスは、いずれも <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendingMachine</code> で継承し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の中身だけが違います。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// カップ麺自販機クラス：購入 → 2分待つ → お湯を注ぐ</span>
 <span style="color: #0033ff;">public class</span> VendingHotNoodle <span style="color: #0033ff;">extends</span> VendingMachine {
     @Override <span style="color: #0033ff;">public void</span> buy() { <span style="color: #666;">/* 温かい麺を購入しました。2分待っています... お湯を注ぎました */</span> }
 }
 
-<span style="color: #666;">// 2品目：selected で コーラ or お茶</span>
+<span style="color: #666;">// 2品目自販機クラス：selected で コーラ or お茶</span>
 <span style="color: #0033ff;">public class</span> Vending2Items <span style="color: #0033ff;">extends</span> VendingMachine {
     @Override <span style="color: #0033ff;">public void</span> buy() { <span style="color: #666;">/* コーラ or お茶 を購入しました */</span> }
 }
 
-<span style="color: #666;">// ガチャ：乱数で レア / ノーマル / 外れ</span>
+<span style="color: #666;">// ガチャガチャ自販機クラス：乱数で レア / ノーマル / 外れ</span>
 <span style="color: #0033ff;">public class</span> VendingHobby <span style="color: #0033ff;">extends</span> VendingMachine {
     @Override <span style="color: #0033ff;">public void</span> buy() { <span style="color: #666;">/* Math.random() で 10% / 70% / 20% */</span> }
 }</pre>
@@ -46,13 +46,13 @@ machines[0] = <span style="color: #0033ff;">new</span> VendingHotNoodle();
 machines[1] = <span style="color: #0033ff;">new</span> Vending2Items(0);   <span style="color: #666;">// 0 → 1つ目（コーラ）</span>
 machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();
 
-<span style="color: #666;">// どの機種でも同じように buy() を呼べる → 中身に応じて温麺・コーラ/お茶・ガチャの動きになる</span>
+<span style="color: #666;">// どの機種でも同じように buy() を呼べる → 中身に応じてカップ麺・コーラ/お茶・ガチャガチャの動きになる</span>
 <span style="color: #0033ff;">for</span> (<span style="color: #0033ff;">int</span> i = 0; i < machines.length; i++) {
     machines[i].buy();
 }</pre>
 
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-bottom: 12px;">
-<p style="margin: 0;"><strong>ユウタ：</strong>「配列の型が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine[]</code> だから、温麺機でも2品目機でもガチャでも入れられる。で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">machines[i].buy()</code> と書くだけで、そのとき入っている機種の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動く、ということですね。」</p>
+<p style="margin: 0;"><strong>ユウタ：</strong>「配列の型が <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine[]</code> だから、カップ麺自販機でも2品目自販機でもガチャガチャ自販機でも入れられる。で、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">machines[i].buy()</code> と書くだけで、そのとき入っている機種の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動く、ということですね。」</p>
 </div>
 <div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0;">
 <p style="margin: 0;"><strong>ナナコ：</strong>「使う側は『どれが入っているか』をいちいち if で分けなくていい。『自販機だから <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> してね』で通じる。これが多態性の便利なところですよね。」</p>
@@ -65,7 +65,7 @@ machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #888; padding-left: 10px; color: #555; font-size: 16px; margin-bottom: 15px;">ちょっと一息 — 知識の解像度を下げてイメージする</h2>
 <div style="background-color: #f8f8f8; padding: 15px; border-radius: 5px; border-left: 5px solid #bbb;">
-<p style="margin: 0;"><strong>カバ先生：</strong>「『解像度を下げる』って、細かい仕様をいったん忘れて、大ざっぱに捉えること。今の場合、『自販機という型の箱に、温麺機でもガチャ機でも入れていい。で、買うボタン（buy()）を押したら、その箱の中身が自分で正しい動きをしてくれる』— そんなイメージで十分だよ。」</p>
+<p style="margin: 0;"><strong>カバ先生：</strong>「『解像度を下げる』って、細かい仕様をいったん忘れて、大ざっぱに捉えること。今の場合、『自販機という型の箱に、カップ麺自販機でもガチャガチャ自販機でも入れていい。で、買うボタン（buy()）を押したら、その箱の中身が自分で正しい動きをしてくれる』— そんなイメージで十分だよ。」</p>
 </div>
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff; margin-top: 10px;">
 <p style="margin: 0;"><strong>ユウタ：</strong>「実家の廊下に、飲料用・カップ麺用・お菓子用の自販機が3台並んでるんですけど、お金入れてボタン押す、って点では同じですよね。」</p>
@@ -106,7 +106,7 @@ machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【振り返り】復習の一言</h2>
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888;">
-<p style="margin: 0;"><strong>カバ先生：</strong>「第14-1回の振り返りだ。『自販機型の変数（や配列）に、温麺機・2品目機・ガチャ機のどれを入れても、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼べば、その中身の動きが実行される』— この一点を押さえたうえで、次は『1個の変数で受ける』ことと、『メソッドの引数・戻り値で型を使う』ことを見ていくよ。」</p>
+<p style="margin: 0;"><strong>カバ先生：</strong>「第14-1回の振り返りだ。『自販機型の変数（や配列）に、カップ麺自販機・2品目自販機・ガチャガチャ自販機のどれを入れても、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼べば、その中身の動きが実行される』— この一点を押さえたうえで、次は『1個の変数で受ける』ことと、『メソッドの引数・戻り値で型を使う』ことを見ていくよ。」</p>
 </div>
 </section>
 
@@ -119,7 +119,7 @@ machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();
 <p style="margin: 0;"><strong>カバ先生：</strong>「抽象クラスやインタフェースは『このメソッドを必ず持ってね』という型の決まり。その<strong>型の変数</strong>に、いろいろな具象クラスのインスタンスを入れて、同じメソッド名を呼ぶと、<strong>実際に入っているインスタンスの側</strong>のメソッドが動く。これを<strong>多態性（ポリモーフィズム）</strong>という。」</p>
 </div>
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff;">
-<p style="margin: 0;"><strong>ユウタ：</strong>「変数の型は同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> なのに、中身が温麺機なら温麺の動き、ガチャ機ならガチャの動きになる、ということですね。」</p>
+<p style="margin: 0;"><strong>ユウタ：</strong>「変数の型は同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> なのに、中身がカップ麺自販機ならカップ麺の動き、ガチャガチャ自販機ならガチャガチャの動きになる、ということですね。」</p>
 </div>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">図1：ポリモーフィズムのイメージ</h3>
@@ -132,9 +132,9 @@ machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 25px; margin-bottom: 10px;">アップキャスト：スーパークラス型の変数で受ける</h3>
 <p style="margin-bottom: 10px;">サブクラスのインスタンスを、スーパークラス型の変数に代入することを<strong>アップキャスト</strong>といいます。代入後、その変数から呼べるのは、その型が持っているメソッドだけです。ただし、<strong>実際に動くのは、中身のインスタンスがオーバーライドしたメソッド</strong>です。</p>
-<p style="margin-bottom: 10px;">例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine vm = new VendingHotNoodle();</code> のあと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm.buy();</code> を呼ぶと、VendingHotNoodle の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が実行され、温麺の購入メッセージと「2分待つ」「お湯を注ぐ」が表示されます。</p>
+<p style="margin-bottom: 10px;">例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine vm = new VendingHotNoodle();</code> のあと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm.buy();</code> を呼ぶと、VendingHotNoodle（カップ麺自販機クラス）の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が実行され、カップ麺の購入メッセージと「2分待つ」「お湯を注ぐ」が表示されます。</p>
 <div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0;">
-<p style="margin: 0;"><strong>ナナコ：</strong>「変数 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm</code> の型は VendingMachine だから、コンパイル時には『VendingMachine が持っているメソッドだけ』が許される。でも実行時には、中身が VendingHotNoodle だから、温麺用の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動く、という二段構えなんですね。」</p>
+<p style="margin: 0;"><strong>ナナコ：</strong>「変数 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">vm</code> の型は VendingMachine だから、コンパイル時には『VendingMachine が持っているメソッドだけ』が許される。でも実行時には、中身が VendingHotNoodle（カップ麺自販機クラス）だから、カップ麺自販機の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動く、という二段構えなんですね。」</p>
 </div>
 </section>
 
@@ -154,7 +154,7 @@ doBuy(<span style="color: #0033ff;">new</span> VendingHotNoodle());
 doBuy(<span style="color: #0033ff;">new</span> Vending2Items(1));
 doBuy(<span style="color: #0033ff;">new</span> VendingHobby());</pre>
 <div style="background-color: #ffe6f0; padding: 15px; border-radius: 5px; border-left: 5px solid #e8a0b0;">
-<p style="margin: 0;"><strong>ナナコ：</strong>「『自販機を1台受け取って、buy() してね』というメソッドにしておけば、温麺機を渡してもガチャ機を渡しても、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">doBuy</code> で扱えるんですね。」</p>
+<p style="margin: 0;"><strong>ナナコ：</strong>「『自販機を1台受け取って、buy() してね』というメソッドにしておけば、カップ麺自販機を渡してもガチャガチャ自販機を渡しても、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">doBuy</code> で扱えるんですね。」</p>
 </div>
 </section>
 

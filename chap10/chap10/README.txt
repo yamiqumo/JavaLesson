@@ -14,8 +14,8 @@ chap10/
 
 ■ txt_before（修正前）
   Lesson9 の最終プログラム。自販機クラスのコンストラクタ・カプセル化・getter/setter・buy() まで実装済み。
-  - VendMachine.java
-  - VendMachineMain.java
+  - VendingMachine.java
+  - VendingMachineMain.java
 
 ■ txt_after（修正後・完成版）
   Lesson10 の完成版。継承・オーバーライド・配列のサンプル。
@@ -37,7 +37,7 @@ chap10/
 2. Eclipse / IntelliJ などで「新規 Java プロジェクト」を作成。
 3. ソースフォルダとして、使いたいフォルダ（txt_before / txt_after / exe_question / exe_answer のいずれか）を追加する。
    または、該当フォルダ内の .java をプロジェクトにコピーする。
-4. main メソッドを持つクラス（VendMachineMain または Main）を実行して動作確認。
+4. main メソッドを持つクラス（VendingMachineMain または Main）を実行して動作確認。
 
 【ZIP での配布】
 

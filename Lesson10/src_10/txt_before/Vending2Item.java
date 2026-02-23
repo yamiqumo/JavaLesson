@@ -4,7 +4,7 @@ package src_10.txt_before;
  * 2つの商品を扱う自販機。
  * select の状態で 1/2 を切り替える。三項演算子は使用しない。
  */
-public class Vending2Item extends VendMachine {
+public class Vending2Item extends VendingMachine {
 
     // フィールド（商品1と商品2の名前と在庫）
     private String name1;

@@ -31,86 +31,27 @@
 </div>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">図1：ポリモーフィズムのイメージ</h3>
-<p style="margin-bottom: 10px;">同じ型（VendMachine）の変数 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">v</code> に、異なるサブクラスのインスタンスを入れると、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">v.buy()</code> を呼んだときに<strong>中身に応じて異なる動き</strong>をします。</p>
-<div style="text-align: center; margin: 15px 0; padding: 15px; background-color: #fafafa; border-radius: 8px; border: 1px solid #e1dbbd;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 200" style="max-width: 100%; height: auto;" aria-label="ポリモーフィズムの図">
-  <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#333"/></marker>
-  </defs>
-  <!-- 変数 v -->
-  <rect x="20" y="60" width="100" height="50" rx="6" fill="#f0f8ff" stroke="#0033ff" stroke-width="2"/>
-  <text x="70" y="88" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#333">変数 v</text>
-  <text x="70" y="105" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#0033ff">(VendMachine型)</text>
-  <!-- 矢印 -->
-  <line x1="120" y1="85" x2="180" y2="85" stroke="#333" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-  <text x="150" y="75" text-anchor="middle" font-size="10" fill="#666">参照</text>
-  <!-- 実体の箱（3パターン） -->
-  <rect x="180" y="20" width="320" height="160" rx="8" fill="#fff" stroke="#ccc" stroke-width="1"/>
-  <text x="340" y="42" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">実際に入るインスタンス（どれか1つ）</text>
-  <!-- パターン1 温麺 -->
-  <rect x="200" y="55" width="90" height="55" rx="4" fill="#e6f4ff" stroke="#4da6ff" stroke-width="1"/>
-  <text x="245" y="78" text-anchor="middle" font-size="10" fill="#333">VendingHotNoodle</text>
-  <text x="245" y="98" text-anchor="middle" font-size="9" fill="#666">v.buy() →</text>
-  <text x="245" y="108" text-anchor="middle" font-size="9" fill="#0066aa">温麺の流れ</text>
-  <!-- パターン2 2品目 -->
-  <rect x="305" y="55" width="90" height="55" rx="4" fill="#e6f4ff" stroke="#4da6ff" stroke-width="1"/>
-  <text x="350" y="78" text-anchor="middle" font-size="10" fill="#333">Vending2Items</text>
-  <text x="350" y="98" text-anchor="middle" font-size="9" fill="#666">v.buy() →</text>
-  <text x="350" y="108" text-anchor="middle" font-size="9" fill="#0066aa">コーラ or お茶</text>
-  <!-- パターン3 ガチャ -->
-  <rect x="410" y="55" width="90" height="55" rx="4" fill="#e6f4ff" stroke="#4da6ff" stroke-width="1"/>
-  <text x="455" y="78" text-anchor="middle" font-size="10" fill="#333">VendingHobby</text>
-  <text x="455" y="98" text-anchor="middle" font-size="9" fill="#666">v.buy() →</text>
-  <text x="455" y="108" text-anchor="middle" font-size="9" fill="#0066aa">レア/ノーマル/外れ</text>
-  <!-- 同じ呼び出し -->
-  <text x="340" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#0033ff">同じ v.buy() でも、中身によって動きが変わる ＝ 多態性</text>
-</svg>
-</div>
+<p style="margin-bottom: 10px;">同じ型（VendingMachine）の変数 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">v</code> に、異なるサブクラスのインスタンスを入れると、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">v.buy()</code> を呼んだときに<strong>中身に応じて異なる動き</strong>をします。</p>
+<!-- 図の差し込み用：例）diagram/ポリモーフィズムのイメージ.png を <img src="diagram/ポリモーフィズムのイメージ.png" alt="ポリモーフィズムのイメージ" style="max-width: 100%; height: auto;"> で挿入 -->
+<div style="border: 2px dashed #ccc; min-height: 80px; padding: 15px; text-align: center; color: #888; background-color: #fafafa; border-radius: 8px; margin: 15px 0;">【図の挿入①】図1：ポリモーフィズムのイメージ</div>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 25px; margin-bottom: 10px;">図2：アップキャスト後はスーパークラスのメソッドだけ呼べる</h3>
 <p style="margin-bottom: 10px;">アップキャストした変数からは、<strong>その変数の型（スーパークラス・インタフェース）が持っているメソッドだけ</strong>を呼べます。サブクラスだけが持つメソッドは、スーパークラス型の変数からは<strong>呼べません</strong>（コンパイルエラーになります）。</p>
-<div style="text-align: center; margin: 15px 0; padding: 15px; background-color: #fafafa; border-radius: 8px; border: 1px solid #e1dbbd;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 240" style="max-width: 100%; height: auto;" aria-label="アップキャストで使えるメソッドの範囲">
-  <defs>
-    <marker id="arrow2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#333"/></marker>
-  </defs>
-  <!-- 左：変数 v (VendMachine型) -->
-  <rect x="20" y="70" width="110" height="70" rx="6" fill="#f0f8ff" stroke="#0033ff" stroke-width="2"/>
-  <text x="75" y="95" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#333">変数 v</text>
-  <text x="75" y="115" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#0033ff">VendMachine型</text>
-  <rect x="28" y="125" width="94" height="22" rx="3" fill="#fff" stroke="#0033ff" stroke-width="1"/>
-  <text x="75" y="140" text-anchor="middle" font-size="10" fill="#006600">✓ buy() だけ呼べる</text>
-  <!-- 矢印 -->
-  <line x1="130" y1="105" x2="200" y2="105" stroke="#333" stroke-width="1.5" marker-end="url(#arrow2)"/>
-  <text x="165" y="95" text-anchor="middle" font-size="10" fill="#666">参照</text>
-  <!-- 右：実体 Vending2Items -->
-  <rect x="200" y="30" width="300" height="180" rx="8" fill="#fff" stroke="#888" stroke-width="1"/>
-  <text x="350" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">実体：Vending2Items のインスタンス</text>
-  <!-- スーパーから見える範囲（buy） -->
-  <rect x="215" y="65" width="270" height="40" rx="4" fill="#e6f4ff" stroke="#0033ff" stroke-width="2"/>
-  <text x="350" y="85" text-anchor="middle" font-size="11" fill="#0033ff">VendMachine のメソッド（v から見える）</text>
-  <text x="350" y="102" text-anchor="middle" font-size="10" fill="#006600">buy() … 呼べる ✓</text>
-  <!-- サブクラス独自（見えない） -->
-  <rect x="215" y="115" width="270" height="45" rx="4" fill="#ffe6e6" stroke="#cc0000" stroke-width="1"/>
-  <text x="350" y="135" text-anchor="middle" font-size="11" fill="#cc0000">サブクラス独自のメソッド（例）</text>
-  <text x="350" y="152" text-anchor="middle" font-size="10" fill="#990000">setSelected(int) など … v からは呼べない ✗</text>
-  <!-- 注釈 -->
-  <text x="350" y="185" text-anchor="middle" font-size="11" fill="#555">変数の「型」が持っているメソッドだけが呼び出し可能</text>
-</svg>
-</div>
+<!-- 図の差し込み用：例）diagram/アップキャストで使えるメソッドの範囲.png を <img> で挿入 -->
+<div style="border: 2px dashed #ccc; min-height: 80px; padding: 15px; text-align: center; color: #888; background-color: #fafafa; border-radius: 8px; margin: 15px 0;">【図の挿入②】図2：アップキャスト後はスーパークラスのメソッドだけ呼べる</div>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 25px; margin-bottom: 10px;">アップキャスト：スーパークラス型・インタフェース型の変数で受ける</h3>
 <p style="margin-bottom: 10px;">サブクラスや実装クラスのインスタンスを、スーパークラス型やインタフェース型の変数に代入することを<strong>アップキャスト</strong>といいます。代入後、その変数から呼べるのは、その型が持っているメソッドだけです。ただし、<strong>実際に動くのは、中身のインスタンスがオーバーライド（実装）したメソッド</strong>です。</p>
-<p style="margin-bottom: 10px;">例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine v = new VendingHotNoodle();</code> のあと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">v.buy();</code> を呼ぶと、VendingHotNoodle の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が実行され、温麺の購入メッセージと「2分待つ」「お湯を注ぐ」が表示されます。</p>
+<p style="margin-bottom: 10px;">例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine v = new VendingHotNoodle();</code> のあと <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">v.buy();</code> を呼ぶと、VendingHotNoodle の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が実行され、温麺の購入メッセージと「2分待つ」「お湯を注ぐ」が表示されます。</p>
 </section>
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】メソッドの引数でのポリモーフィズム</h2>
-<p style="margin-bottom: 10px;">メソッドの<strong>引数の型</strong>をスーパークラス型やインタフェース型にしておくと、「その型を実装したクラス」なら何を渡してもよい、という設計になります。呼び出し側は「VendMachine 型の引数に、VendingHotNoodle でも Vending2Items でも VendingHobby でも渡せる」とだけ考えればよく、中身に応じて正しい <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動きます。</p>
+<p style="margin-bottom: 10px;">メソッドの<strong>引数の型</strong>をスーパークラス型やインタフェース型にしておくと、「その型を実装したクラス」なら何を渡してもよい、という設計になります。呼び出し側は「VendingMachine 型の引数に、VendingHotNoodle でも Vending2Items でも VendingHobby でも渡せる」とだけ考えればよく、中身に応じて正しい <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動きます。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 引数が「自販機型」なので、どのサブクラスでも渡せる</span>
-<span style="color: #0033ff;">public static void</span> doBuy(VendMachine vm) {
+<span style="color: #0033ff;">public static void</span> doBuy(VendingMachine vm) {
     vm.buy();   <span style="color: #666;">// 実際に渡されたインスタンスの buy() が動く</span>
 }
 
@@ -127,16 +68,16 @@ doBuy(<span style="color: #0033ff;">new</span> VendingHobby());</pre>
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】メソッドの戻り値でのポリモーフィズム</h2>
-<p style="margin-bottom: 10px;">メソッドの<strong>戻り値の型</strong>をスーパークラス型やインタフェース型にすると、「その型のインスタンスを返す」と宣言できます。中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">return new VendingHotNoodle();</code> のようにサブクラスのインスタンスを返しても、受け取る側は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> 型の変数で受け、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼べば、返ってきた実際のインスタンスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動きます。</p>
+<p style="margin-bottom: 10px;">メソッドの<strong>戻り値の型</strong>をスーパークラス型やインタフェース型にすると、「その型のインスタンスを返す」と宣言できます。中で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">return new VendingHotNoodle();</code> のようにサブクラスのインスタンスを返しても、受け取る側は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> 型の変数で受け、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼べば、返ってきた実際のインスタンスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> が動きます。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 戻り値の型が「自販機型」なので、サブクラスのインスタンスを return してよい</span>
-<span style="color: #0033ff;">public static</span> VendMachine getMachine(<span style="color: #0033ff;">int</span> kind) {
+<span style="color: #0033ff;">public static</span> VendingMachine getMachine(<span style="color: #0033ff;">int</span> kind) {
     <span style="color: #0033ff;">if</span> (kind == 0) <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">new</span> VendingHotNoodle();
     <span style="color: #0033ff;">if</span> (kind == 1) <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">new</span> Vending2Items(0);
     <span style="color: #0033ff;">return</span> <span style="color: #0033ff;">new</span> VendingHobby();
 }
 
-<span style="color: #666;">// 受け取った側は VendMachine 型として扱い、buy() を呼べる</span>
-VendMachine m = getMachine(1);
+<span style="color: #666;">// 受け取った側は VendingMachine 型として扱い、buy() を呼べる</span>
+VendingMachine m = getMachine(1);
 m.buy();   <span style="color: #666;">// Vending2Items の buy() が動く</span></pre>
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888;">
 <p style="margin: 0;"><strong>カバ先生：</strong>「引数でも戻り値でも、型を抽象クラスやインタフェースにしておくことで、<strong>実装の差し替え</strong>がしやすくなり、拡張しやすい設計になります。」</p>

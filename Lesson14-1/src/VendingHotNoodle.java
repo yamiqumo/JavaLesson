@@ -1,6 +1,6 @@
-// 温かい麺用自販機（VendMachine のサブクラス）
+// 温かい麺用自販機（VendingMachine のサブクラス）
 // buy では「購入 → 2分待つ → お湯を注ぐ」の流れを行う
-public class VendingHotNoodle extends VendMachine {
+public class VendingHotNoodle extends VendingMachine {
 
 	@Override
 	public void buy() {

@@ -1,57 +1,99 @@
 【練習問題】 第14-1回 オブジェクト指向⑥-1 ～多態性（復習と配列・型）～
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
-<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第14-1回 多態性（復習と配列・型）</h1>
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第14-1回 多態性（ポリモーフィズム）</h1>
 
-<p style="margin-bottom: 15px;">第14-1回では、<strong>スーパークラス型やインタフェース型の配列</strong>に複数のインスタンスを入れ、<strong>for 文でまとめてメソッドを呼ぶ</strong>練習をします。テキストで学んだ自販機（VendMachine）と、第13回で使った Cryable / Payable を型として使います。</p>
+<p style="margin-bottom: 15px;">第14-1回では、<strong>スーパークラス型・インタフェース型の変数や配列</strong>にサブクラスのインスタンスを入れ、<strong>同じメソッド呼び出しで異なる振る舞い</strong>をさせるポリモーフィズムの練習をします。練習問題の題材は<strong>動物（animal）と社員（employee）のみ</strong>です。基本①は動物（Cryable）、基本②は社員（Payable）で、それぞれ3問ずつ段階的に取り組みます。（自販機はテキスト本編のみのサンプルです。）</p>
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">配布コード（ドラッグでコピー）</h2>
-<p style="margin-bottom: 10px; font-size: 14px;">問題で使うクラスは、<strong>テキスト「Html-オブジェクト指向⑥ 多態性」</strong>のドラッグ用エリア、または以下からコピーしてください。自販機は VendMachine・VendingHotNoodle・Vending2Items・VendingHobby の4クラス。動物・社員は Cryable/Dog/Cat、Payable/Manager/PartTimer です。</p>
-<p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【基本問題①・発展③用】Cryable・Dog・Cat</p>
+<p style="margin-bottom: 10px; font-size: 14px;">問題で使うクラスは以下からコピーしてください。基本①用に Cryable/Dog/Cat、基本②用に Payable/Manager/PartTimer を用意しています。</p>
+
+<p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題①用】Cryable・Dog・Cat</p>
 <details style="margin: 0 0 10px 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Cryable・Dog・Cat をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
   <p style="font-size:12px;color:#333;margin-bottom:4px;">Cryable</p>
-  <textarea readonly style="width:100%;height:70px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;margin-bottom:10px;">public interface Cryable {
+  <textarea readonly style="width:100%;height:90px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;margin-bottom:10px;">// インタフェース（鳴くという約束）
+public interface Cryable {
 	void cry();
 }</textarea>
   <p style="font-size:12px;color:#333;margin-bottom:4px;">Dog / Cat</p>
-  <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Dog implements Cryable {
+  <textarea readonly style="width:100%;height:280px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// クラス定義（Cryable インタフェースを実装）
+public class Dog implements Cryable {
+	// フィールド
 	private String name;
-	public Dog(String name) { this.name = name; }
+	// コンストラクタ
+	public Dog(String name) {
+		this.name = name;
+	}
+	// メソッド（Cryable の約束を実装）
 	@Override
-	public void cry() { System.out.println("ワンワン"); }
+	public void cry() {
+		System.out.println("ワンワン");
+	}
 }
+// クラス定義（Cryable インタフェースを実装）
 public class Cat implements Cryable {
+	// フィールド
 	private String name;
-	public Cat(String name) { this.name = name; }
+	// コンストラクタ
+	public Cat(String name) {
+		this.name = name;
+	}
+	// メソッド（Cryable の約束を実装）
 	@Override
-	public void cry() { System.out.println("ニャー"); }
+	public void cry() {
+		System.out.println("ニャー");
+	}
 }</textarea>
 </div>
 </details>
+
 <p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【基本問題②用】Payable・Manager・PartTimer</p>
 <details style="margin: 0 0 10px 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Payable・Manager・PartTimer をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:380px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Payable { int calcSalary(); }
-public class Manager implements Payable {
-	private String name; private int baseSalary; private int bonus;
-	public Manager(String name, int baseSalary, int bonus) {
-		this.name = name; this.baseSalary = baseSalary; this.bonus = bonus;
-	}
-	@Override
-	public int calcSalary() { return baseSalary + bonus; }
+  <textarea readonly style="width:100%;height:480px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インタフェース（給与計算という約束）
+public interface Payable {
+	int calcSalary();
 }
-public class PartTimer implements Payable {
-	private String name; private int hours; private int hourlyPay;
-	public PartTimer(String name, int hours, int hourlyPay) {
-		this.name = name; this.hours = hours; this.hourlyPay = hourlyPay;
+// クラス定義（Payable インタフェースを実装）
+public class Manager implements Payable {
+	// フィールド
+	private String name;
+	private int baseSalary;
+	private int bonus;
+	// コンストラクタ
+	public Manager(String name, int baseSalary, int bonus) {
+		this.name = name;
+		this.baseSalary = baseSalary;
+		this.bonus = bonus;
 	}
+	// メソッド（Payable の約束を実装）
 	@Override
-	public int calcSalary() { return hours * hourlyPay; }
+	public int calcSalary() {
+		return baseSalary + bonus;
+	}
+}
+// クラス定義（Payable インタフェースを実装）
+public class PartTimer implements Payable {
+	// フィールド
+	private String name;
+	private int hours;
+	private int hourlyPay;
+	// コンストラクタ
+	public PartTimer(String name, int hours, int hourlyPay) {
+		this.name = name;
+		this.hours = hours;
+		this.hourlyPay = hourlyPay;
+	}
+	// メソッド（Payable の約束を実装）
+	@Override
+	public int calcSalary() {
+		return hours * hourlyPay;
+	}
 }</textarea>
 </div>
 </details>
@@ -59,14 +101,46 @@ public class PartTimer implements Payable {
 
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラス — Cryable 型の配列と for で cry() を呼ぶ</h2>
-<p style="margin-bottom: 10px;"><strong>Cryable 型の配列</strong>を用意し、その中に Dog と Cat のインスタンスを複数入れます。for 文で配列を回し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼ぶと、入れた順に「ワンワン」「ニャー」などが表示されます。main でこのコードを書いてください。</p>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラス — Cryable 型とポリモーフィズム</h2>
+
+<p style="margin-bottom: 8px;"><strong>【問題1】</strong> Cryable 型の変数を1つ用意し、そこに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Dog("ポチ")</code> を代入して <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。続けて、同じ変数に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Cat("タマ")</code> を代入し、もう一度 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。同じ変数・同じメソッドで、犬と猫それぞれの鳴き方が出ることを確認します。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
-<tr><td>1</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable[] arr = new Cryable[3];</code> のように配列を用意する。</td></tr>
+<tr><td>1</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable c = new Dog("ポチ");</code> で変数に犬を代入し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">c.cry();</code> を呼ぶ。</td></tr>
+<tr><td>2</td><td>同じ変数に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">c = new Cat("タマ");</code> を代入し、再度 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">c.cry();</code> を呼ぶ。</td></tr>
+</tbody>
+</table>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>Cryable 型の変数には、Cryable を実装した Dog も Cat も代入できます。代入したインスタンスに応じて、cry() の動きが変わります（ポリモーフィズム）。</p>
+</details>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Cryable 型の変数に Dog / Cat を代入し、同じ cry() で異なる表示になることを確認します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（Cryable 型の変数に Dog を代入）
+Cryable c = new Dog("ポチ");
+c.cry();
+// 同じ変数に Cat を代入して cry()（ポリモーフィズム）
+c = new Cat("タマ");
+c.cry();</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（Cryable 型の変数に Dog を代入）
+Cryable c = new Dog("ポチ");
+c.cry();
+// 同じ変数に Cat を代入して cry()（ポリモーフィズム）
+c = new Cat("タマ");
+c.cry();</textarea>
+</div>
+</details>
+
+<p style="margin-top: 24px; margin-bottom: 8px;"><strong>【問題2】</strong> Cryable 型の配列を用意し、その中に Dog と Cat のインスタンスを複数入れます。for 文（添え字を使う形）で配列を回し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。</p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+<tr><td>1</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Cryable[] arr = new Cryable[3];</code> で配列を用意する。</td></tr>
 <tr><td>2</td><td>各要素に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Dog(...)</code> や <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Cat(...)</code> を代入する。</td></tr>
-<tr><td>3</td><td>for で配列を回し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">arr[i].cry();</code> を呼ぶ。</td></tr>
+<tr><td>3</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">for (int i = 0; i &lt; arr.length; i++)</code> で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">arr[i].cry();</code> を呼ぶ。</td></tr>
 </tbody>
 </table>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
@@ -75,29 +149,106 @@ public class PartTimer implements Payable {
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Cryable 型の配列に Dog と Cat を入れ、for で cry() を呼びます。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Cryable[] arr = new Cryable[3];
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（Cryable 型の配列に Dog / Cat を代入）
+Cryable[] arr = new Cryable[3];
 arr[0] = new Dog("ポチ");
 arr[1] = new Cat("タマ");
 arr[2] = new Dog("シロ");
+// for で配列を回して cry()（各要素の型に応じて鳴き方が変わる）
 for (int i = 0; i < arr.length; i++) {
     arr[i].cry();
 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">Cryable[] arr = new Cryable[3];
+  <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（Cryable 型の配列に Dog / Cat を代入）
+Cryable[] arr = new Cryable[3];
 arr[0] = new Dog("ポチ");
 arr[1] = new Cat("タマ");
 arr[2] = new Dog("シロ");
+// for で配列を回して cry()（各要素の型に応じて鳴き方が変わる）
 for (int i = 0; i < arr.length; i++) {
 	arr[i].cry();
 }</textarea>
 </div>
 </details>
 
+<p style="margin-top: 24px; margin-bottom: 8px;"><strong>【問題3】</strong> 問題2と同じ配列を用意したうえで、今度は<strong>拡張 for 文</strong>（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">for (Cryable c : arr)</code>）で配列を回し、各要素の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んでください。</p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+<tr><td>1</td><td>Cryable 型の配列に Dog / Cat を入れる（問題2と同様）。</td></tr>
+<tr><td>2</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">for (Cryable c : arr) { c.cry(); }</code> で回す。</td></tr>
+</tbody>
+</table>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>拡張 for では「配列の要素を1つずつ変数 c に取り出す」ので、c の型は Cryable にします。c.cry() でその要素の cry() が呼ばれます。</p>
+</details>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】拡張 for で Cryable 型の配列を回し、cry() を呼びます。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（Cryable 型の配列に Dog / Cat を代入）
+Cryable[] arr = new Cryable[3];
+arr[0] = new Dog("ポチ");
+arr[1] = new Cat("タマ");
+arr[2] = new Dog("シロ");
+// 拡張 for で配列を回して cry()
+for (Cryable c : arr) {
+    c.cry();
+}</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:170px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（Cryable 型の配列に Dog / Cat を代入）
+Cryable[] arr = new Cryable[3];
+arr[0] = new Dog("ポチ");
+arr[1] = new Cat("タマ");
+arr[2] = new Dog("シロ");
+// 拡張 for で配列を回して cry()
+for (Cryable c : arr) {
+	c.cry();
+}</textarea>
+</div>
+</details>
+
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
-<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラス — Payable 型の配列と for で calcSalary() を呼ぶ</h2>
-<p style="margin-bottom: 10px;"><strong>Payable 型の配列</strong>を用意し、その中に Manager と PartTimer のインスタンスを複数入れます。for 文で配列を回し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> を呼び、結果を表示してください。</p>
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラス — Payable 型とポリモーフィズム</h2>
+
+<p style="margin-bottom: 8px;"><strong>【問題4】</strong> Payable 型の変数を1つ用意し、そこに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Manager("田中", 300000, 50000)</code> を代入して <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> の戻り値を表示してください。続けて、同じ変数に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new PartTimer("山田", 20, 1500)</code> を代入し、再度 <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> の戻り値を表示してください。</p>
+<table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+<tr><td>1</td><td>Payable 型の変数に Manager を代入し、calcSalary() の戻り値を int で受け、表示する。</td></tr>
+<tr><td>2</td><td>同じ変数に PartTimer を代入し、再度 calcSalary() の戻り値を表示する。</td></tr>
+</tbody>
+</table>
+<div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+<details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+<p>Payable 型の変数には Manager も PartTimer も代入できます。戻り値は一度変数に代入してから return するルールに従い、呼び出し側でも int sal = p.calcSalary(); のように受け取って表示します。</p>
+</details>
+<details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Payable 型の変数に Manager / PartTimer を代入し、同じ calcSalary() で異なる計算結果になることを確認します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（Payable 型の変数に Manager を代入）
+Payable p = new Manager("田中", 300000, 50000);
+int sal = p.calcSalary();
+System.out.println("給与: " + sal);
+// 同じ変数に PartTimer を代入して calcSalary()（ポリモーフィズム）
+p = new PartTimer("山田", 20, 1500);
+sal = p.calcSalary();
+System.out.println("給与: " + sal);</pre>
+<div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+  <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（Payable 型の変数に Manager を代入）
+Payable p = new Manager("田中", 300000, 50000);
+int sal = p.calcSalary();
+System.out.println("給与: " + sal);
+// 同じ変数に PartTimer を代入して calcSalary()（ポリモーフィズム）
+p = new PartTimer("山田", 20, 1500);
+sal = p.calcSalary();
+System.out.println("給与: " + sal);</textarea>
+</div>
+</details>
+
+<p style="margin-top: 24px; margin-bottom: 8px;"><strong>【問題5】</strong> Payable 型の配列を用意し、その中に Manager と PartTimer のインスタンスを複数入れます。for 文で配列を回し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> を呼び、結果を表示してください。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
@@ -112,18 +263,22 @@ for (int i = 0; i < arr.length; i++) {
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Payable 型の配列で for し、給与を表示します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Payable[] arr = new Payable[2];
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（Payable 型の配列に Manager / PartTimer を代入）
+Payable[] arr = new Payable[2];
 arr[0] = new Manager("田中", 300000, 50000);
 arr[1] = new PartTimer("山田", 20, 1500);
+// for で配列を回して calcSalary() の戻り値を表示
 for (int i = 0; i < arr.length; i++) {
     int sal = arr[i].calcSalary();
     System.out.println("給与: " + sal);
 }</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">Payable[] arr = new Payable[2];
+  <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（Payable 型の配列に Manager / PartTimer を代入）
+Payable[] arr = new Payable[2];
 arr[0] = new Manager("田中", 300000, 50000);
 arr[1] = new PartTimer("山田", 20, 1500);
+// for で配列を回して calcSalary() の戻り値を表示
 for (int i = 0; i < arr.length; i++) {
 	int sal = arr[i].calcSalary();
 	System.out.println("給与: " + sal);
@@ -131,42 +286,45 @@ for (int i = 0; i < arr.length; i++) {
 </div>
 </details>
 
-<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
-
-<h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ 自販機 — VendMachine 型の配列と for で buy() を呼ぶ</h2>
-<p style="margin-bottom: 10px;">テキストで学んだ <strong>VendMachine（抽象クラス）</strong>と、そのサブクラス <strong>VendingHotNoodle・Vending2Items・VendingHobby</strong> を使います。<strong>VendMachine 型の配列</strong>を用意し、その中に上記3種類の自販機を入れ、for 文で配列を回してそれぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼んでください。どの機種でも、その機種の buy() が動くことを確認します。</p>
+<p style="margin-top: 24px; margin-bottom: 8px;"><strong>【問題6】</strong> 問題5と同じ配列を用意したうえで、for で配列を回しながら <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> の戻り値を<strong>合計</strong>し、最後に「給与合計: ○○円」と表示してください。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
-<tr><td>1</td><td>テキストから VendMachine・VendingHotNoodle・Vending2Items・VendingHobby をコピーして用意する。</td></tr>
-<tr><td>2</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine[] machines = new VendMachine[3];</code> で配列を用意する。</td></tr>
-<tr><td>3</td><td>各要素に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendingHotNoodle()</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new Vending2Items(0)</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendingHobby()</code> を代入する。</td></tr>
-<tr><td>4</td><td>for で配列を回し、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">machines[i].buy();</code> を呼ぶ。</td></tr>
+<tr><td>1</td><td>Payable 型の配列に Manager / PartTimer を入れる（問題5と同様）。</td></tr>
+<tr><td>2</td><td>int total = 0 を用意し、for で各要素の calcSalary() を加算する。</td></tr>
+<tr><td>3</td><td>ループ後に total を表示する。</td></tr>
 </tbody>
 </table>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin-top: 8px;"><summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
-<p>VendMachine 型の配列に、3つのサブクラスのインスタンスを入れると、for で buy() を呼んだときに、温麺・2品目・ガチャそれぞれのメッセージが出ます。</p>
+<p>合計用の変数 int total = 0 を用意し、for の中で total += arr[i].calcSalary(); のように加算します。ポリモーフィズムのまま、それぞれの計算結果が足されていきます。</p>
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
-<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】VendMachine 型の配列に3種類の自販機を入れ、for で buy() を呼びます。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">VendMachine[] machines = new VendMachine[3];
-machines[0] = new VendingHotNoodle();
-machines[1] = new Vending2Items(0);
-machines[2] = new VendingHobby();
-for (int i = 0; i < machines.length; i++) {
-    machines[i].buy();
-}</pre>
+<p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Payable 型の配列を回し、給与を合計して表示します。</p>
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（Payable 型の配列に Manager / PartTimer を代入）
+Payable[] arr = new Payable[2];
+arr[0] = new Manager("田中", 300000, 50000);
+arr[1] = new PartTimer("山田", 20, 1500);
+int total = 0;
+// for で配列を回し、calcSalary() の戻り値を合計
+for (int i = 0; i < arr.length; i++) {
+    int sal = arr[i].calcSalary();
+    total = total + sal;
+}
+System.out.println("給与合計: " + total + "円");</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">VendMachine[] machines = new VendMachine[3];
-machines[0] = new VendingHotNoodle();
-machines[1] = new Vending2Items(0);
-machines[2] = new VendingHobby();
-for (int i = 0; i < machines.length; i++) {
-	machines[i].buy();
-}</textarea>
+  <textarea readonly style="width:100%;height:200px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（Payable 型の配列に Manager / PartTimer を代入）
+Payable[] arr = new Payable[2];
+arr[0] = new Manager("田中", 300000, 50000);
+arr[1] = new PartTimer("山田", 20, 1500);
+int total = 0;
+// for で配列を回し、calcSalary() の戻り値を合計
+for (int i = 0; i < arr.length; i++) {
+	int sal = arr[i].calcSalary();
+	total = total + sal;
+}
+System.out.println("給与合計: " + total + "円");</textarea>
 </div>
 </details>
-</div>
 </div>

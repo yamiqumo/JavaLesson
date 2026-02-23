@@ -1,6 +1,6 @@
-// 2つの商品を購入できる自販機（VendMachine のサブクラス）
+// 2つの商品を購入できる自販機（VendingMachine のサブクラス）
 // selected が 0 なら1つ目、1 なら2つ目を出す
-public class Vending2Items extends VendMachine {
+public class Vending2Items extends VendingMachine {
 
 	// 1つ目の商品名
 	private String item1 = "コーラ";

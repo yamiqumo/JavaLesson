@@ -107,14 +107,14 @@
 </table>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">サンプル：自販機クラスでの使い分け</h3>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public class</span> VendMachine {
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #0033ff;">public class</span> VendingMachine {
 
     <span style="color: #666;">// 外から直接触らせない → private</span>
     <span style="color: #0033ff;">private</span> String name;
     <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
 
     <span style="color: #666;">// 外から new で呼ぶ → public</span>
-    <span style="color: #0033ff;">public</span> VendMachine(String name, <span style="color: #0033ff;">int</span> stock) {
+    <span style="color: #0033ff;">public</span> VendingMachine(String name, <span style="color: #0033ff;">int</span> stock) {
         <span style="color: #0033ff;">this</span>.name = name;
         <span style="color: #0033ff;">this</span>.stock = stock;
     }

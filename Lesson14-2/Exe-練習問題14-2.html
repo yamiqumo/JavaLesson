@@ -2,7 +2,7 @@
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 <h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第14-2回 多態性（アップキャスト・引数と戻り値）</h1>
 
-<p style="margin-bottom: 15px;">第14-2回では、<strong>アップキャスト</strong>（型の変数に具象インスタンスを代入する）と、<strong>メソッドの引数・戻り値</strong>でポリモーフィズムを使う練習をします。</p>
+<p style="margin-bottom: 15px;">第14-2回では、<strong>アップキャスト</strong>（型の変数に具象インスタンスを代入する）と、<strong>メソッドの引数・戻り値</strong>でポリモーフィズムを使う練習をします。練習問題の題材は<strong>動物（animal）と社員（employee）のみ</strong>です。（自販機はテキスト本編のみのサンプルです。）</p>
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">配布コード（多態性で使うインタフェース・実装クラス — ドラッグでコピー）</h2>
@@ -12,18 +12,37 @@
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Cryable・Dog・Cat をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:300px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Cryable { void cry(); }
-public class Dog implements Cryable {
-	private String name;
-	public Dog(String name) { this.name = name; }
-	@Override
-	public void cry() { System.out.println("ワンワン"); }
+  <textarea readonly style="width:100%;height:280px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インタフェース（鳴くという約束）
+public interface Cryable {
+	void cry();
 }
-public class Cat implements Cryable {
+// クラス定義（Cryable インタフェースを実装）
+public class Dog implements Cryable {
+	// フィールド
 	private String name;
-	public Cat(String name) { this.name = name; }
+	// コンストラクタ
+	public Dog(String name) {
+		this.name = name;
+	}
+	// メソッド（Cryable の約束を実装）
 	@Override
-	public void cry() { System.out.println("ニャー"); }
+	public void cry() {
+		System.out.println("ワンワン");
+	}
+}
+// クラス定義（Cryable インタフェースを実装）
+public class Cat implements Cryable {
+	// フィールド
+	private String name;
+	// コンストラクタ
+	public Cat(String name) {
+		this.name = name;
+	}
+	// メソッド（Cryable の約束を実装）
+	@Override
+	public void cry() {
+		System.out.println("ニャー");
+	}
 }</textarea>
 </div>
 </details>
@@ -32,22 +51,45 @@ public class Cat implements Cryable {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Payable・Manager・PartTimer をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:420px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public interface Payable { int calcSalary(); }
-public class Manager implements Payable {
-	private String name; private int baseSalary; private int bonus;
-	public Manager(String name, int baseSalary, int bonus) {
-		this.name = name; this.baseSalary = baseSalary; this.bonus = bonus;
-	}
-	@Override
-	public int calcSalary() { return baseSalary + bonus; }
+  <textarea readonly style="width:100%;height:480px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インタフェース（給与計算という約束）
+public interface Payable {
+	int calcSalary();
 }
-public class PartTimer implements Payable {
-	private String name; private int hours; private int hourlyPay;
-	public PartTimer(String name, int hours, int hourlyPay) {
-		this.name = name; this.hours = hours; this.hourlyPay = hourlyPay;
+// クラス定義（Payable インタフェースを実装）
+public class Manager implements Payable {
+	// フィールド
+	private String name;
+	private int baseSalary;
+	private int bonus;
+	// コンストラクタ
+	public Manager(String name, int baseSalary, int bonus) {
+		this.name = name;
+		this.baseSalary = baseSalary;
+		this.bonus = bonus;
 	}
+	// メソッド（Payable の約束を実装）
 	@Override
-	public int calcSalary() { return hours * hourlyPay; }
+	public int calcSalary() {
+		return baseSalary + bonus;
+	}
+}
+// クラス定義（Payable インタフェースを実装）
+public class PartTimer implements Payable {
+	// フィールド
+	private String name;
+	private int hours;
+	private int hourlyPay;
+	// コンストラクタ
+	public PartTimer(String name, int hours, int hourlyPay) {
+		this.name = name;
+		this.hours = hours;
+		this.hourlyPay = hourlyPay;
+	}
+	// メソッド（Payable の約束を実装）
+	@Override
+	public int calcSalary() {
+		return hours * hourlyPay;
+	}
 }</textarea>
 </div>
 </details>
@@ -56,7 +98,7 @@ public class PartTimer implements Payable {
 <hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
 
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① 動物クラスでアップキャストを体験する</h2>
-<p style="margin-bottom: 10px;"><strong>Cryable 型の変数</strong>に、Dog のインスタンスと Cat のインスタンスをそれぞれ代入し（アップキャスト）、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んで「ワンワン」「ニャー」と表示されることを確認してください。main メソッドで、多態性の動きを体験するコードを書きましょう。</p>
+<p style="margin-bottom: 10px;"><strong>【問題1】</strong> <strong>Cryable 型の変数</strong>に、Dog のインスタンスと Cat のインスタンスをそれぞれ代入し（アップキャスト）、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼んで「ワンワン」「ニャー」と表示されることを確認してください。main メソッドで、多態性の動きを体験するコードを書きましょう。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
@@ -71,13 +113,15 @@ public class PartTimer implements Payable {
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】main で Cryable 型の変数に Dog と Cat を代入し、cry() で多態性を確認します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Cryable a = new Dog("ポチ");
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（アップキャスト：Cryable 型の変数に Dog / Cat を代入）
+Cryable a = new Dog("ポチ");
 Cryable b = new Cat("タマ");
-a.cry();  // ワンワン
-b.cry();  // ニャー</pre>
+a.cry();
+b.cry();</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">Cryable a = new Dog("ポチ");
+  <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（アップキャスト：Cryable 型の変数に Dog / Cat を代入）
+Cryable a = new Dog("ポチ");
 Cryable b = new Cat("タマ");
 a.cry();
 b.cry();</textarea>
@@ -87,7 +131,7 @@ b.cry();</textarea>
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② 社員クラスでアップキャストを体験する</h2>
-<p style="margin-bottom: 10px;"><strong>Payable 型の変数</strong>に、Manager のインスタンスと PartTimer のインスタンスをそれぞれ代入し、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> を呼んで、それぞれの給与が表示（または戻り値で取得）されることを確認してください。main で多態性のコードを書きましょう。</p>
+<p style="margin-bottom: 10px;"><strong>【問題2】</strong> <strong>Payable 型の変数</strong>に、Manager のインスタンスと PartTimer のインスタンスをそれぞれ代入し、同じ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">calcSalary()</code> を呼んで、それぞれの給与が表示（または戻り値で取得）されることを確認してください。main で多態性のコードを書きましょう。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
@@ -102,7 +146,8 @@ b.cry();</textarea>
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Payable 型の変数で Manager と PartTimer を受け、calcSalary() で多態性を確認します。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">Payable p1 = new Manager("田中", 300000, 50000);
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// インスタンス化（アップキャスト：Payable 型の変数に Manager / PartTimer を代入）
+Payable p1 = new Manager("田中", 300000, 50000);
 Payable p2 = new PartTimer("山田", 20, 1500);
 int sal1 = p1.calcSalary();
 int sal2 = p2.calcSalary();
@@ -110,7 +155,8 @@ System.out.println("Manager給与: " + sal1);
 System.out.println("PartTimer給与: " + sal2);</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">Payable p1 = new Manager("田中", 300000, 50000);
+  <textarea readonly style="width:100%;height:170px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// インスタンス化（アップキャスト：Payable 型の変数に Manager / PartTimer を代入）
+Payable p1 = new Manager("田中", 300000, 50000);
 Payable p2 = new PartTimer("山田", 20, 1500);
 int sal1 = p1.calcSalary();
 int sal2 = p2.calcSalary();
@@ -122,7 +168,7 @@ System.out.println("PartTimer給与: " + sal2);</textarea>
 <hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
 
 <h2 style="border-left: 5px solid #cc0000; padding-left: 10px; color: #cc0000; font-size: 18px; margin-bottom: 15px;">発展問題③ メソッドの引数でポリモーフィズムを使う</h2>
-<p style="margin-bottom: 10px;"><strong>Cryable 型を引数で受け取るメソッド</strong>を1つ定義してください。例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public static void doCry(Cryable c) { c.cry(); }</code> のように、引数で受け取ったインスタンスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼びます。main から、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">doCry(new Dog("ポチ"));</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">doCry(new Cat("タマ"));</code> を呼び、それぞれ「ワンワン」「ニャー」と表示されることを確認してください。</p>
+<p style="margin-bottom: 10px;"><strong>【問題3】</strong> <strong>Cryable 型を引数で受け取るメソッド</strong>を1つ定義してください。例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public static void doCry(Cryable c) { c.cry(); }</code> のように、引数で受け取ったインスタンスの <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">cry()</code> を呼びます。main から、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">doCry(new Dog("ポチ"));</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">doCry(new Cat("タマ"));</code> を呼び、それぞれ「ワンワン」「ニャー」と表示されることを確認してください。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
@@ -136,21 +182,22 @@ System.out.println("PartTimer給与: " + sal2);</textarea>
 </details>
 <details style="margin-top: 5px;"><summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
 <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】Cryable 型の引数で受け、cry() を呼ぶメソッドと、main からの呼び出しです。</p>
-<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public static void doCry(Cryable c) {
+<pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">// メソッド（引数が Cryable 型なので、Dog でも Cat でも渡せる）
+public static void doCry(Cryable c) {
     c.cry();
 }
-// main 内
-doCry(new Dog("ポチ"));  // ワンワン
-doCry(new Cat("タマ"));  // ニャー</pre>
+// main 内：doCry に Dog / Cat を渡してポリモーフィズムを確認
+doCry(new Dog("ポチ"));
+doCry(new Cat("タマ"));</pre>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:140px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public static void doCry(Cryable c) {
+  <textarea readonly style="width:100%;height:150px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// メソッド（引数が Cryable 型なので、Dog でも Cat でも渡せる）
+public static void doCry(Cryable c) {
 	c.cry();
 }
-// main 内
+// main 内：doCry に Dog / Cat を渡してポリモーフィズムを確認
 doCry(new Dog("ポチ"));
 doCry(new Cat("タマ"));</textarea>
 </div>
 </details>
-</div>
 </div>

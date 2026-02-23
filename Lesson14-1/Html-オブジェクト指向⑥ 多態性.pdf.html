@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>オブジェクト指向⑥ 多態性（第14-1回）印刷用</title>
+</head>
+<body style="font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px;">
+
+<h1 style="color: #0033ff; font-size: 24px; margin-bottom: 8px;">オブジェクト指向学習カリキュラム</h1>
+<p style="margin-bottom: 24px;"><strong>多態性（ポリモーフィズム）</strong> — 第14-1回：復習と前提知識・配列で自販機をまとめて扱う</p>
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-top: 24px;">この単元の前に：配列と for 文の復習</h2>
+<p>多態性の話に入る前に、<strong>配列</strong>と<strong>for 文</strong>（普通の for と拡張 for）を、身近な型でおさらいします。ここでは自作クラスは使わず、<code>String</code> や <code>int</code> だけを使うので、「配列ってこうだったな」「for でひとつずつ処理するんだったな」と思い出してから進めましょう。</p>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 16px;">復習①：配列（同じ型のものをまとめて入れる箱）</h3>
+<p>配列は、<strong>同じ型</strong>の要素をまとめて入れておく箱です。例：<code>String[] names = new String[3];</code> で「文字列が3つ入る箱」を用意し、<code>names[0] = "りんご";</code> のように要素に代入します。<code>names.length</code> で要素数（ここでは 3）が取れます。</p>
+<pre style="background: #fdf5e6; padding: 12px; border: 1px solid #e1dbbd; overflow-x: auto;">// String の配列の例
+String[] names = new String[3];
+names[0] = "りんご";
+names[1] = "みかん";
+names[2] = "ぶどう";
+// names.length は 3</pre>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 16px;">復習②：for 文（配列を順番に処理する）</h3>
+<p><strong>普通の for 文</strong>では、添え字 <code>i</code> を 0 から <code>配列.length - 1</code> まで増やし、<code>names[i]</code> で各要素にアクセスします。</p>
+<pre style="background: #fdf5e6; padding: 12px; border: 1px solid #e1dbbd; overflow-x: auto;">// 普通の for：i で 0, 1, 2 と回す
+for (int i = 0; i &lt; names.length; i++) {
+    System.out.println(names[i]);   // りんご → みかん → ぶどう
+}</pre>
+<p><strong>拡張 for 文</strong>（for-each）では、添え字を使わず「配列の要素を1つずつ変数に取り出して」処理します。<code>for (String s : names)</code> で、<code>s</code> に順に "りんご"、"みかん"、"ぶどう" が入ります。</p>
+<pre style="background: #fdf5e6; padding: 12px; border: 1px solid #e1dbbd; overflow-x: auto;">// 拡張 for：要素を 1 つずつ s に取り出す
+for (String s : names) {
+    System.out.println(s);   // りんご → みかん → ぶどう
+}</pre>
+<p style="font-size: 14px; color: #555;">この「同じ型のものを配列にまとめて、for でひとつずつ扱う」が、このあと<strong>自販機の型</strong>でも同じように出てきます。まずは String でイメージを思い出しておきましょう。</p>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px;">この単元で使うサンプル：自販機のクラスと継承関係</h2>
+<p>多態性の説明と3人のやり取りで出てくる「自販機」は、次の4つのクラスをサンプルとして使います。どのクラスがどんな役割・内容かを先に押さえておきましょう。</p>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 16px;">各クラスの内容（概要）</h3>
+<table border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; margin: 8px 0;">
+<tr style="background: #f0f8ff;"><th style="text-align: left;">クラス名</th><th style="text-align: left;">種類</th><th style="text-align: left;">内容・役割</th></tr>
+<tr><td><code>VendingMachine</code></td><td>抽象クラス（スーパークラス）</td><td>「自販機」の共通の型。中身は書かず、<code>buy()</code> を抽象メソッドとして「購入処理を必ず持つ」と約束するだけ。インスタンスは作らない。</td></tr>
+<tr><td><code>VendingHotNoodle</code></td><td>サブクラス</td><td>温かい麺用自販機。<code>buy()</code> では「購入」→「2分待つ」→「お湯を注ぐ」の流れを表示する。</td></tr>
+<tr><td><code>Vending2Items</code></td><td>サブクラス</td><td>2つの商品を扱う自販機。<code>selected</code>（0 か 1）で1つ目（コーラ）か2つ目（お茶）かを決め、<code>buy()</code> でどちらかを購入した表示をする。</td></tr>
+<tr><td><code>VendingHobby</code></td><td>サブクラス</td><td>ガチャガチャ型自販機。<code>buy()</code> では乱数で 10％レア・70％ノーマル・20％外れ のいずれかを出した表示をする。</td></tr>
+</table>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 16px;">継承関係</h3>
+<p>VendingMachine がスーパークラス（抽象クラス）で、3つのサブクラスが <code>extends VendingMachine</code> で継承しています。どれも「自販機」なので <code>buy()</code> を持ち、中身だけが違います。</p>
+<table border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; margin: 8px 0;">
+<tr style="background: #f0f8ff;"><th style="text-align: left;">スーパークラス</th><th style="text-align: left;">サブクラス（継承）</th><th style="text-align: left;">関係</th></tr>
+<tr><td rowspan="3"><code>VendingMachine</code><br><small>（抽象クラス）<br>abstract void buy();</small></td><td><code>VendingHotNoodle</code></td><td><code>extends VendingMachine</code></td></tr>
+<tr><td><code>Vending2Items</code></td><td><code>extends VendingMachine</code></td></tr>
+<tr><td><code>VendingHobby</code></td><td><code>extends VendingMachine</code></td></tr>
+</table>
+<p style="font-size: 14px; color: #555;">図で言うと、VendingMachine が上にあり、その下に VendingHotNoodle・Vending2Items・VendingHobby が並んで「継承」の矢印でつながっているイメージです。コードの写しはこのあと【2】で出てきます。</p>
+
+<p style="text-align: center; margin: 16px 0;"><img src="diagram/枠だけイメージ.png" alt="継承関係のイメージ" style="max-width: 100%; height: auto;"></p>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px;">多態性って何？ — 3人で話し合ってみよう</h2>
+<p>上で紹介した4つのクラス（VendingMachine と3つのサブクラス）を前提に、カバ先生・ユウタ・ナナコの3人で、多態性の考え方を話し合います。第12回で抽象クラス、第13回でインタフェースを学んだ「型としての決まり」を、<strong>変数や配列の型として使い、同じメッセージで異なる動きをさせる</strong>のが「多態性」です。</p>
+
+<p style="background: #f2f2f2; padding: 12px; border-left: 5px solid #888;"><strong>カバ先生：</strong>「みんな、自動販売機にはヌードル用自販機、2品扱える自販機、ガチャガチャのマシンみたいに、いろいろあるよね。でもどれも『自販機』だから、<strong>購入する</strong>という仕事は絶対にできる。つまり、自販機から派生したクラスは、みんな <code>buy()</code> という処理を持っている。」</p>
+<p style="background: #f2f2f2; padding: 12px; border-left: 5px solid #888;"><strong>カバ先生：</strong>「みんな <code>buy()</code> という処理を持っている。なぜかわかるかな？」</p>
+<p style="background: #e6f4ff; padding: 12px; border-left: 5px solid #4da6ff;"><strong>ユウタ：</strong>「ヌードル用自販機はお湯を注いだり、2品扱える自販機はコーラかお茶を出したり、ガチャガチャのマシンはランダムで出たり、中身の手続きはバラバラだけど、どれも『購入』という仕事はする、ということですね。」</p>
+<p style="background: #ffe6f0; padding: 12px; border-left: 5px solid #e8a0b0;"><strong>ナナコ：</strong>「じゃあ、使う側の気持ちで言うと……。要するに、<strong>自動販売機が入る変数</strong>に、ヌードル用自販機が入っていても、2品扱える自販機が入っていても、ガチャガチャのマシンが入っていても、『どれだか具体的な手続きはわからなくても、購入の処理はさせることができる』ってことですよね。だって、どれも自販機なんだから、買うことはできるでしょ？ って。」</p>
+<p style="background: #f2f2f2; padding: 12px; border-left: 5px solid #888;"><strong>カバ先生：</strong>「その通り。プログラムで言うと、<strong>変数の型を『自販機（VendingMachine）型』にしておく</strong>。そうすれば、その変数にはヌードル用自販機でも2品扱える自販機でもガチャガチャのマシンでも、どれを入れてもいい。で、使う側は『<code>buy()</code> してね』と一度呼ぶだけで、中身がどれであっても、その機種の購入処理が動く。これが<strong>多態性（ポリモーフィズム）</strong>の考え方だよ。」</p>
+<p style="background: #e6f4ff; padding: 12px; border-left: 5px solid #4da6ff;"><strong>ユウタ：</strong>「配列にしても同じですね。『自販機型の配列』に、3種類の自販機を入れて、for で <code>buy()</code> を呼べば、りんご・みかん・ぶどうを表示するみたいに、順番にそれぞれの購入処理が動く。使う側は『どれが入っているか』をいちいち気にしなくていい。」</p>
+
+<p style="text-align: center; margin: 16px 0;"><img src="diagram/型が違っても代入可能.png" alt="型が違っても代入可能" style="max-width: 100%; height: auto;"></p>
+<p>この「<strong>自販機が入る変数（や配列）に、どれが入っていても、buy() で購入処理ができる</strong>」という考え方を、このあとコードで確認していきます。</p>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px;">【1】学習目標（第14-1回）</h2>
+<ul style="padding-left: 20px;">
+<li>配列と for 文で、複数のオブジェクトをまとめて扱えることを思い出せる。</li>
+<li>スーパークラス型（抽象クラス型）やインタフェース型を、変数・配列の型として使えることを理解する。</li>
+<li>「自販機型の配列」にいろいろな種類の自販機を入れ、for で <code>buy()</code> を呼ぶと、どの機種でも問題なくその機種の動きになることを確認できる。</li>
+</ul>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px;">【2】自販機の流れと3つの派生クラス（つくりを知る）</h2>
+<p>多態性の「流れ」と「つくり」を掴むため、<strong>自動販売機クラス（VendingMachine）をスーパークラスにした、きわめてシンプルな3つのクラス</strong>を用意しました。コメントを多めに入れてあるので、読みながら「どんな動きをするか」「どう継承しているか」を追ってみてください。</p>
+<p style="font-size: 14px; color: #555;">以下の4クラス（VendingMachine・VendingHotNoodle・Vending2Items・VendingHobby）は、Eclipse やメモ帳へ貼り付けて利用できます。メインクラスでのインスタンス化は各自で作成してください。</p>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 20px;">基本：抽象クラス VendingMachine</h3>
+<p>「自販機」の共通の型として、<code>buy()</code> を抽象メソッドで約束しておきます。サブクラスがそれぞれの「買い方」を実装します。</p>
+<pre style="background: #e6f7ff; padding: 12px; border: 1px solid #91d5ff;">// 自動販売機のスーパークラス（抽象クラス）
+// サブクラスは必ず buy() を実装する
+public abstract class VendingMachine {
+
+	// 購入処理はサブクラスごとに違うので、ここでは「やること」だけ約束する
+	public abstract void buy();
+}</pre>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 20px;">① VendingHotNoodle — 温かい麺用自販機</h3>
+<p><code>buy()</code> では「購入」→「2分待つ」→「お湯を注ぐ」の流れを表現します。</p>
+<pre style="background: #e6f7ff; padding: 12px; border: 1px solid #91d5ff;">// 温かい麺用自販機（VendingMachine のサブクラス）
+// buy では「購入 → 2分待つ → お湯を注ぐ」の流れを行う
+public class VendingHotNoodle extends VendingMachine {
+
+	@Override
+	public void buy() {
+		// 1. 購入
+		System.out.println("温かい麺を購入しました。");
+
+		// 2. 2分待つ（説明用：実際には待機メッセージのみ。本格的に待つ場合は Thread.sleep(120000) など）
+		System.out.println("2分待っています...");
+
+		// 3. お湯を注ぐ
+		System.out.println("お湯を注ぎました。どうぞ。");
+	}
+}</pre>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 20px;">② Vending2Items — 2つの商品を扱う自販機</h3>
+<p>2種類の商品のうち、<code>selected</code>（0 か 1）でどちらを買うか判断します。</p>
+<pre style="background: #e6f7ff; padding: 12px; border: 1px solid #91d5ff;">// 2つの商品を購入できる自販機（VendingMachine のサブクラス）
+// selected が 0 なら1つ目、1 なら2つ目を出す
+public class Vending2Items extends VendingMachine {
+
+	// 1つ目の商品名
+	private String item1 = "コーラ";
+	// 2つ目の商品名
+	private String item2 = "お茶";
+
+	// どちらを買うか（0 → item1、1 → item2）
+	private int selected;
+
+	// コンストラクタ：どちらを選ぶかを引数で受け取る
+	public Vending2Items(int selected) {
+		this.selected = selected;
+	}
+
+	@Override
+	public void buy() {
+		// selected の値で、出し分ける
+		if (selected == 0) {
+			System.out.println(item1 + "を購入しました。");
+		} else {
+			System.out.println(item2 + "を購入しました。");
+		}
+	}
+}</pre>
+
+<h3 style="color: #0033ff; font-size: 16px; margin-top: 20px;">③ VendingHobby — ガチャガチャ型自販機</h3>
+<p>購入時はランダムで3種類のどれかが出ます。<strong>Math.random()</strong> は 0.0 以上 1.0 未満の <strong>double</strong> を返すので、その値で 10％・70％・20％ に振り分けます。</p>
+<pre style="background: #e6f7ff; padding: 12px; border: 1px solid #91d5ff;">// ガチャガチャ型自販機（VendingMachine のサブクラス）
+// 購入時は Math.random() で 10% レア / 70% ノーマル / 20% 外れ のどれかが出る
+public class VendingHobby extends VendingMachine {
+
+	@Override
+	public void buy() {
+		// 0.0 以上 1.0 未満の乱数（double 型）。この値で割合を振り分ける
+		double r = Math.random();
+
+		// 10%：0.0 以上 0.1 未満 → レアフィギュア
+		if (r &lt; 0.10) {
+			System.out.println("レアフィギュアが出ました！");
+			return;
+		}
+		// 70%：0.1 以上 0.8 未満 → ノーマルフィギュア
+		if (r &lt; 0.80) {
+			System.out.println("ノーマルフィギュアが出ました。");
+			return;
+		}
+		// 20%：それ以外（0.8 以上 1.0 未満）→ 外れ
+		System.out.println("外れフィギュアが出ました。");
+	}
+}</pre>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px;">【3】配列に入れて、どの自販機でも buy() が動くことを確認する</h2>
+<p>スーパークラス型（<code>VendingMachine</code>）の配列を用意し、その中にヌードル用自販機・2品扱える自販機・ガチャガチャのマシンを入れます。for 文で配列を回し、それぞれ <code>buy()</code> を呼ぶと、<strong>どの機種であっても問題なく、その機種の buy() が実行</strong>されます。メインでは各自でインスタンス化し、次のような形で配列と for を使って動作を確認してください。</p>
+<pre style="background: #fdf5e6; padding: 12px; border: 1px solid #e1dbbd;">// 例：自販機型の配列に、3種類の自販機を入れる（アップキャスト）。メインは各自で作成
+VendingMachine[] machines = new VendingMachine[3];
+machines[0] = new VendingHotNoodle();
+machines[1] = new Vending2Items(0);   // 0 → 1つ目（コーラ）
+machines[2] = new VendingHobby();
+
+// どの自販機であっても、同じように buy() を呼べる
+for (int i = 0; i &lt; machines.length; i++) {
+    machines[i].buy();
+}</pre>
+<p>このように、<strong>「自販機型の配列」でまとめて扱い、1本の for で各機種の buy() が正しく動く</strong>ことを確認できれば、第14-1回のゴールです。第14-2回（アップキャスト・メソッドの引数と戻り値）は <strong>Lesson14-2</strong> フォルダのテキストを参照してください。</p>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;">
+
+<h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px;">【4】まとめ（第14-1回）</h2>
+<ul style="padding-left: 20px;">
+<li>配列と for 文で、複数のオブジェクトをまとめて処理できる。</li>
+<li>スーパークラス型（抽象クラス型）やインタフェース型を、変数・配列の型として使える。</li>
+<li>「自販機型の配列」にいろいろな種類の自販機を入れ、for で <code>buy()</code> を呼ぶと、どの機種でもその機種の動きになる。</li>
+</ul>
+
+</body>
+</html>

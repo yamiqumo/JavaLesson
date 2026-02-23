@@ -5,7 +5,7 @@ package src_10.txt_before;
  * - buy() の流れは固定
  * - 事前チェック / お湯提供 / 最終出力をサブクラス側のメソッドで差し替える
  */
-public abstract class VendMachine {
+public abstract class VendingMachine {
 
     // フィールド
     private int select = 1; // デフォルト商品は1番
@@ -14,11 +14,11 @@ public abstract class VendMachine {
     protected int stock;    // 単一商品の在庫（カップ麺などで利用）
 
     // 引数なしコンストラクタ
-    public VendMachine() {
+    public VendingMachine() {
     }
 
     // name と stock を受け取るコンストラクタ
-    public VendMachine(String name, int stock) {
+    public VendingMachine(String name, int stock) {
         this.name = name;
         this.stock = stock;
     }

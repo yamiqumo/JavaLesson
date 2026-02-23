@@ -1,6 +1,6 @@
-// ガチャガチャ型自販機（VendMachine のサブクラス）
+// ガチャガチャ型自販機（VendingMachine のサブクラス）
 // 購入時は Math.random() で 10% レア / 70% ノーマル / 20% 外れ のどれかが出る
-public class VendingHobby extends VendMachine {
+public class VendingHobby extends VendingMachine {
 
 	@Override
 	public void buy() {

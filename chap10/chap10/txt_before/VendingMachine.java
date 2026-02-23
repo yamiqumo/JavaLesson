@@ -2,12 +2,12 @@
  * Lesson9 最終プログラム（修正前）
  * 自販機クラス：コンストラクタ・カプセル化・getter/setter・buy()
  */
-public class VendMachine {
+public class VendingMachine {
 
     private String name;
     private int stock;
 
-    public VendMachine(String name, int stock) {
+    public VendingMachine(String name, int stock) {
         this.name = name;
         this.stock = stock;
     }

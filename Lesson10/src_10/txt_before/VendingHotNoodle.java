@@ -4,7 +4,7 @@ package src_10.txt_before;
  * カップ麺用の自販機。
  * 在庫とお湯（水量）の両方をチェックする。
  */
-public class VendingHotNoodle extends VendMachine {
+public class VendingHotNoodle extends VendingMachine {
 
     // フィールド（お湯の量と、1杯あたりに必要なお湯の量）
     private int waterVolume;    // 現在のお湯量（mlなど任意の単位）

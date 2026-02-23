@@ -11,7 +11,7 @@
 <ul style="padding-left: 20px; margin-bottom: 0;">
 <li style="margin-bottom: 10px;"><strong>継承</strong> — <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends スーパークラス名</code> でサブクラスがスーパークラスの機能を引き継ぐ。</li>
 <li style="margin-bottom: 10px;"><strong>オーバーライド</strong> — スーパークラスと同じ名前・同じ引数のメソッドをサブクラスで定義し直すこと。オーバーライドしたメソッドには <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public</code> をつけておく。</li>
-<li><strong>VendMachine</strong> — 自販機の共通の流れ（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> など）を持ち、サブクラスで差分を実装してきた。</li>
+<li><strong>VendingMachine</strong> — 自販機の共通の流れ（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> など）を持ち、サブクラスで差分を実装してきた。</li>
 </ul>
 </div>
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">この単元で学ぶこと</h3>
@@ -81,15 +81,15 @@
 <p style="margin: 12px 0 0 0; font-size: 12px; color: #666;">※図では VendingMachine から下に矢印を伸ばし、VendingHotNoodle と Vending2Items が継承している関係を示す。</p>
 </div>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">前回までの基本クラス VendMachine</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">前回までの基本クラス VendingMachine</h3>
 <p style="margin-bottom: 10px;">基底クラスとして <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drinkName</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> を持ち、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> で「〇〇を購入しました」と表示するだけのシンプルなクラスです。この単元では、ここに <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> や継承を自分で付けていくハンズオンに挑戦します。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 基底クラス：drinkName と stock を持ち、buy で購入表示するだけ</span>
-<span style="color: #0033ff;">public class</span> VendMachine {
+<span style="color: #0033ff;">public class</span> VendingMachine {
 
     <span style="color: #0033ff;">private</span> String drinkName;
     <span style="color: #0033ff;">private</span> <span style="color: #0033ff;">int</span> stock;
 
-    <span style="color: #0033ff;">public</span> VendMachine(String drinkName, <span style="color: #0033ff;">int</span> stock) {
+    <span style="color: #0033ff;">public</span> VendingMachine(String drinkName, <span style="color: #0033ff;">int</span> stock) {
         <span style="color: #0033ff;">this</span>.drinkName = drinkName;
         <span style="color: #0033ff;">this</span>.stock = stock;
     }
@@ -105,16 +105,16 @@
 }</pre>
 <p style="font-size:12px;color:#666;margin-top:8px;margin-bottom:6px;">※最初に基本クラスをここからドラッグして読み込みます。メインメソッドは含みません。</p>
 <details style="margin: 0 0 12px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 基本クラス（VendMachine）をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 基本クラス（VendingMachine）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
   <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#fff;display:block;user-select:all !important;">// 基底クラス：drinkName と stock を持ち、buy で購入表示するだけ
-public class VendMachine {
+public class VendingMachine {
 
     private String drinkName;
     private int stock;
 
-    public VendMachine(String drinkName, int stock) {
+    public VendingMachine(String drinkName, int stock) {
         this.drinkName = drinkName;
         this.stock = stock;
     }
@@ -164,13 +164,13 @@ public class VendingHotNoodle {
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【4】練習問題</h2>
 <div>
-<strong>【問題】VendMachine に abstract を付けて継承する</strong><br>
-上の基本クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code> に、自分で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> と抽象メソッド（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code>）を付け、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SimpleVend</code> というサブクラスで継承・実装してみましょう。
+<strong>【問題】VendingMachine に abstract を付けて継承する</strong><br>
+上の基本クラス <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code> に、自分で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">abstract</code> と抽象メソッド（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">beforeBuy()</code>、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">dispense()</code>）を付け、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SimpleVend</code> というサブクラスで継承・実装してみましょう。
 </div>
 <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
 <details style="margin: 0.5em 0;">
 <summary style="cursor: pointer; font-weight: bold; color: #555;">▶ ヒント</summary>
-<p>VendMachine を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract class</code> にし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の流れのうちサブクラスに任せたい部分を abstract メソッドにします。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class SimpleVend extends VendMachine</code> で継承し、@Override で抽象メソッドを実装します。</p>
+<p>VendingMachine を <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public abstract class</code> にし、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> の流れのうちサブクラスに任せたい部分を abstract メソッドにします。<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public class SimpleVend extends VendingMachine</code> で継承し、@Override で抽象メソッドを実装します。</p>
 </details>
 <div style="margin-top: 25px;">
 <strong>【問題】Vending2Items クラスを自分で書いてみる</strong><br>

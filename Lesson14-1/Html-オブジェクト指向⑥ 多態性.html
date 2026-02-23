@@ -45,7 +45,7 @@ names[2] = <span style="color: #cc0000;">"ぶどう"</span>;
 <th style="text-align: left;">内容・役割</th>
 </tr>
 <tr>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code></td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code></td>
 <td>抽象クラス（スーパークラス）</td>
 <td>「自販機」の共通の型。中身は書かず、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を抽象メソッドとして「購入処理を必ず持つ」と約束するだけ。インスタンスは作らない。</td>
 </tr>
@@ -68,7 +68,7 @@ names[2] = <span style="color: #cc0000;">"ぶどう"</span>;
 </table>
 
 <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 10px;">継承関係</h3>
-<p style="margin-bottom: 10px;">VendMachine がスーパークラス（抽象クラス）で、3つのサブクラスが <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendMachine</code> で継承しています。どれも「自販機」なので <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を持ち、中身だけが違います。</p>
+<p style="margin-bottom: 10px;">VendingMachine がスーパークラス（抽象クラス）で、3つのサブクラスが <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendingMachine</code> で継承しています。どれも「自販機」なので <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を持ち、中身だけが違います。</p>
 <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 0;" border="1" cellspacing="0" cellpadding="8">
 <tbody>
 <tr style="background-color: #f0f8ff;">
@@ -77,21 +77,21 @@ names[2] = <span style="color: #cc0000;">"ぶどう"</span>;
 <th style="text-align: left;">関係</th>
 </tr>
 <tr>
-<td rowspan="3"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code><br><span style="font-size: 12px; color: #666;">（抽象クラス）<br>abstract void buy();</span></td>
+<td rowspan="3"><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code><br><span style="font-size: 12px; color: #666;">（抽象クラス）<br>abstract void buy();</span></td>
 <td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingHotNoodle</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendMachine</code></td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendingMachine</code></td>
 </tr>
 <tr>
 <td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">Vending2Items</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendMachine</code></td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendingMachine</code></td>
 </tr>
 <tr>
 <td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingHobby</code></td>
-<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendMachine</code></td>
+<td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">extends VendingMachine</code></td>
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 12px; margin-bottom: 0; font-size: 14px; color: #555;">図で言うと、VendMachine が上にあり、その下に VendingHotNoodle・Vending2Items・VendingHobby が並んで「継承」の矢印でつながっているイメージです。コードの写しはこのあと【2】で出てきます。</p>
+<p style="margin-top: 12px; margin-bottom: 0; font-size: 14px; color: #555;">図で言うと、VendingMachine が上にあり、その下に VendingHotNoodle・Vending2Items・VendingHobby が並んで「継承」の矢印でつながっているイメージです。コードの写しはこのあと【2】で出てきます。</p>
 
 <div style="border: 2px dashed #ccc; min-height: 80px; margin: 15px 0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">【図の挿入①】</div>
 </section>
@@ -100,7 +100,7 @@ names[2] = <span style="color: #cc0000;">"ぶどう"</span>;
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">多態性って何？ — 3人で話し合ってみよう</h2>
-<p style="margin-bottom: 15px;">上で紹介した4つのクラス（VendMachine と3つのサブクラス）を前提に、カバ先生・ユウタ・ナナコの3人で、多態性の考え方を話し合います。第12回で抽象クラス、第13回でインタフェースを学んだ「型としての決まり」を、<strong>変数や配列の型として使い、同じメッセージで異なる動きをさせる</strong>のが「多態性」です。</p>
+<p style="margin-bottom: 15px;">上で紹介した4つのクラス（VendingMachine と3つのサブクラス）を前提に、カバ先生・ユウタ・ナナコの3人で、多態性の考え方を話し合います。第12回で抽象クラス、第13回でインタフェースを学んだ「型としての決まり」を、<strong>変数や配列の型として使い、同じメッセージで異なる動きをさせる</strong>のが「多態性」です。</p>
 
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
 <p style="margin: 0;"><strong>カバ先生：</strong>「みんな、自動販売機にはヌードル用自販機、2品扱える自販機、ガチャガチャのマシンみたいに、いろいろあるよね。でもどれも『自販機』だから、<strong>購入する</strong>という仕事は絶対にできる。つまり、自販機から派生したクラスは、みんな <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> という処理を持っている。」</p>
@@ -115,7 +115,7 @@ names[2] = <span style="color: #cc0000;">"ぶどう"</span>;
 <p style="margin: 0;"><strong>ナナコ：</strong>「じゃあ、使う側の気持ちで言うと……。要するに、<strong>自動販売機が入る変数</strong>に、ヌードル用自販機が入っていても、2品扱える自販機が入っていても、ガチャガチャのマシンが入っていても、『どれだか具体的な手続きはわからなくても、購入の処理はさせることができる』ってことですよね。だって、どれも自販機なんだから、買うことはできるでしょ？ って。」</p>
 </div>
 <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
-<p style="margin: 0;"><strong>カバ先生：</strong>「その通り。プログラムで言うと、<strong>変数の型を『自販機（VendMachine）型』にしておく</strong>。そうすれば、その変数にはヌードル用自販機でも2品扱える自販機でもガチャガチャのマシンでも、どれを入れてもいい。で、使う側は『<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> してね』と一度呼ぶだけで、中身がどれであっても、その機種の購入処理が動く。これが<strong>多態性（ポリモーフィズム）</strong>の考え方だよ。」</p>
+<p style="margin: 0;"><strong>カバ先生：</strong>「その通り。プログラムで言うと、<strong>変数の型を『自販機（VendingMachine）型』にしておく</strong>。そうすれば、その変数にはヌードル用自販機でも2品扱える自販機でもガチャガチャのマシンでも、どれを入れてもいい。で、使う側は『<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> してね』と一度呼ぶだけで、中身がどれであっても、その機種の購入処理が動く。これが<strong>多態性（ポリモーフィズム）</strong>の考え方だよ。」</p>
 </div>
 <div style="background-color: #e6f4ff; padding: 15px; border-radius: 5px; border-left: 5px solid #4da6ff;">
 <p style="margin: 0;"><strong>ユウタ：</strong>「配列にしても同じですね。『自販機型の配列』に、3種類の自販機を入れて、for で <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼べば、りんご・みかん・ぶどうを表示するみたいに、順番にそれぞれの購入処理が動く。使う側は『どれが入っているか』をいちいち気にしなくていい。」</p>
@@ -140,18 +140,18 @@ names[2] = <span style="color: #cc0000;">"ぶどう"</span>;
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【2】自販機の流れと3つの派生クラス（つくりを知る）</h2>
-<p style="margin-bottom: 10px;">多態性の「流れ」と「つくり」を掴むため、<strong>自動販売機クラス（VendMachine）をスーパークラスにした、きわめてシンプルな3つのクラス</strong>を用意しました。コメントを多めに入れてあるので、読みながら「どんな動きをするか」「どう継承しているか」を追ってみてください。</p>
-<p style="margin-bottom: 10px; font-size: 14px; color: #555;">以下の4クラス（VendMachine・VendingHotNoodle・Vending2Items・VendingHobby）は、各見出し下の<strong>ドラッグでコピー</strong>からテキストを選択し、Eclipse やメモ帳へ貼り付けて利用できます。メインクラスでのインスタンス化は各自で作成してください。</p>
+<p style="margin-bottom: 10px;">多態性の「流れ」と「つくり」を掴むため、<strong>自動販売機クラス（VendingMachine）をスーパークラスにした、きわめてシンプルな3つのクラス</strong>を用意しました。コメントを多めに入れてあるので、読みながら「どんな動きをするか」「どう継承しているか」を追ってみてください。</p>
+<p style="margin-bottom: 10px; font-size: 14px; color: #555;">以下の4クラス（VendingMachine・VendingHotNoodle・Vending2Items・VendingHobby）は、各見出し下の<strong>ドラッグでコピー</strong>からテキストを選択し、Eclipse やメモ帳へ貼り付けて利用できます。メインクラスでのインスタンス化は各自で作成してください。</p>
 
-<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">基本：抽象クラス VendMachine</h3>
+<h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">基本：抽象クラス VendingMachine</h3>
 <p style="margin-bottom: 10px;">「自販機」の共通の型として、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を抽象メソッドで約束しておきます。サブクラスがそれぞれの「買い方」を実装します。</p>
 <details style="margin: 0 0 12px 0;">
-<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 抽象クラス VendMachine をドラッグでコピー（クリックで開く）</summary>
+<summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 抽象クラス VendingMachine をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
   <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 自動販売機のスーパークラス（抽象クラス）
 // サブクラスは必ず buy() を実装する
-public abstract class VendMachine {
+public abstract class VendingMachine {
 
 	// 購入処理はサブクラスごとに違うので、ここでは「やること」だけ約束する
 	public abstract void buy();
@@ -165,9 +165,9 @@ public abstract class VendMachine {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 VendingHotNoodle をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:320px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 温かい麺用自販機（VendMachine のサブクラス）
+  <textarea readonly style="width:100%;height:320px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 温かい麺用自販機（VendingMachine のサブクラス）
 // buy では「購入 → 2分待つ → お湯を注ぐ」の流れを行う
-public class VendingHotNoodle extends VendMachine {
+public class VendingHotNoodle extends VendingMachine {
 
 	@Override
 	public void buy() {
@@ -190,9 +190,9 @@ public class VendingHotNoodle extends VendMachine {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Vending2Items をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:380px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 2つの商品を購入できる自販機（VendMachine のサブクラス）
+  <textarea readonly style="width:100%;height:380px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 2つの商品を購入できる自販機（VendingMachine のサブクラス）
 // selected が 0 なら1つ目、1 なら2つ目を出す
-public class Vending2Items extends VendMachine {
+public class Vending2Items extends VendingMachine {
 
 	// 1つ目の商品名
 	private String item1 = "コーラ";
@@ -226,9 +226,9 @@ public class Vending2Items extends VendMachine {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 VendingHobby をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:420px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// ガチャガチャ型自販機（VendMachine のサブクラス）
+  <textarea readonly style="width:100%;height:420px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// ガチャガチャ型自販機（VendingMachine のサブクラス）
 // 購入時は Math.random() で 10% レア / 70% ノーマル / 20% 外れ のどれかが出る
-public class VendingHobby extends VendMachine {
+public class VendingHobby extends VendingMachine {
 
 	@Override
 	public void buy() {
@@ -257,9 +257,9 @@ public class VendingHobby extends VendMachine {
 
 <section style="margin-bottom: 30px;">
 <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">【3】配列に入れて、どの自販機でも buy() が動くことを確認する</h2>
-<p style="margin-bottom: 10px;">スーパークラス型（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendMachine</code>）の配列を用意し、その中にヌードル用自販機・2品扱える自販機・ガチャガチャのマシンを入れます。for 文で配列を回し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶと、<strong>どの機種であっても問題なく、その機種の buy() が実行</strong>されます。メインでは各自でインスタンス化し、次のような形で配列と for を使って動作を確認してください。</p>
+<p style="margin-bottom: 10px;">スーパークラス型（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine</code>）の配列を用意し、その中にヌードル用自販機・2品扱える自販機・ガチャガチャのマシンを入れます。for 文で配列を回し、それぞれ <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶと、<strong>どの機種であっても問題なく、その機種の buy() が実行</strong>されます。メインでは各自でインスタンス化し、次のような形で配列と for を使って動作を確認してください。</p>
 <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">// 例：自販機型の配列に、3種類の自販機を入れる（アップキャスト）。メインは各自で作成</span>
-VendMachine[] machines = <span style="color: #0033ff;">new</span> VendMachine[3];
+VendingMachine[] machines = <span style="color: #0033ff;">new</span> VendingMachine[3];
 machines[0] = <span style="color: #0033ff;">new</span> VendingHotNoodle();
 machines[1] = <span style="color: #0033ff;">new</span> Vending2Items(0);   <span style="color: #666;">// 0 → 1つ目（コーラ）</span>
 machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();

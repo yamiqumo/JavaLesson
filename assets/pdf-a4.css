@@ -54,6 +54,18 @@ body > div {
     margin-bottom: 0.25em;
   }
 
+  /* 最初のメモ用ページ（1ページ分の高さを確保） */
+  .note-page {
+    min-height: 260mm;
+    page-break-after: always;
+  }
+
+  /* PDF用では textarea のスクロールを避けてすべて表示する */
+  textarea {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   /* 画像はページ幅に収める */
   img {
     max-width: 100% !important;

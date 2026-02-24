@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../assets/pdf-a4.css">
 </head>
 <body>
+<div class="note-page"></div>
 【テキスト】 オブジェクト指向⑥-2 ～多態性（アップキャスト・引数と戻り値）～
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 <h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">オブジェクト指向学習カリキュラム</h1>
@@ -34,7 +35,7 @@
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 抽象クラス VendingMachine をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 自動販売機のスーパークラス（抽象クラス）
+  <textarea readonly style="width:100%;height:260px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 自動販売機のスーパークラス（抽象クラス）
 // サブクラスは必ず buy() を実装する
 public abstract class VendingMachine {
 
@@ -76,7 +77,7 @@ public abstract class VendingMachine {
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 サブクラス3つ（VendingHotNoodle・Vending2Items・VendingHobby）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください（各クラスを別ファイルで保存）</p>
-  <textarea readonly style="width:100%;height:520px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// カップ麺自販機クラス（VendingMachine のサブクラス）
+  <textarea readonly style="width:100%;height:640px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// カップ麺自販機クラス（VendingMachine のサブクラス）
 // buy では「購入 → 2分待つ → お湯を注ぐ」の流れを行う
 public class VendingHotNoodle extends VendingMachine {
 
@@ -146,7 +147,7 @@ machines[2] = <span style="color: #0033ff;">new</span> VendingHobby();
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 Main（自販機型の配列＋for）をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Main {
+  <textarea readonly style="width:100%;height:280px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Main {
 
 	public static void main(String[] args) {
 		// 自販機型の配列に、3種類の自販機を入れる
@@ -350,7 +351,7 @@ vm.buy();   <span style="color: #666;">// Vending2Items の buy() が動く</spa
 <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 講義用：編集前の Main をドラッグでコピー（クリックで開く）</summary>
 <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
   <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
-  <textarea readonly style="width:100%;height:240px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 編集前：各サブクラスを個別に new して buy() を呼んでいるだけ（ポリモーフィズム未適用）
+  <textarea readonly style="width:100%;height:300px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 編集前：各サブクラスを個別に new して buy() を呼んでいるだけ（ポリモーフィズム未適用）
 public class Main {
 
 	public static void main(String[] args) {

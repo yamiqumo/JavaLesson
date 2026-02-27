@@ -1,0 +1,249 @@
+【練習問題】 第15回 Static（クラス変数）とDB/SQL入門
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Java研修 練習問題集 — 第15回 Static と DB/SQL入門</h1>
+
+<p style="margin-bottom: 15px;">第15回では、<strong>Static（クラス変数）</strong>と、<strong>データベース（DB）＋SQL の基本</strong>を体験します。前半は Java のクラス変数で「自販機が何台あるか」を数え、後半は DBeaver を使って DB に SQL を直接打ち込みます。</p>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">配布コード・配布SQL（ドラッグでコピー）</h2>
+  <p style="margin-bottom: 10px; font-size: 14px;">練習問題で使用する <strong>VendingMachine クラス</strong> と、DB 用の <strong>CREATE TABLE ＋ 初期 INSERT 文</strong> を以下に用意しています。必要に応じてドラッグでコピーして使ってください。</p>
+
+  <p style="margin-bottom: 8px; font-size: 13px; font-weight: bold;">【Java】クラス変数 machineCount 付き VendingMachine</p>
+  <details style="margin: 0 0 10px 0;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 VendingMachine クラスをドラッグでコピー（クリックで開く）</summary>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+      <textarea readonly style="width:100%;height:260px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">// 自動販売機クラス（クラス変数で「何台あるか」を数える）
+public class VendingMachine {
+
+	// フィールド（インスタンス変数）
+	private String drinkName = "水";
+	private int stock = 8;
+
+	// クラス変数（このクラス全体で1つだけある情報）
+	public static int machineCount = 0;
+
+	// コンストラクタ（自販機が1台増えるたびに machineCount を +1 する）
+	public VendingMachine() {
+		machineCount = machineCount + 1;
+	}
+
+	// 在庫を1本減らして購入するメソッド
+	public void buy() {
+		if (stock &gt; 0) {
+			stock = stock - 1;
+			System.out.println(drinkName + "を購入しました。");
+		} else {
+			System.out.println("在庫がありません。");
+		}
+	}
+}</textarea>
+    </div>
+  </details>
+
+  <p style="margin: 12px 0 8px 0; font-size: 13px; font-weight: bold;">【SQL】vending_stock テーブル作成＋初期データ投入</p>
+  <details style="margin: 0 0 10px 0;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 vending_stock 用 SQL をドラッグでコピー（クリックで開く）</summary>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して DBeaver の SQL エディタへドラッグしてください</p>
+      <textarea readonly style="width:100%;height:260px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">-- 自販機の商品在庫テーブルを作成する例
+CREATE TABLE vending_stock (
+    id INT PRIMARY KEY,
+    drink_name VARCHAR(50),
+    price INT,
+    stock INT
+);
+
+-- 初期データを3件流し込む例
+INSERT INTO vending_stock (id, drink_name, price, stock) VALUES (1, 'コーラ', 120, 5);
+INSERT INTO vending_stock (id, drink_name, price, stock) VALUES (2, 'お茶', 110, 8);
+INSERT INTO vending_stock (id, drink_name, price, stock) VALUES (3, '水', 100, 10);</textarea>
+    </div>
+  </details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 1.5em 0;">
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題① Static（クラス変数）で「自販機が何台あるか」を数える</h2>
+  <p style="margin-bottom: 10px;"><strong>【問題1】</strong> <strong>VendingMachine.machineCount</strong> を使って、「このクラスの自販機は、今 ○台あります。」と表示する main メソッドを書いてください。</p>
+
+  <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+    <tbody>
+      <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+      <tr><td>1</td><td>VendingMachine クラスを別ファイルで作成し、コンストラクタで <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">machineCount</code> を 1 増やすコードを書いておく。</td></tr>
+      <tr><td>2</td><td>main メソッドで、自販機を3台くらい作成する（<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">new VendingMachine()</code> を複数回呼ぶ）。</td></tr>
+      <tr><td>3</td><td>最後に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine.machineCount</code> を使って、「このクラスの自販機は、今 ○台あります。」と表示する。</td></tr>
+    </tbody>
+  </table>
+
+  <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+    <p style="margin-bottom: 5px;">クラス変数（static）は、「クラス名.変数名」でアクセスします。今回の例では <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">VendingMachine.machineCount</code> のように書きます。</p>
+    <p style="margin-bottom: 0;">インスタンスを new するときにコンストラクタが呼ばれるので、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">machineCount = machineCount + 1;</code> をコンストラクタの中に書いておけば、自販機が増えるたびにカウントが増えます。</p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+    <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】自販機を3台 new してから、クラス変数 machineCount を使って台数を表示する例です。</p>
+    <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">public class Main {
+
+	public static void main(String[] args) {
+		// 自販機を3台作成する
+		VendingMachine vm1 = new VendingMachine();
+		VendingMachine vm2 = new VendingMachine();
+		VendingMachine vm3 = new VendingMachine();
+
+		// クラス変数 machineCount を使って台数を表示する
+		System.out.println("このクラスの自販機は、今 " + VendingMachine.machineCount + "台あります。");
+	}
+}</pre>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して Eclipse やメモ帳へドラッグしてください</p>
+      <textarea readonly style="width:100%;height:220px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Main {
+
+	public static void main(String[] args) {
+		// 自販機を3台作成する
+		VendingMachine vm1 = new VendingMachine();
+		VendingMachine vm2 = new VendingMachine();
+		VendingMachine vm3 = new VendingMachine();
+
+		// クラス変数 machineCount を使って台数を表示する
+		System.out.println("このクラスの自販機は、今 " + VendingMachine.machineCount + "台あります。");
+	}
+}</textarea>
+    </div>
+  </details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題② SELECT で在庫を確認する</h2>
+  <p style="margin-bottom: 10px;"><strong>【問題2】</strong> vending_stock テーブルに対して、<strong>SELECT 文</strong>で在庫の状況を確認してみましょう。</p>
+
+  <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+    <tbody>
+      <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+      <tr><td>1</td><td>配布SQL（CREATE TABLE ＋ INSERT）を DBeaver の SQL エディタに流し込み、vending_stock テーブルと3件のデータを作成する。</td></tr>
+      <tr><td>2</td><td>テーブルの全件を取得する SELECT 文を書き、実行して結果を確認する。</td></tr>
+      <tr><td>3</td><td><code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">drink_name</code> と <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock</code> だけを表示する SELECT 文を書いてみる。</td></tr>
+    </tbody>
+  </table>
+
+  <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+    <p style="margin-bottom: 5px;">全件取得は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SELECT * FROM vending_stock;</code> のように書きます。</p>
+    <p style="margin-bottom: 0;">特定の列だけ取得したいときは、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">SELECT drink_name, stock FROM vending_stock;</code> のように、列名をカンマで区切って並べます。</p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+    <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】vending_stock テーブルの全件と、商品名＋在庫だけを確認する SELECT 文の例です。</p>
+    <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">-- 全件取得
+SELECT * FROM vending_stock;
+
+-- 商品名と在庫だけ取得
+SELECT drink_name, stock FROM vending_stock;</pre>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して DBeaver の SQL エディタへドラッグしてください</p>
+      <textarea readonly style="width:100%;height:140px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">-- 全件取得
+SELECT * FROM vending_stock;
+
+-- 商品名と在庫だけ取得
+SELECT drink_name, stock FROM vending_stock;</textarea>
+    </div>
+  </details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題③ INSERT と UPDATE で「売れた・補充した」を表現する</h2>
+  <p style="margin-bottom: 10px;"><strong>【問題3】</strong> vending_stock テーブルに対して、<strong>INSERT</strong> と <strong>UPDATE</strong> を使って「新商品を追加する」「コーラが2本売れた」状況を表現し、SELECT で結果を確認してください。</p>
+
+  <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+    <tbody>
+      <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+      <tr><td>1</td><td>新商品「オレンジジュース」を、id=4, price=130, stock=6 で追加する INSERT 文を書く。</td></tr>
+      <tr><td>2</td><td>「コーラが2本売れた」として、stock を 2 減らす UPDATE 文を書く。</td></tr>
+      <tr><td>3</td><td>それぞれの操作のあとに SELECT 文を実行し、本当に追加・更新されているかを確認する。</td></tr>
+    </tbody>
+  </table>
+
+  <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+    <p style="margin-bottom: 5px;">INSERT 文は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">INSERT INTO テーブル名 (列1, 列2, ...) VALUES (...);</code> の形で書きます。</p>
+    <p style="margin-bottom: 0;">UPDATE 文は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">UPDATE テーブル名 SET 列 = 新しい値 WHERE 条件;</code> の形です。今回の条件は drink_name = 'コーラ' です。</p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+    <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】新商品を追加し、コーラが2本売れたときに在庫を更新する SQL の例です。</p>
+    <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">-- 新商品「オレンジジュース」を追加
+INSERT INTO vending_stock (id, drink_name, price, stock)
+VALUES (4, 'オレンジジュース', 130, 6);
+
+-- コーラが2本売れたので在庫を2本減らす
+UPDATE vending_stock
+SET stock = stock - 2
+WHERE drink_name = 'コーラ';</pre>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して DBeaver の SQL エディタへドラッグしてください</p>
+      <textarea readonly style="width:100%;height:180px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">-- 新商品「オレンジジュース」を追加
+INSERT INTO vending_stock (id, drink_name, price, stock)
+VALUES (4, 'オレンジジュース', 130, 6);
+
+-- コーラが2本売れたので在庫を2本減らす
+UPDATE vending_stock
+SET stock = stock - 2
+WHERE drink_name = 'コーラ';</textarea>
+    </div>
+  </details>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ccc; margin: 2em 0;">
+
+<section style="margin-bottom: 0;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">基本問題④ DELETE で「扱わなくなった商品」を削除する</h2>
+  <p style="margin-bottom: 10px;"><strong>【問題4】</strong> 在庫が 0 本になった商品はもう扱わないことにして、<strong>DELETE 文</strong>で削除してみましょう。</p>
+
+  <table style="border-collapse: collapse; margin-top: 5px; margin-bottom: 15px;" border="1" cellspacing="0" cellpadding="5">
+    <tbody>
+      <tr style="background-color: #f0f8ff;"><th>ステップ</th><th>内容</th></tr>
+      <tr><td>1</td><td>UPDATE 文などで、どれかの商品（例：水）の stock を 0 にしておく。</td></tr>
+      <tr><td>2</td><td>stock = 0 の商品を削除する DELETE 文を書く。</td></tr>
+      <tr><td>3</td><td>DELETE 前後で SELECT 文を実行し、本当に行が消えたかを確認する。</td></tr>
+    </tbody>
+  </table>
+
+  <div style="border-bottom: 1px solid #ccc; margin: 10px 0;"></div>
+
+  <details style="margin-top: 8px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #555;">ヒント</summary>
+    <p style="margin-bottom: 5px;">DELETE 文は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">DELETE FROM テーブル名 WHERE 条件;</code> の形です。</p>
+    <p style="margin-bottom: 0;">今回の条件は、<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">stock = 0</code> です。WHERE を書かないとテーブルの全行が消えてしまうので、必ず条件を付けましょう。</p>
+  </details>
+
+  <details style="margin-top: 5px;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">解答例</summary>
+    <p style="font-size:12px;color:#666;margin-bottom:5px;">【解説・確認用】在庫が0の行だけを削除する DELETE 文の例です。</p>
+    <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;">-- 在庫が0になった商品を削除する
+DELETE FROM vending_stock
+WHERE stock = 0;</pre>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:10px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して DBeaver の SQL エディタへドラッグしてください</p>
+      <textarea readonly style="width:100%;height:120px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">-- 在庫が0になった商品を削除する
+DELETE FROM vending_stock
+WHERE stock = 0;</textarea>
+    </div>
+  </details>
+</section>
+</div>
+

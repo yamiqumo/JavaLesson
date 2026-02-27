@@ -1,16 +1,15 @@
-【テキスト】 オブジェクト指向⑦ ～Static（クラス変数）とDB/SQL入門～
+【テキスト】 オブジェクト指向⑦ ～Static（クラス変数）～
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 <h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">オブジェクト指向学習カリキュラム</h1>
-<p style="margin-bottom: 10px;"><strong>Static（クラス変数）とDB/SQL入門</strong> — クラス全体で共有する情報と、DBeaver を使ったデータベース操作の基礎（第15回）</p>
+<p style="margin-bottom: 10px;"><strong>Static（クラス変数）</strong> — クラス全体で共有する情報の扱い方と、これまでのオブジェクト指向の復習（第15回）</p>
 
 <section style="margin-bottom: 30px;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. この回で学ぶこと</h2>
-  <p style="margin-bottom: 10px;">第15回では、これまで学んできたオブジェクト指向の流れを一歩進めて、次の2つを学びます。</p>
+  <p style="margin-bottom: 10px;">第15回では、これまで学んできたオブジェクト指向の流れを一歩進めて、次のことを学びます。</p>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
     <li>1台1台ではなく、<strong>「クラス全体で共有したい情報」を表す Static（クラス変数）</strong></li>
-    <li><strong>データベース（DB）と SQL の超入門</strong> — DBeaver を使って、テーブルに対して SELECT / INSERT / UPDATE / DELETE を行う</li>
   </ul>
-  <p style="margin-bottom: 10px;">今後は Java から DB にアクセスしていきますが、その前に「そもそも DB とは？」「SQL とは？」を、まずは <strong>直接 DB に話しかける</strong>形で体験しておきます。</p>
+  <p style="margin-bottom: 10px;">今回の授業時間では Static とこれまでの復習を中心に行い、<strong>DB と SQL の学習は次回以降の回に分けて、ゆっくり丁寧に扱っていきます。</strong>このテキストの後半（3章以降）は、そのための予習・参考資料として用意してあります。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
@@ -193,10 +192,10 @@ WHERE stock = 0;</pre>
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">6. まとめ</h2>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
     <li>Static（クラス変数）は「クラス全体で共有する情報」を表し、今回の例では <strong>machineCount</strong> のように「自販機が何台あるか」を数えるのに使える。</li>
-    <li>DB と DBMS と SQL の関係を押さえ、テーブル・レコード・カラム・主キーのイメージを持つ。</li>
-    <li>DBeaver を使って、vending_stock テーブルに対して <strong>SELECT / INSERT / UPDATE / DELETE</strong> を実行し、結果を確認する流れに慣れる。</li>
+    <li>インスタンス変数（1台ごとに違う情報）とクラス変数（クラス全体で1つだけの情報）の役割の違いを、コードと実行結果で確認した。</li>
+    <li>このテキストの後半では、DB と DBMS と SQL の関係や、vending_stock テーブルを例にした SELECT / INSERT / UPDATE / DELETE に軽く触れており、次回以降の DB/SQL 編の予習・復習用として利用できる。</li>
   </ul>
-  <p style="margin-bottom: 0;">次回以降は、ここで体験した SQL を、Java プログラムの中から実行していきます。今回の内容をしっかり復習しながら、練習問題で手を動かして確認していきましょう。</p>
+  <p style="margin-bottom: 0;">DB/SQL の本格的な学習は次回以降の回で行います。この回では Static とこれまでの内容の復習を中心にしつつ、余裕があれば後半の DB/SQL セクションもざっと眺めておきましょう。</p>
 </section>
 </div>
 

@@ -19,7 +19,9 @@
   <p style="margin-bottom: 10px;">一方で、「今、<strong>全部で何台の自販機が動いているか</strong>」のように、クラス全体で1つだけ持ちたい情報もあります。このようなときに使うのが、<strong>Static（クラス変数）</strong>です。</p>
 
   <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
-    <p style="margin: 0;"><strong>カバ先生：</strong>「インスタンス変数は『1台ごとに違う情報』、クラス変数（static）は『このクラス全体で1つだけ持つ情報』です。例えば、VendingMachine クラスで『今何台あるか』や『これまでの売上合計』などを数えるときに使えます。」</p>
+    <p style="margin: 0 0 6px 0;"><strong>カバ先生：</strong>「インスタンス変数は『1台ごとに違う情報』、クラス変数（static）は『このクラス全体で1つだけ持つ情報』です。例えば、VendingMachine クラスで『今何台あるか』や『これまでの売上合計』などを数えるときに使えます。」</p>
+    <p style="margin: 0 0 6px 0;"><strong>ユウタ：</strong>「ということは、在庫や飲み物の名前はインスタンス変数で、台数や売上合計はクラス変数、みたいに役割を分けて考えるとよさそうですね。」</p>
+    <p style="margin: 0;"><strong>ナナコ：</strong>「『1台に1つ』なのか『クラス全体で1つ』なのかを意識すると、どっちを static にすべきか決めやすくなりそうです。」</p>
   </div>
 
   <p style="margin-top: 15px; margin-bottom: 5px; font-size: 13px; text-align: center;">図1：Static とインスタンス化のイメージ</p>
@@ -98,6 +100,16 @@ VendingMachine vm1 = <span style="color: #0033ff;">new</span> VendingMachine();
 VendingMachine vm2 = <span style="color: #0033ff;">new</span> VendingMachine();
 VendingMachine vm3 = <span style="color: #0033ff;">new</span> VendingMachine();
 System.out.println(<span style="color: #d14;">"このクラスの自販機は、今 "</span> + VendingMachine.machineCount + <span style="color: #d14;">"台あります。"</span>);</pre>
+
+  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">2-2. mainメソッドがstaticな理由</h3>
+  <p style="margin-bottom: 10px;">Java では、プログラムの実行は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public static void main(String[] args)</code> から始まります。main メソッドが <strong>static</strong> でないといけないのは、Java がプログラムを起動するとき、まだそのクラスのインスタンスを1つも持っていない状態で「最初の1行」を呼び出す必要があるからです。</p>
+
+  <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
+    <p style="margin: 0 0 6px 0;"><strong>ユウタ：</strong>「そういえば main って、いつも public static void main で決まりでしたよね。どうして static じゃないとダメなんですか？」</p>
+    <p style="margin: 0 0 6px 0;"><strong>カバ先生：</strong>「Java を動かしている『中の人（Java仮想マシン）』は、まだ Main クラスのインスタンスを持っていません。それでも最初の1行を実行しないといけないので、『クラスに直接ぶら下がっているメソッド＝static な main』を探して呼ぶ、という約束になっているんです。」</p>
+    <p style="margin: 0 0 6px 0;"><strong>ナナコ：</strong>「つまり、インスタンスを new しなくても呼べるようにするために static にしている、ってことなんですね。main だけ特別なんじゃなくて、『最初に Java が自分で呼ぶ入口』だから static なんだと考えると、すごくスッキリしました。」</p>
+    <p style="margin: 0;"><strong>カバ先生：</strong>「その通り。さっきの machineCount と同じで、『Main クラス全体で1つだけ持っている入口』だから static なんです。<strong>mainメソッドも最初にJavaが呼ぶためにはstaticでないといけなかったのは、こういう事なんです。</strong>」</p>
+  </div>
 </section>
 
 <section style="margin-bottom: 0;">

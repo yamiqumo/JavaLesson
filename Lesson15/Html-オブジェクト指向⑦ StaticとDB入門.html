@@ -1,13 +1,14 @@
 【テキスト】 オブジェクト指向⑦ ～Static（クラス変数）～
 <div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
 <h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">オブジェクト指向学習カリキュラム</h1>
-<p style="margin-bottom: 10px;"><strong>Static（クラス変数）</strong> — クラス全体で共有する情報の扱い方と、これまでのオブジェクト指向の復習（第15回）</p>
+<p style="margin-bottom: 10px;"><strong>Static（クラス変数）</strong> — クラス全体で共有する情報の扱い方と、これまでのオブジェクト指向（データ型～継承まで）の総復習（第15回）</p>
 
 <section style="margin-bottom: 30px;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. この回で学ぶこと</h2>
-  <p style="margin-bottom: 10px;">第15回では、これまで学んできたオブジェクト指向の流れを一歩進めて、次のことを学びます。</p>
+  <p style="margin-bottom: 10px;">第15回では、これまで学んできた内容を、次の2つの軸で総復習します。</p>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li>1台1台ではなく、<strong>「クラス全体で共有したい情報」を表す Static（クラス変数）</strong></li>
+    <li><strong>Static（クラス変数）</strong>：1台1台ではなく「クラス全体で共有したい情報」の扱い方を学ぶ。</li>
+    <li><strong>これまでの流れの総復習</strong>：データ型・演算子・if / for などの制御構文・メソッド・クラス・継承（＋多態性）までを、テキストとソースコード・練習問題で振り返る。</li>
   </ul>
   <p style="margin-bottom: 10px;">今回の授業時間では、最初に Static の座学＋ハンズオンを行い、後半の約2時間はこれまでの内容の総復習（座学の振り返り＋練習問題の時間）とします。<strong>DB と SQL の学習は次回以降の回に分けて、ゆっくり丁寧に扱っていきます。</strong>このテキストの後半（3章以降）は、そのための予習・参考資料として用意してあります。</p>
 </section>
@@ -98,113 +99,4 @@ VendingMachine vm2 = <span style="color: #0033ff;">new</span> VendingMachine();
 VendingMachine vm3 = <span style="color: #0033ff;">new</span> VendingMachine();
 System.out.println(<span style="color: #d14;">"このクラスの自販機は、今 "</span> + VendingMachine.machineCount + <span style="color: #d14;">"台あります。"</span>);</pre>
 </section>
-
-<section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. データベースと DBMS と SQL の関係</h2>
-  <p style="margin-bottom: 10px; font-size: 13px; color: #666;">※この章以降は、次回以降に扱う DB/SQL 編のための<strong>予習・参考資料</strong>です。この回の授業時間では、ここまでの Static の内容と総復習を中心に進めます。</p>
-  <p style="margin-bottom: 10px;">ここからは、今後 Java から扱っていく<strong>データベース（DB）</strong>について、まずはイメージをつかみます。</p>
-  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li><strong>DB（データベース）</strong> … データが整理されて入っている倉庫（例：自販機の商品情報・売上履歴など）</li>
-    <li><strong>DBMS</strong> … DB に対して「データを入れる・取り出す・更新・削除」をしてくれる窓口のソフト</li>
-    <li><strong>SQL</strong> … DBMS に対して「こうしてほしい」とお願いするための共通言語</li>
-  </ul>
-
-  <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
-    <p style="margin: 0;"><strong>カバ先生：</strong>「今後は Java から DBMS に SQL を送って、DB と会話していきます。ですが、いきなり Java 経由だとイメージがつかみにくいので、今日は先に DBeaver というツールから<strong>直接 DB に SQL を打ってみる</strong>ところから始めましょう。」</p>
-  </div>
-
-  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">3-1. テーブル・レコード・カラム・主キー</h3>
-  <p style="margin-bottom: 10px;">DB の中身は、よく<strong>Excel の表</strong>にたとえられます。</p>
-  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li><strong>テーブル</strong> … Excel シート1枚に相当（例：自販機の商品一覧テーブル）</li>
-    <li><strong>レコード</strong> … 1行（例：「コーラ」という商品1件の情報）</li>
-    <li><strong>カラム</strong> … 列（例：「商品名」「価格」「在庫数」などの項目）</li>
-    <li><strong>主キー（PRIMARY KEY）</strong> … そのテーブルの中で、その行を一意に特定するための番号（例：id）</li>
-  </ul>
-</section>
-
-<section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. DBeaver を使って DB に直接 SQL を打ってみる</h2>
-  <p style="margin-bottom: 10px;">ここでは、DBeaver を使って DB に接続し、<strong>自販機の商品テーブル</strong>に対して SQL を実行していきます。接続方法や DB の種類（MySQL / PostgreSQL など）は、環境に合わせて講師から説明します。</p>
-
-  <ol style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li>DBeaver を起動し、研修用の DB に接続する。</li>
-    <li>対象の DB を右クリックし、「SQL エディタを開く」を選ぶ。</li>
-    <li>エディタに SQL を入力し、実行ボタン（▶）を押して結果を確認する。</li>
-  </ol>
-
-  <p style="margin-bottom: 10px;">この回では、まず最初に<strong>テーブルを作成する SQL と、初期データを流し込む SQL</strong>を実行してから、練習問題に入ります。</p>
-
-  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">4-1. 自販機の在庫テーブルを作る（vending_stock）</h3>
-  <p style="margin-bottom: 10px;">例として、次のようなテーブルを作ります。</p>
-  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li><strong>vending_stock</strong> テーブル</li>
-    <li>id（主キー）、drink_name（商品名）、price（価格）、stock（在庫数）</li>
-  </ul>
-
-  <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">-- 自販機の商品在庫テーブルを作成する例</span>
-CREATE TABLE vending_stock (
-    id INT PRIMARY KEY,
-    drink_name VARCHAR(50),
-    price INT,
-    stock INT
-);
-
-<span style="color: #666;">-- 初期データを3件流し込む例</span>
-INSERT INTO vending_stock (id, drink_name, price, stock) VALUES (1, 'コーラ', 120, 5);
-INSERT INTO vending_stock (id, drink_name, price, stock) VALUES (2, 'お茶', 110, 8);
-INSERT INTO vending_stock (id, drink_name, price, stock) VALUES (3, '水', 100, 10);</pre>
-
-  <p style="margin-bottom: 10px;">この SQL を DBeaver のエディタに貼り付けて実行すると、vending_stock テーブルが作成され、3行の初期データが入ります。</p>
-</section>
-
-<section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. 基本の4つのSQL文：SELECT / INSERT / UPDATE / DELETE</h2>
-  <p style="margin-bottom: 10px;">DB に対する基本の操作は、次の4つです。この回では、複雑な結合や集計は扱わず、「1つのテーブルをシンプルに操作する」ところに集中します。</p>
-
-  <ol style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li><strong>SELECT</strong> … データを「取り出す」</li>
-    <li><strong>INSERT</strong> … データを「追加する」</li>
-    <li><strong>UPDATE</strong> … 既存のデータを「書き換える」</li>
-    <li><strong>DELETE</strong> … データを「削除する」</li>
-  </ol>
-
-  <p style="margin-bottom: 10px;">練習問題では、最初に vending_stock に初期データを流し込んだあとで、SQL を使って「売れた」「補充した」「商品を撤去した」などを表現し、<strong>SELECT で結果を確認する</strong>流れを体験します。</p>
-
-  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 20px; margin-bottom: 10px;">5-1. 代表的な SQL の例</h3>
-
-  <pre style="font-family: monospace; background-color: #fdf5e6; color: #333; padding: 15px; border-radius: 5px; border: 1px solid #e1dbbd; overflow-x: auto;"><span style="color: #666;">-- 1. SELECT：全件取得</span>
-SELECT * FROM vending_stock;
-
-<span style="color: #666;">-- 2. SELECT：特定の列だけを取得</span>
-SELECT drink_name, stock FROM vending_stock;
-
-<span style="color: #666;">-- 3. SELECT：条件付きで取得（価格が 110 円以上の商品だけ）</span>
-SELECT * FROM vending_stock
-WHERE price &gt;= 110;
-
-<span style="color: #666;">-- 4. INSERT：新しい商品を追加</span>
-INSERT INTO vending_stock (id, drink_name, price, stock)
-VALUES (4, 'オレンジジュース', 130, 6);
-
-<span style="color: #666;">-- 5. UPDATE：コーラが2本売れたので在庫を2本減らす</span>
-UPDATE vending_stock
-SET stock = stock - 2
-WHERE drink_name = 'コーラ';
-
-<span style="color: #666;">-- 6. DELETE：在庫が0の商品を削除する</span>
-DELETE FROM vending_stock
-WHERE stock = 0;</pre>
-</section>
-
-<section style="margin-bottom: 0;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">6. まとめ</h2>
-  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li>Static（クラス変数）は「クラス全体で共有する情報」を表し、今回の例では <strong>machineCount</strong> のように「自販機が何台あるか」を数えるのに使える。</li>
-    <li>インスタンス変数（1台ごとに違う情報）とクラス変数（クラス全体で1つだけの情報）の役割の違いを、コードと実行結果で確認した。</li>
-    <li>このテキストの後半では、DB と DBMS と SQL の関係や、vending_stock テーブルを例にした SELECT / INSERT / UPDATE / DELETE に軽く触れており、次回以降の DB/SQL 編の予習・復習用として利用できる。</li>
-  </ul>
-  <p style="margin-bottom: 0;">DB/SQL の本格的な学習は次回以降の回で行います。この回では Static とこれまでの内容の復習を中心にしつつ、余裕があれば後半の DB/SQL セクションもざっと眺めておきましょう。</p>
-</section>
-</div>
 

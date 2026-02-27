@@ -20,8 +20,8 @@
 
   <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
     <p style="margin: 0 0 6px 0;"><strong>カバ先生：</strong>「インスタンス変数は『1台ごとに違う情報』、クラス変数（static）は『このクラス全体で1つだけ持つ情報』です。例えば、VendingMachine クラスで『今何台あるか』や『これまでの売上合計』などを数えるときに使えます。」</p>
-    <p style="margin: 0 0 6px 0;"><strong>ユウタ：</strong>「ということは、在庫や飲み物の名前はインスタンス変数で、台数や売上合計はクラス変数、みたいに役割を分けて考えるとよさそうですね。」</p>
-    <p style="margin: 0;"><strong>ナナコ：</strong>「『1台に1つ』なのか『クラス全体で1つ』なのかを意識すると、どっちを static にすべきか決めやすくなりそうです。」</p>
+    <p style="margin: 0 0 6px 0;"><strong><span style="color:#0066cc;">ユウタ：</span></strong>「ということは、在庫や飲み物の名前はインスタンス変数で、台数や売上合計はクラス変数、みたいに役割を分けて考えるとよさそうですね。」</p>
+    <p style="margin: 0;"><strong><span style="color:#cc0066;">ナナコ：</span></strong>「『1台に1つ』なのか『クラス全体で1つ』なのかを意識すると、どっちを static にすべきか決めやすくなりそうです。」</p>
   </div>
 
   <p style="margin-top: 15px; margin-bottom: 5px; font-size: 13px; text-align: center;">図1：Static とインスタンス化のイメージ</p>
@@ -105,16 +105,16 @@ System.out.println(<span style="color: #d14;">"このクラスの自販機は、
   <p style="margin-bottom: 10px;">Java では、プログラムの実行は <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">public static void main(String[] args)</code> から始まります。main メソッドが <strong>static</strong> でないといけないのは、Java がプログラムを起動するとき、まだそのクラスのインスタンスを1つも持っていない状態で「最初の1行」を呼び出す必要があるからです。</p>
 
   <div style="background-color: #f2f2f2; padding: 15px; border-radius: 5px; border-left: 5px solid #888888; margin-bottom: 12px;">
-    <p style="margin: 0 0 6px 0;"><strong>ユウタ：</strong>「そういえば main って、いつも public static void main で決まりでしたよね。どうして static じゃないとダメなんですか？」</p>
+    <p style="margin: 0 0 6px 0;"><strong><span style="color:#0066cc;">ユウタ：</span></strong>「そういえば main って、いつも public static void main で決まりでしたよね。どうして static じゃないとダメなんですか？」</p>
     <p style="margin: 0 0 6px 0;"><strong>カバ先生：</strong>「Java を動かしている『中の人（Java仮想マシン）』は、まだ Main クラスのインスタンスを持っていません。それでも最初の1行を実行しないといけないので、『クラスに直接ぶら下がっているメソッド＝static な main』を探して呼ぶ、という約束になっているんです。」</p>
-    <p style="margin: 0 0 6px 0;"><strong>ナナコ：</strong>「つまり、インスタンスを new しなくても呼べるようにするために static にしている、ってことなんですね。main だけ特別なんじゃなくて、『最初に Java が自分で呼ぶ入口』だから static なんだと考えると、すごくスッキリしました。」</p>
+    <p style="margin: 0 0 6px 0;"><strong><span style="color:#cc0066;">ナナコ：</span></strong>「つまり、インスタンスを new しなくても呼べるようにするために static にしている、ってことなんですね。main だけ特別なんじゃなくて、『最初に Java が自分で呼ぶ入口』だから static なんだと考えると、すごくスッキリしました。」</p>
     <p style="margin: 0;"><strong>カバ先生：</strong>「その通り。さっきの machineCount と同じで、『Main クラス全体で1つだけ持っている入口』だから static なんです。<strong>mainメソッドも最初にJavaが呼ぶためにはstaticでないといけなかったのは、こういう事なんです。</strong>」</p>
   </div>
 </section>
 
 <section style="margin-bottom: 0;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. これまでの総復習（データ型～継承まで）</h2>
-  <p style="margin-bottom: 10px;">ここからは、これまで学んできた内容を<strong>順番に振り返っていく時間</strong>とします。各テーマについて講師がもう一度説明しつつ、対応するソースコードを画面で確認・実行しながら、「実際にどう動くか」を一緒に確かめていきます。</p>
+  <p style="margin-bottom: 10px;">ここからは、これまで学んできた内容を<strong>順番に振り返っていきます</strong>。それぞれのテーマで、まずはポイントを短く思い出し、そのあとで VendingMachine クラスなどのソースコードをコピーして動かしながら、「本当にそう動くのか」を自分の目で確かめていきましょう。</p>
 
   <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 8px;">3-1. データ型・演算子・制御構文の復習</h3>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 8px;">
@@ -122,6 +122,7 @@ System.out.println(<span style="color: #d14;">"このクラスの自販機は、
     <li>算術演算子（+ - * / %）、比較演算子、論理演算子（&amp;&amp; / || / !）の意味を、簡単な例を使って説明する。</li>
     <li><strong>if / else / switch / for / while</strong> の基本的な書き方と、「どんな場面でどれを使うか」をもう一度整理する。</li>
   </ul>
+  <p style="margin-bottom: 10px;">テキストの該当ページを見ながら、簡単な if 文や for 文を VendingMachine の main メソッドの中に書き足して、「条件によって出力がどう変わるか」「for で同じ処理を繰り返すとどうなるか」を確認してみてください。</p>
 
   <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 8px;">3-2. 配列とメソッドの復習</h3>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 8px;">
@@ -129,6 +130,36 @@ System.out.println(<span style="color: #d14;">"このクラスの自販機は、
     <li>「引数」「戻り値」「メソッドを分ける理由（共通処理の切り出し・見通しのよさ）」を、既存のサンプルコードを題材に振り返る。</li>
     <li>main から別メソッドを呼び出すコードを書き、呼び出しの流れを口頭で説明できるか確認する。</li>
   </ul>
+  <p style="margin-bottom: 10px;">VendingMachine を複数台 new して配列に入れ、for 文で順番に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">buy()</code> を呼ぶコードを書き、配列とメソッドの役割をもう一度体で覚えましょう。</p>
+
+  <details style="margin: 5px 0 12px 0;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 配列とメソッドの復習用 Main クラスをドラッグでコピー（クリックで開く）</summary>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ 先に VendingMachine クラスを作成してから、この Main クラスをコピーして実行してみましょう。</p>
+      <textarea readonly style="width:100%;height:260px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">public class Main {
+
+	public static void main(String[] args) {
+		// 自販機を3台作成する
+		VendingMachine vm1 = new VendingMachine();
+		VendingMachine vm2 = new VendingMachine();
+		VendingMachine vm3 = new VendingMachine();
+
+		// 配列にまとめて入れる
+		VendingMachine[] machines = { vm1, vm2, vm3 };
+
+		// for 文で順番に buy() を呼び出す
+		for (int i = 0; i &lt; machines.length; i++) {
+			System.out.println((i + 1) + "回目の購入です。");
+			machines[i].buy();
+		}
+
+		// クラス変数 machineCount で台数を確認する
+		System.out.println("作成された自販機の台数は "
+				+ VendingMachine.machineCount + "台です。");
+	}
+}</textarea>
+    </div>
+  </details>
 
   <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 8px;">3-3. クラスとインスタンスの復習</h3>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 8px;">
@@ -136,6 +167,7 @@ System.out.println(<span style="color: #d14;">"このクラスの自販機は、
     <li>「クラスは設計図」「インスタンスは実体」というキーワードで、インスタンス化の流れを説明できるようにする。</li>
     <li>this キーワードの意味（自分自身のフィールドを指すこと）を、コンストラクタのコードを見ながら確認する。</li>
   </ul>
+  <p style="margin-bottom: 10px;">VendingMachine クラスにフィールドやメソッドを1つ追加し、main からそのメソッドを呼んでみることで、「設計図（クラス）を変えるとインスタンスの動きがどう変わるか」を確かめてみてください。</p>
 
   <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 8px;">3-4. 継承と多態性（ポリモーフィズム）の復習</h3>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 8px;">
@@ -143,6 +175,7 @@ System.out.println(<span style="color: #d14;">"このクラスの自販機は、
     <li>オーバーライド（同じメソッド名・引数で中身を上書きすること）のルールを確認する。</li>
     <li>自販機や動物のサンプルコードを使って、「スーパークラス型の変数にサブクラスを入れて、同じメソッドを呼ぶと中身が切り替わる」という多態性のイメージを復習する。</li>
   </ul>
+  <p style="margin-bottom: 10px;">Lesson13～14 の自販機・動物のサンプルコードをコピーし、スーパークラス型の変数にサブクラスのインスタンスを代入して同じメソッドを呼び出し、「中身だけが入れ替わる」感覚をもう一度味わってみましょう。</p>
 
   <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 15px; margin-bottom: 8px;">3-5. 練習問題タイムの進め方</h3>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 8px;">
@@ -150,6 +183,6 @@ System.out.println(<span style="color: #d14;">"このクラスの自販機は、
     <li>後半：少し難しめの<strong>発展問題</strong>を1問選び、「設計を一緒に考えてからコーディングする」時間にする。</li>
     <li>時間の終わりに、今日の気づき（「ここがあいまいだった」「ここは得意になった」など）を一言ずつ共有してもらう。</li>
   </ul>
-  <p style="margin-bottom: 0;">この流れで、<strong>説明 → ソースコードで確認 → 練習問題に挑戦</strong>というサイクルを何度か繰り返しながら、これまでの単元を一つひとつ丁寧に振り返っていきます。</p>
+  <p style="margin-bottom: 0;">この流れで、<strong>説明 → ソースコードで確認 → 練習問題に挑戦</strong>というサイクルを何度か繰り返しながら、これまでの単元を一つひとつ丁寧に振り返っていきましょう。</p>
 </section>
 

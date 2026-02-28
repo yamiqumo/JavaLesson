@@ -70,7 +70,19 @@
       <tr><td>営業時間（例）</td><td>平日 10:00～18:00（土日祝は要予約）</td></tr>
     </tbody>
   </table>
-  <p style="margin-bottom: 0;">上記の情報をLPに載せる想定で、AIに「旅行代理店のLPをPHPで作って」と依頼し、文言をこの仮ターゲットに差し替えていきます。</p>
+  <details style="margin: 10px 0 0 0;">
+    <summary style="cursor: pointer; font-weight: bold; color: #0033ff;">📋 仮ターゲット情報をコピー（クリックで開く）</summary>
+    <div style="background:#e6f7ff;padding:15px;border:2px dashed #1890ff;border-radius:6px;margin-top:8px;">
+      <p style="font-size:12px;color:#0050b3;margin-bottom:8px;font-weight:bold;">🖱️ マウスで全選択して AI の入力欄やメモ帳へドラッグしてください</p>
+      <textarea readonly style="width:100%;height:200px;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid #91d5ff;background:#f4f4f4;color:#333;display:block;user-select:all !important;">会社名：株式会社自由
+ビジネス：旅行代理店
+代表者：布里居 乱須（ふりい らんす）
+特徴・キャッチ：国内・海外ともに自由に組み換えができる旅行プランを提供しています。お客様の「行きたい」「泊まりたい」に合わせて、航空券・宿・現地ツアーを組み替え可能です。
+電話番号：03-3456-7890
+住所：〒107-0062 東京都港区南青山１丁目３−３ 青山1丁目タワー 3階
+営業時間：平日 10:00～18:00（土日祝は要予約）</textarea>
+    </div>
+  </details>
 </section>
 
 <section style="margin-bottom: 30px;">
@@ -100,6 +112,7 @@
 
 <section style="margin-bottom: 30px;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-5. コーディングをしていく</h2>
+  <p style="margin-bottom: 10px;">PHP を書くエディタは <strong>VSCode</strong> のほか、<strong>Eclipse</strong> に PHP 用プラグイン（<strong>PDT：PHP Development Tools</strong>）を入れて使うこともできます。Eclipse を使い慣れている場合は「Eclipse for PHP Developers」をダウンロードするか、既存の Eclipse に PDT を追加すれば、PHP の編集・実行・デバッグが可能です。</p>
   <p style="margin-bottom: 10px;">AI（Gemini・ChatGPTなど）への<strong>質問のコツ</strong>を意識しながら進めます。</p>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
     <li><strong>やりたいことを具体的に書く</strong> — 「LPを作りたい」だけでなく、「トップにキャッチコピー、その下に自己紹介文、最後に連絡先」のように書くと、それに近い構成のコードを出してくれやすい。</li>

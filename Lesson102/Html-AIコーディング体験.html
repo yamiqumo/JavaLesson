@@ -22,7 +22,7 @@
 
 <section style="margin-bottom: 30px;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. AIの種類と特徴</h2>
-  <p style="margin-bottom: 10px;">コーディングを支援するAIには、だいたい次の3つのタイプがあります。右に行くほど「自動でやってくれる範囲」が広がります。</p>
+  <p style="margin-bottom: 10px;">コーディングを支援するAIには、大きく次の3つのタイプがあります。</p>
 
   <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 18px; margin-bottom: 8px;">① Gemini・ChatGPT などのチャット型AI</h3>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
@@ -46,45 +46,60 @@
 
 <section style="margin-bottom: 30px;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. 今回の進め方（約1時間半）</h2>
-  <p style="margin-bottom: 10px;">次の順番で進めます。イメージが湧かない場合は、講師が用意した<strong>仮のターゲット（例：〇〇向けのLP）</strong>を題材に、同じ手順で作成していきます。</p>
-  <ol style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li><strong>無料でサーバーを立ち上げられるサイトを探す</strong> — どこにファイルを置いて公開するか決める。</li>
-    <li><strong>ドメインの考え方を知る</strong> — インターネット上の「住所」のようなもの。無料サブドメインでもOK。</li>
-    <li><strong>プログラミング言語の選択</strong> — 今回はWebページ向けなので、候補を比較する。</li>
-    <li><strong>技術の選定</strong> — 調べた結果、<strong>PHP</strong>で進めることにし、無料ホスティングでPHPが使えるサービスを選ぶ。</li>
-    <li><strong>コーディングをしていく</strong> — AIに相談しながら、LP用のHTML・PHPを書いていく。</li>
-    <li><strong>デバッグ</strong> — 表示や動作を確認し、おかしなところを直す。</li>
+  <p style="margin-bottom: 10px;">次の順番で進めます。思い浮かばない場合は、以下の<strong>仮のターゲット</strong>を題材に、同じ手順でLPを作成していきます。</p>
+  <ol style="margin-top: 0; padding-left: 20px; margin-bottom: 15px;">
+    <li><strong>4-1 無料でサーバーを立ち上げられるサイトを探す</strong> — どこにファイルを置いて公開するか決める。</li>
+    <li><strong>4-2 ドメインの考え方を知る</strong> — インターネット上の「住所」のようなもの。無料サブドメインでもOK。</li>
+    <li><strong>4-3 プログラミング言語の選択</strong> — 今回はWebページ向けなので、候補を比較する。</li>
+    <li><strong>4-4 技術の選定</strong> — 調べた結果、<strong>PHP</strong>で進めることにし、無料ホスティングでPHPが使えるサービスを選ぶ。</li>
+    <li><strong>4-5 コーディングをしていく</strong> — AIに相談しながら、LP用のHTML・PHPを書いていく。</li>
+    <li><strong>4-6 デバッグ</strong> — 表示や動作を確認し、おかしなところを直す。</li>
   </ol>
-  <p style="margin-bottom: 0;">最後に、無料ホスティングにアップロードして、ブラウザから自分のLPにアクセスできるところまで行います。</p>
+
+  <p style="margin-bottom: 8px; font-weight: bold;">仮のターゲット：株式会社自由（旅行代理店）</p>
+  <p style="margin-bottom: 8px; font-size: 14px;">LPのイメージが湧かないときは、次の設定で「株式会社自由」のLPを作成します。</p>
+  <table style="border-collapse: collapse; margin-bottom: 10px; font-size: 14px;" border="1" cellspacing="0" cellpadding="8">
+    <tbody>
+      <tr style="background-color: #f0f8ff;"><th style="text-align: left;">項目</th><th style="text-align: left;">内容</th></tr>
+      <tr><td>会社名</td><td>株式会社自由</td></tr>
+      <tr><td>ビジネス</td><td>旅行代理店</td></tr>
+      <tr><td>代表者</td><td>布里居 乱須（ふりい らんす）</td></tr>
+      <tr><td>特徴・キャッチ</td><td>国内・海外ともに自由に組み換えができる旅行プランを提供しています。お客様の「行きたい」「泊まりたい」に合わせて、航空券・宿・現地ツアーを組み替え可能です。</td></tr>
+      <tr><td>電話番号</td><td>03-3456-7890</td></tr>
+      <tr><td>住所</td><td>〒107-0062 東京都港区南青山１丁目３−３ 青山1丁目タワー 3階</td></tr>
+      <tr><td>営業時間（例）</td><td>平日 10:00～18:00（土日祝は要予約）</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-bottom: 0;">上記の情報をLPに載せる想定で、AIに「旅行代理店のLPをPHPで作って」と依頼し、文言をこの仮ターゲットに差し替えていきます。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. 無料でサーバーを立ち上げられるサイトを探す</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-1. 無料でサーバーを立ち上げられるサイトを探す</h2>
   <p style="margin-bottom: 10px;">Webサイトを公開するには、<strong>サーバー</strong>（あなたのHTMLやPHPファイルを置いて、世界中から見られるようにするコンピュータ）が必要です。自分でサーバーを買わなくても、<strong>無料のホスティングサービス</strong>を利用すれば、小規模なLPなら無料で公開できます。</p>
   <p style="margin-bottom: 10px;"><strong>ホスティング</strong>＝サーバーの一部（または1台）を貸し出して、そこにファイルを置けるようにするサービス、という意味で覚えておくとよいです。</p>
   <p style="margin-bottom: 0;">例として、PHPが使える無料ホスティングには「infinityfree」「000webhost」「Xfreehost」などがあります。検索キーワードは「無料 ホスティング PHP」などで調べてみましょう。今回の講座では、講師の案内に従って1つ選び、そこにアップロードするところまで行います。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">6. ドメインの考え方</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-2. ドメインの考え方</h2>
   <p style="margin-bottom: 10px;"><strong>ドメイン</strong>とは、インターネット上でWebサイトの場所を表す「名前」です。例えば <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">www.example.com</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">example.com</code> の部分がドメインです。</p>
   <p style="margin-bottom: 10px;">独自ドメイン（自分で取得した名前）は有料のことが多いですが、多くの無料ホスティングでは<strong>サブドメイン</strong>（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">あなたの名前.サービス名.com</code>）が無料で付与されます。まずはこのサブドメインで「自分のLPにアクセスできるURL」を手に入れましょう。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">7. プログラミング言語の選択</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-3. プログラミング言語の選択</h2>
   <p style="margin-bottom: 10px;">Webページを作るには、最低限<strong>HTML</strong>（見た目と構造）が必要です。それに加えて、<strong>サーバー側で動く処理</strong>（例：日付の表示、簡単なフォーム処理）を入れたい場合は、PHP・Python・Rubyなどの言語がよく使われます。</p>
   <p style="margin-bottom: 0;">無料ホスティングでは<strong>PHP</strong>が使えるサービスが多く、情報も豊富なので、今回のLP作成ではPHPを選びます。Javaを学んだ経験があれば、「変数」「if文」「ループ」の考え方は共通しているので、PHPの書き方の違いをAIに聞きながら進めていきましょう。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">8. 技術の選定（PHPに確定）</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-4. 技術の選定（PHPに確定）</h2>
   <p style="margin-bottom: 10px;">ここまでの流れで、<strong>無料ホスティング ＋ PHP</strong>でLPを作る方針にします。PHPはサーバー上で実行され、HTMLの中に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&lt;?php ... ?&gt;</code> で処理を埋め込めます。日付を表示したり、同じヘッダー・フッターを共通化したりするのに便利です。</p>
   <p style="margin-bottom: 0;">AIに「PHPでLPのひな型を書いて」と依頼すると、HTMLとPHPが混ざったサンプルを出してくれます。それをベースに、自分用の文言やスタイルに書き換えていきましょう。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">9. コーディングをしていく</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-5. コーディングをしていく</h2>
   <p style="margin-bottom: 10px;">AI（Gemini・ChatGPTなど）への<strong>質問のコツ</strong>を意識しながら進めます。</p>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
     <li><strong>やりたいことを具体的に書く</strong> — 「LPを作りたい」だけでなく、「トップにキャッチコピー、その下に自己紹介文、最後に連絡先」のように書くと、それに近い構成のコードを出してくれやすい。</li>
@@ -95,7 +110,7 @@
 </section>
 
 <section style="margin-bottom: 30px;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">10. デバッグ</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-6. デバッグ</h2>
   <p style="margin-bottom: 10px;"><strong>デバッグ</strong>とは、プログラムの不具合（バグ）を見つけて直す作業です。LPでよくあるのは、<strong>表示が崩れる・真っ白になる・PHPのエラーで動かない</strong>といったことです。</p>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
     <li>ブラウザの開発者ツール（F12キーなど）で、コンソールやネットワークのエラーを確認する。</li>
@@ -106,7 +121,7 @@
 </section>
 
 <section style="margin-bottom: 0;">
-  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">11. まとめ</h2>
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. まとめ</h2>
   <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
     <li>AIによるコーディングでは、①チャット型（Gemini・ChatGPT）／②Cursor／③Claude Codeのような自律型があり、今回は①でLP作成を体験した。</li>
     <li>無料ホスティングを選び、ドメイン（またはサブドメイン）の考え方を押さえたうえで、PHPでLPをコーディングし、デバッグして公開するところまで行った。</li>

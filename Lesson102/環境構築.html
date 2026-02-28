@@ -1,0 +1,57 @@
+環境構築・講義ロードマップ
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">Web開発・環境構築ロードマップ</h1>
+<p style="margin-bottom: 20px;">AIコーディング体験講座で使う環境を整え、サーバーにアップロードするところまでの流れです。</p>
+
+<div style="background: #fff; padding: 20px; margin-bottom: 20px; border-left: 5px solid #0033ff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);">
+  <span style="display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; background: #e67e22; color: white; margin-bottom: 10px;">Step 1</span>
+  <h2 style="margin-top: 0; margin-bottom: 10px; color: #2980b9; font-size: 18px; border: none; padding: 0;">ツールのDLとアカウント作成</h2>
+  <p style="margin-bottom: 10px;">まずは土台作りから始めましょう。サーバーとの橋渡し役（FTP）と、ファイルを置く場所（サーバー）を確保します。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li><strong>WinSCPのダウンロード:</strong> <a href="https://winscp.net/eng/download.php" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">公式サイト</a>からインストーラーをDLして実行。</li>
+    <li><strong>InfinityFreeのアカウント作成:</strong> <a href="https://www.infinityfree.com/" target="_blank" rel="noopener noreferrer" style="color: #0033ff; text-decoration: none;">公式サイト</a>でサインアップ。</li>
+    <li><strong>ホスティングアカウントの作成:</strong> 管理画面から「Create Account」をクリックし、無料ドメインを取得。</li>
+  </ul>
+  <div style="background: #fff3cd; padding: 10px; border-radius: 5px; font-size: 0.9em; color: #856404;">
+    ※ InfinityFreeのアカウントが有効になるまで数分〜数十分かかる場合があります。
+  </div>
+</div>
+
+<div style="background: #fff; padding: 20px; margin-bottom: 20px; border-left: 5px solid #0033ff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);">
+  <span style="display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; background: #e67e22; color: white; margin-bottom: 10px;">Step 2 (講義)</span>
+  <h2 style="margin-top: 0; margin-bottom: 10px; color: #2980b9; font-size: 18px; border: none; padding: 0;">AIを活用した現代の開発手法</h2>
+  <p style="margin-bottom: 10px;">サーバーの準備を待つ間に、CursorやChatGPTを使った効率的な開発について学びます。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 0;">
+    <li>なぜ今「AI×開発」なのか？</li>
+    <li>Cursorの強力な機能（Mac: Cmd+K / Cmd+L、Windows: Ctrl+K / Ctrl+L）の紹介</li>
+    <li>プロンプトエンジニアリングの基本</li>
+  </ul>
+</div>
+
+<div style="background: #fff; padding: 20px; margin-bottom: 20px; border-left: 5px solid #0033ff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);">
+  <span style="display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; background: #e67e22; color: white; margin-bottom: 10px;">Step 3</span>
+  <h2 style="margin-top: 0; margin-bottom: 10px; color: #2980b9; font-size: 18px; border: none; padding: 0;">InfinityFreeへのアップロード確認</h2>
+  <p style="margin-bottom: 10px;">サーバーがアクティブになったら、実際にファイルを送ってみましょう。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 0;">
+    <li>WinSCPを起動し、InfinityFreeの「FTP Details」を入力。</li>
+    <li><code style="font-family: monospace; background: #f5f5f5; padding: 1px 4px; border-radius: 3px;">htdocs</code> フォルダを見つける。</li>
+    <li>テスト用の <code style="font-family: monospace; background: #f5f5f5; padding: 1px 4px; border-radius: 3px;">index.html</code> をドラッグ＆ドロップ。</li>
+  </ul>
+</div>
+
+<div style="background: #fff; padding: 20px; margin-bottom: 20px; border-left: 5px solid #0033ff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.08);">
+  <span style="display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; background: #e67e22; color: white; margin-bottom: 10px;">Step 4</span>
+  <h2 style="margin-top: 0; margin-bottom: 10px; color: #2980b9; font-size: 18px; border: none; padding: 0;">本格的なサイト構築</h2>
+  <p style="margin-bottom: 10px;">いよいよAIの力を借りて、自分だけのWebサイトを作り上げます。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 0;">
+    <li>Cursorやチャット型AIでデザイン・コードを生成。</li>
+    <li>レスポンシブ対応（スマホで見られるように）の指示。</li>
+    <li>完成したファイルをサーバーへ一括アップロード。</li>
+  </ul>
+</div>
+
+<hr style="border: none; border-top: 1px solid #eee; margin: 25px 0 15px 0;">
+<footer style="text-align: center; color: #7f8c8d; font-size: 0.85em;">
+  &copy; 2026 Web Development Workshop
+</footer>
+</div>

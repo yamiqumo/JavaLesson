@@ -89,7 +89,7 @@
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-1. 無料でサーバーを立ち上げられるサイトを探す</h2>
   <p style="margin-bottom: 10px;">Webサイトを公開するには、<strong>サーバー</strong>（あなたのHTMLやPHPファイルを置いて、世界中から見られるようにするコンピュータ）が必要です。自分でサーバーを買わなくても、<strong>無料のホスティングサービス</strong>を利用すれば、小規模なLPなら無料で公開できます。</p>
   <p style="margin-bottom: 10px;"><strong>ホスティング</strong>＝サーバーの一部（または1台）を貸し出して、そこにファイルを置けるようにするサービス、という意味で覚えておくとよいです。</p>
-  <p style="margin-bottom: 0;">例として、PHPが使える無料ホスティングには「infinityfree」「000webhost」「Xfreehost」などがあります。検索キーワードは「無料 ホスティング PHP」などで調べてみましょう。今回の講座では、講師の案内に従って1つ選び、そこにアップロードするところまで行います。</p>
+  <p style="margin-bottom: 0;">例として、PHPが使える無料ホスティングには「infinityfree」「000webhost」「Xfreehost」などがあります。検索キーワードは「無料 ホスティング PHP」などで調べてみましょう。1つ選び、そこにアップロードするところまで行います。</p>
 </section>
 
 <section style="margin-bottom: 30px;">
@@ -114,11 +114,24 @@
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4-5. コーディングをしていく</h2>
   <p style="margin-bottom: 10px;">PHP を書くエディタは <strong>VSCode</strong> のほか、<strong>Eclipse</strong> に PHP 用プラグイン（<strong>PDT：PHP Development Tools</strong>）を入れて使うこともできます。Eclipse を使い慣れている場合は「Eclipse for PHP Developers」をダウンロードするか、既存の Eclipse に PDT を追加すれば、PHP の編集・実行・デバッグが可能です。</p>
   <p style="margin-bottom: 10px;">AI（Gemini・ChatGPTなど）への<strong>質問のコツ</strong>を意識しながら進めます。</p>
-  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 15px;">
     <li><strong>やりたいことを具体的に書く</strong> — 「LPを作りたい」だけでなく、「トップにキャッチコピー、その下に自己紹介文、最後に連絡先」のように書くと、それに近い構成のコードを出してくれやすい。</li>
     <li><strong>技術を指定する</strong> — 「PHPで」「HTML5で」「インラインスタイルで」などと書くと、出てくるコードが使いやすくなる。</li>
     <li><strong>出てきたコードは必ず実行して確認する</strong> — コピペしただけでは動かない・表示が崩れることがあるので、ローカルやホスティングのプレビューで確かめる。</li>
   </ul>
+
+  <p style="margin-bottom: 8px; font-weight: bold;">深められる質問・学びのある質問を心がける</p>
+  <p style="margin-bottom: 8px; font-size: 14px;">AIとのやり取りでは、<strong>工夫が必要な聞き方</strong>と、<strong>深められる・学びのある聞き方</strong>があります。次の例を参考に、自分で質問文を組み立ててみましょう。</p>
+  <table style="border-collapse: collapse; margin-bottom: 10px; font-size: 14px;" border="1" cellspacing="0" cellpadding="8">
+    <tbody>
+      <tr style="background-color: #f0f8ff;"><th style="text-align: left;">工夫が必要な例</th><th style="text-align: left;">深められる・学びのある聞き方</th></tr>
+      <tr><td>○○のエラーを修正したい。</td><td>○○のエラーを修正するにはどうしたらいいですか？また、その理由も含めて教えてほしい。</td></tr>
+      <tr><td>うまく動きません。</td><td>○○と△△をやったのですが、このようなエラーが出ます。（エラー文や状況をそのまま書く）</td></tr>
+      <tr><td>何かいい方法はありませんか？</td><td>WebサイトのLPを作成したいと思っています。何の言語がおすすめですか？私はJavaを基礎まで学んでいます。</td></tr>
+      <tr><td>Webサイトを見れるようにしたいのですがどうしたらいいですか？</td><td>PHPを使った、無料でサイトを閲覧できるサービスを考えています。おすすめはありますか？</td></tr>
+    </tbody>
+  </table>
+
   <p style="margin-bottom: 0;">まずは「1枚のLP用のPHPファイル」を1つ作り、タイトル・見出し・短文・フッター程度の内容から始めます。慣れてきたら、PHPで日付を表示したり、セクションを増やしたりして調整していきましょう。</p>
 </section>
 
@@ -135,13 +148,8 @@
 
 <section style="margin-bottom: 0;">
   <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. やってみてどうだったか・気づきのシェア</h2>
-  <p style="margin-bottom: 10px;">LPの制作と公開が一通り終わったら、<strong>発表</strong>と<strong>気づきのシェア</strong>の時間を設けます。</p>
-  <ol style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
-    <li><strong>発表</strong> — 各自（または代表）に、作ったLPを画面で見せながら短く発表してもらいます。どんなテーマで、どの部分をAIに頼んだか、どこで詰まったかなど、自由に話してもらってかまいません。</li>
-    <li><strong>得たもの・わかったこと・良かった点</strong> — 発表のあと、参加者に次のような問いかけをして、気づきを共有してもらいます。<br>
-      「やってみて<strong>得たもの</strong>はありましたか？」「<strong>わかったこと</strong>・新しく知ったことは？」「AIでコーディングして<strong>良かった点</strong>はどこでしたか？」</li>
-  </ol>
-  <p style="margin-bottom: 10px;">うまくいった点も、つらかった点も含めて一言ずつ出してもらうと、同じ体験をした仲間同士で「そうそう、そこ大変だった」と共感しやすくなります。講座の締めくくりとして、このシェアの時間を大切にしてください。</p>
-  <p style="margin-bottom: 0; font-size: 14px; color: #555;">本講座では、AIの種類（チャット型・Cursor・自律型）の違いを学び、無料ホスティングとPHPでLPを制作・公開するところまで体験しました。AIへの質問のコツ（具体的に書く・技術を指定する・実行して確認する）を、今後のコーディングにも活かしてみてください。</p>
+  <p style="margin-bottom: 8px;"><strong>目的：</strong>制作したLPを発表し、得たこと・わかったこと・良かった点を共有する。</p>
+  <p style="margin-bottom: 0;"><strong>やること：</strong>作ったLPを画面で見せながら短く発表する。その後、得たもの・わかったこと・良かった点を一言ずつ共有する。</p>
+  <p style="margin-top: 15px; margin-bottom: 0; font-size: 14px; color: #555;">本講座では、AIの種類（チャット型・Cursor・自律型）の違いを学び、無料ホスティングとPHPでLPを制作・公開するところまで体験しました。AIへの質問のコツ（具体的に書く・技術を指定する・実行して確認する）を、今後のコーディングにも活かしてみてください。</p>
 </section>
 </div>

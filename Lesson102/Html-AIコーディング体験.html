@@ -1,0 +1,117 @@
+【テキスト】 AIによるコーディング体験 — 自分のLP（ランディングページ）を作ろう
+<div style="max-width: 800px; margin: 0 auto; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; line-height: 1.6; color: #333; padding: 20px; border: 1px solid #eee; background-color: #fff;">
+<h1 style="padding-left: 10px; background-color: #f0f8ff; color: #0033ff; font-size: 24px; margin-bottom: 30px;">単体講座 — AIコーディング体験</h1>
+<p style="margin-bottom: 10px;"><strong>AIによるコーディング体験</strong> — チャット型AI（Gemini・ChatGPTなど）を使い、自分のサイト（LP）を1から作って公開するまで（約1時間半）</p>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">1. この回で学ぶこと</h2>
+  <p style="margin-bottom: 10px;">この講座では、<strong>AIを活用してコーディングする</strong>体験をします。プログラミングの「書き方」を覚えるだけでなく、<strong>「何を作るか」「どの技術で作るか」「どうやって公開するか」</strong>までを、AIとの対話を交えながら進めていきます。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li>AIによるコーディングとは何か、AIの種類（チャット型・エディタ連携型・自律型）の違いを知る。</li>
+    <li>今回は<strong>チャット型AI（Gemini・ChatGPTなど）</strong>を使い、コーディングのコツや注意点を体験する。</li>
+    <li>無料のホスティングサービスを利用し、<strong>自分用のLP（ランディングページ）</strong>をPHPで作成して公開する。</li>
+  </ul>
+  <p style="margin-bottom: 0;"><strong>LP（ランディングページ）</strong>とは、1枚のWebページで「商品紹介」や「自己紹介」などのテーマに絞って伝える形式のページです。まずはシンプルな1ページから作っていきましょう。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">2. AIによるコーディングとは</h2>
+  <p style="margin-bottom: 10px;"><strong>AIによるコーディング</strong>とは、プログラミングの一部（コードのひな型・修正・説明）を、AI（人工知能）に手伝ってもらいながら進めるやり方です。自分で「何をしたいか」を言葉で伝え、AIがコード例や説明を返してくれるので、初めての言語や初めての機能でも、調べる時間を短縮できます。</p>
+  <p style="margin-bottom: 10px;">注意点として、AIの返答は<strong>必ずしも正しくない</strong>ことがあります。生成されたコードは動かして確認し、エラーが出たら「どの部分がおかしいか」を一緒に切り分けていく姿勢が大切です。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">3. AIの種類と特徴</h2>
+  <p style="margin-bottom: 10px;">コーディングを支援するAIには、だいたい次の3つのタイプがあります。右に行くほど「自動でやってくれる範囲」が広がります。</p>
+
+  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 18px; margin-bottom: 8px;">① Gemini・ChatGPT などのチャット型AI</h3>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li><strong>1問1答</strong>のやり取りが基本。会話のたびに「今のプロジェクト全体」を把握しているわけではないので、<strong>全体の整合性を取るのは自分</strong>になります。</li>
+    <li>その分、<strong>とっつきやすく、やり取りが優しい</strong>ので、初めてAIでコーディングするときに向いています。</li>
+  </ul>
+
+  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 18px; margin-bottom: 8px;">② Cursor</h3>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li><strong>VS Code（統合開発環境のエディタ）</strong>をベースにしたAIエージェントです。エディタの中でコードを書きながら、時々に応じて適切なAIを使い分けられます。</li>
+    <li><strong>プロジェクト単位</strong>でファイルを把握できるので、基本仕様を決めておけば、それに沿ったコーディングや修正を任せやすくなります。</li>
+    <li>Git（バージョン管理）やGitHubの知識があると、変更履歴を管理しつつAIと協力しやすくなります。</li>
+  </ul>
+
+  <h3 style="padding-left: 10px; color: #0033ff; font-size: 16px; margin-top: 18px; margin-bottom: 8px;">③ Claude Code など（自律型）</h3>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li>「従業員の管理アプリを作って」のように<strong>大きな指示を1回出す</strong>と、設計から実装・修正まで自律的に進め、完成に近い形まで仕上げてくれるタイプです。</li>
+    <li>①→②→③と進むほど、<strong>自動化される部分が増え</strong>ます。今回は入門として<strong>①のチャット型AI</strong>を使い、コツや注意点を体感しながら自分のLPを作成します。</li>
+  </ul>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">4. 今回の進め方（約1時間半）</h2>
+  <p style="margin-bottom: 10px;">次の順番で進めます。イメージが湧かない場合は、講師が用意した<strong>仮のターゲット（例：〇〇向けのLP）</strong>を題材に、同じ手順で作成していきます。</p>
+  <ol style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li><strong>無料でサーバーを立ち上げられるサイトを探す</strong> — どこにファイルを置いて公開するか決める。</li>
+    <li><strong>ドメインの考え方を知る</strong> — インターネット上の「住所」のようなもの。無料サブドメインでもOK。</li>
+    <li><strong>プログラミング言語の選択</strong> — 今回はWebページ向けなので、候補を比較する。</li>
+    <li><strong>技術の選定</strong> — 調べた結果、<strong>PHP</strong>で進めることにし、無料ホスティングでPHPが使えるサービスを選ぶ。</li>
+    <li><strong>コーディングをしていく</strong> — AIに相談しながら、LP用のHTML・PHPを書いていく。</li>
+    <li><strong>デバッグ</strong> — 表示や動作を確認し、おかしなところを直す。</li>
+  </ol>
+  <p style="margin-bottom: 0;">最後に、無料ホスティングにアップロードして、ブラウザから自分のLPにアクセスできるところまで行います。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">5. 無料でサーバーを立ち上げられるサイトを探す</h2>
+  <p style="margin-bottom: 10px;">Webサイトを公開するには、<strong>サーバー</strong>（あなたのHTMLやPHPファイルを置いて、世界中から見られるようにするコンピュータ）が必要です。自分でサーバーを買わなくても、<strong>無料のホスティングサービス</strong>を利用すれば、小規模なLPなら無料で公開できます。</p>
+  <p style="margin-bottom: 10px;"><strong>ホスティング</strong>＝サーバーの一部（または1台）を貸し出して、そこにファイルを置けるようにするサービス、という意味で覚えておくとよいです。</p>
+  <p style="margin-bottom: 0;">例として、PHPが使える無料ホスティングには「infinityfree」「000webhost」「Xfreehost」などがあります。検索キーワードは「無料 ホスティング PHP」などで調べてみましょう。今回の講座では、講師の案内に従って1つ選び、そこにアップロードするところまで行います。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">6. ドメインの考え方</h2>
+  <p style="margin-bottom: 10px;"><strong>ドメイン</strong>とは、インターネット上でWebサイトの場所を表す「名前」です。例えば <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">www.example.com</code> の <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">example.com</code> の部分がドメインです。</p>
+  <p style="margin-bottom: 10px;">独自ドメイン（自分で取得した名前）は有料のことが多いですが、多くの無料ホスティングでは<strong>サブドメイン</strong>（例：<code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">あなたの名前.サービス名.com</code>）が無料で付与されます。まずはこのサブドメインで「自分のLPにアクセスできるURL」を手に入れましょう。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">7. プログラミング言語の選択</h2>
+  <p style="margin-bottom: 10px;">Webページを作るには、最低限<strong>HTML</strong>（見た目と構造）が必要です。それに加えて、<strong>サーバー側で動く処理</strong>（例：日付の表示、簡単なフォーム処理）を入れたい場合は、PHP・Python・Rubyなどの言語がよく使われます。</p>
+  <p style="margin-bottom: 0;">無料ホスティングでは<strong>PHP</strong>が使えるサービスが多く、情報も豊富なので、今回のLP作成ではPHPを選びます。Javaを学んだ経験があれば、「変数」「if文」「ループ」の考え方は共通しているので、PHPの書き方の違いをAIに聞きながら進めていきましょう。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">8. 技術の選定（PHPに確定）</h2>
+  <p style="margin-bottom: 10px;">ここまでの流れで、<strong>無料ホスティング ＋ PHP</strong>でLPを作る方針にします。PHPはサーバー上で実行され、HTMLの中に <code style="font-family: monospace; background-color: #f5f5f5; padding: 1px 4px; border-radius: 3px;">&lt;?php ... ?&gt;</code> で処理を埋め込めます。日付を表示したり、同じヘッダー・フッターを共通化したりするのに便利です。</p>
+  <p style="margin-bottom: 0;">AIに「PHPでLPのひな型を書いて」と依頼すると、HTMLとPHPが混ざったサンプルを出してくれます。それをベースに、自分用の文言やスタイルに書き換えていきましょう。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">9. コーディングをしていく</h2>
+  <p style="margin-bottom: 10px;">AI（Gemini・ChatGPTなど）への<strong>質問のコツ</strong>を意識しながら進めます。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li><strong>やりたいことを具体的に書く</strong> — 「LPを作りたい」だけでなく、「トップにキャッチコピー、その下に自己紹介文、最後に連絡先」のように書くと、それに近い構成のコードを出してくれやすい。</li>
+    <li><strong>技術を指定する</strong> — 「PHPで」「HTML5で」「インラインスタイルで」などと書くと、出てくるコードが使いやすくなる。</li>
+    <li><strong>出てきたコードは必ず実行して確認する</strong> — コピペしただけでは動かない・表示が崩れることがあるので、ローカルやホスティングのプレビューで確かめる。</li>
+  </ul>
+  <p style="margin-bottom: 0;">まずは「1枚のLP用のPHPファイル」を1つ作り、タイトル・見出し・短文・フッター程度の内容から始めます。慣れてきたら、PHPで日付を表示したり、セクションを増やしたりして調整していきましょう。</p>
+</section>
+
+<section style="margin-bottom: 30px;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">10. デバッグ</h2>
+  <p style="margin-bottom: 10px;"><strong>デバッグ</strong>とは、プログラムの不具合（バグ）を見つけて直す作業です。LPでよくあるのは、<strong>表示が崩れる・真っ白になる・PHPのエラーで動かない</strong>といったことです。</p>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li>ブラウザの開発者ツール（F12キーなど）で、コンソールやネットワークのエラーを確認する。</li>
+    <li>PHPの場合は、ホスティングのエラーログや、画面上に表示されるエラーメッセージを手がかりに、該当する行を直す。</li>
+    <li>AIに「このエラーメッセージが出ている。どう直す？」と貼り付けて聞くと、修正案を出してくれる。</li>
+  </ul>
+  <p style="margin-bottom: 0;">分からないところは、エラーメッセージや「どこまで表示されているか」をそのままAIに伝えると、切り分けのヒントをもらいやすくなります。</p>
+</section>
+
+<section style="margin-bottom: 0;">
+  <h2 style="border-left: 5px solid #0033ff; padding-left: 10px; color: #0033ff; font-size: 18px; margin-bottom: 15px;">11. まとめ</h2>
+  <ul style="margin-top: 0; padding-left: 20px; margin-bottom: 10px;">
+    <li>AIによるコーディングでは、①チャット型（Gemini・ChatGPT）／②Cursor／③Claude Codeのような自律型があり、今回は①でLP作成を体験した。</li>
+    <li>無料ホスティングを選び、ドメイン（またはサブドメイン）の考え方を押さえたうえで、PHPでLPをコーディングし、デバッグして公開するところまで行った。</li>
+    <li>AIへの質問は「具体的な目的」と「使う技術」を書くとよい。出てきたコードは必ず実行して確認し、エラーはメッセージごとAIに聞くと修正しやすい。</li>
+  </ul>
+  <p style="margin-bottom: 0;">このあと、実際にAIと対話しながら自分のLPを作成し、無料ホスティングにアップロードして公開まで進めていきましょう。</p>
+</section>
+</div>
